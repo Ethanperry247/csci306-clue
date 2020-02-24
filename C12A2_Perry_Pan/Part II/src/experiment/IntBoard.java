@@ -12,23 +12,24 @@ public class IntBoard {
 	private Set<BoardCell> visited;
 	private Set<BoardCell> targets;
 	private BoardCell[][] grid;
-	private static final int GRID_LENGTH = 40;
+	private int gridLength;
 
-	public IntBoard() {
+	public IntBoard(int gridLength) {
 		adjMat = new HashMap<BoardCell, Set<BoardCell>>();
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
+		this.gridLength = gridLength;
 		createGrid();
 		calcAdjacencies();
 	}
 
 	public void createGrid() {
 
-		grid = new BoardCell[GRID_LENGTH][GRID_LENGTH];
+		grid = new BoardCell[gridLength][gridLength];
 
 		// Populate the grid with new boardcells.
-		for (int i = 0; i < GRID_LENGTH; i++) {
-			for (int j = 0; j < GRID_LENGTH; j++) {
+		for (int i = 0; i < gridLength; i++) {
+			for (int j = 0; j < gridLength; j++) {
 				BoardCell newCell = new BoardCell(i, j);
 				grid[i][j] = newCell;
 			}
@@ -38,8 +39,8 @@ public class IntBoard {
 
 	public void calcAdjacencies() {
 
-		for (int i = 0; i < GRID_LENGTH; i++) {
-			for (int j = 0; j < GRID_LENGTH; j++) {
+		for (int i = 0; i < gridLength; i++) {
+			for (int j = 0; j < gridLength; j++) {
 
 				// There are 9 nonets to this board:
 				// four edges, four corners, and the center.
@@ -52,31 +53,31 @@ public class IntBoard {
 					// This is a hashset declaration that includes the cells of interest.
 					adjCells = new HashSet<BoardCell>(Arrays.asList(grid[i + 1][j], grid[i][j + 1]));
 
-				} else if (i == 0 && j == GRID_LENGTH - 1) { // Lower Left Corner.
+				} else if (i == 0 && j == gridLength - 1) { // Lower Left Corner.
 
 					adjCells = new HashSet<BoardCell>(Arrays.asList(grid[i + 1][j], grid[i][j - 1]));
 
-				} else if (i == GRID_LENGTH - 1 && j == GRID_LENGTH - 1) { // Lower right corner.
+				} else if (i == gridLength - 1 && j == gridLength - 1) { // Lower right corner.
 
 					adjCells = new HashSet<BoardCell>(Arrays.asList(grid[i - 1][j], grid[i][j - 1]));
 
-				} else if (i == GRID_LENGTH - 1 && j == 0) { // Upper left corner.
+				} else if (i == gridLength - 1 && j == 0) { // Upper left corner.
 
 					adjCells = new HashSet<BoardCell>(Arrays.asList(grid[i - 1][j], grid[i][j + 1]));
 
-				} else if (i == 0 && j != 0 && j != GRID_LENGTH - 1) { // Middle left nonet.
+				} else if (i == 0 && j != 0 && j != gridLength - 1) { // Middle left nonet.
 
 					adjCells = new HashSet<BoardCell>(Arrays.asList(grid[i + 1][j], grid[i][j - 1], grid[i][j + 1]));
 
-				} else if (i == GRID_LENGTH - 1 && j != 0 && j != GRID_LENGTH - 1) { // Middle right nonet.
+				} else if (i == gridLength - 1 && j != 0 && j != gridLength - 1) { // Middle right nonet.
 
 					adjCells = new HashSet<BoardCell>(Arrays.asList(grid[i - 1][j], grid[i][j + 1], grid[i][j - 1]));
 
-				} else if (j == 0 && i != 0 && i != GRID_LENGTH - 1) { // Upper middle nonet.
+				} else if (j == 0 && i != 0 && i != gridLength - 1) { // Upper middle nonet.
 
 					adjCells = new HashSet<BoardCell>(Arrays.asList(grid[i + 1][j], grid[i - 1][j], grid[i][j + 1]));
 
-				} else if (j == GRID_LENGTH - 1 && i != 0 && i != GRID_LENGTH - 1) { // Lower Middle nonet.
+				} else if (j == gridLength - 1 && i != 0 && i != gridLength - 1) { // Lower Middle nonet.
 
 					adjCells = new HashSet<BoardCell>(Arrays.asList(grid[i + 1][j], grid[i - 1][j], grid[i][j - 1]));
 
@@ -92,19 +93,6 @@ public class IntBoard {
 
 			}
 		}
-		
-		
-		// To be removed -- A temporary check of the adjMat.
-//		for (int i = 0; i < GRID_LENGTH; i++) {
-//			for (int j = 0; j < GRID_LENGTH; j++) {
-//
-//				System.out.println(grid[i][j] + ":");
-//				System.out.println(adjMat.get(grid[i][j]));
-//				System.out.println("\n");
-//			
-//			}
-//		}
-		
 		
 	}
 
@@ -146,15 +134,5 @@ public class IntBoard {
 
 		return targets;
 	}
-	
-	// Temporary tester method because the debugger wasn't working.
-//	public static void main(String[] args) {
-//		IntBoard board = new IntBoard();
-//		BoardCell cell = board.getCell(0, 0);
-//		board.calcTargets(cell, 3);
-//		Set<BoardCell> targets = board.getTargets();
-//		System.out.println(targets);
-//		
-//	}
 
 }
