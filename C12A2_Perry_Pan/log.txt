@@ -1,0 +1,50 @@
+commit d76ab22d7f7a343ebfa578eb14ef66c3135eb531
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Feb 24 14:55:45 2020 -0700
+
+    Added the failing tests part I and cleaned up the part II implemented code. Also updated the constructor in the part II code. Ready for submission.
+
+commit f00233ffe88700c3e9180a7b00187b38198e30b5
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Feb 22 22:20:39 2020 -0700
+
+    Encapsulated C12_A2 in its own file.
+
+commit 9a90e938535359c7b5a5bb39964b6f59d05293b3
+Merge: f422b2c 9d064df
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Feb 22 22:18:37 2020 -0700
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit f422b2cc6b37229a6620fea6e5da0f6145d8595a
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Feb 22 22:18:24 2020 -0700
+
+    Implemented methods to fulfill the tests. No tests failed!
+
+commit 9d064df37a19ea1f906ac93d9c0b8756125ef003
+Author: CPanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Feb 22 17:50:38 2020 -0700
+
+    Add files via upload
+    
+    Added map layout excel file and legend/key for the rooms
+
+commit ac2ff317db50c81cd6e100e73d1c61e8724e29ae
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 20 13:41:49 2020 -0700
+
+    Added failing tests and all classes
+
+commit a6b6bf3644dd182a8c8c0a7765b8eef986e21a5f
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 20 12:58:11 2020 -0700
+
+    Added project files
+
+commit 4edd74471ec89f5b4b0a0917b2a3abeeb23f9ff6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 20 12:49:40 2020 -0700
+
+    Added README
