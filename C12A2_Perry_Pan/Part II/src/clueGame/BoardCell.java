@@ -18,19 +18,48 @@ public class BoardCell {
 	}
 	
 	public boolean isDoorway() {
-		return false;
+		if (this.initial.length() == 1) {	// returns false if cell does not contain door
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	public boolean isWalkway() {
-		return false;
+		if (this.initial.equals("W")) {	// checks initial indicating cell is a walkway
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean isRoom() {
-		return false;
+		// if statement to confirm the cell is not a door, walkway, or closet 
+		if (!this.initial.equals("W") && !this.initial.equals("X") && this.initial.length() == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public DoorDirection getDoorDirection() {
-		return null;
+		
+		if (this.initial.length() == 1) {	// returns null if cell has no door
+			return DoorDirection.NONE;
+		} else {	// else, a switch case to determine which direction for the door
+			switch(this.initial.charAt(1)) {
+				case 'L': 
+					return DoorDirection.LEFT;
+				case 'R':
+					return DoorDirection.RIGHT;
+				case 'U':
+					return DoorDirection.UP;
+				case 'D':
+					return DoorDirection.DOWN;
+				default:
+					return null;
+			}
+		}	
 	}
 	
 	public String getInitial() {
