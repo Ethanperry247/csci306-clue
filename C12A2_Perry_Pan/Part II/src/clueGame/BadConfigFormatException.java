@@ -5,9 +5,10 @@ import java.io.PrintWriter;
 
 public class BadConfigFormatException extends Exception {
 	
-	public BadConfigFormatException() throws FileNotFoundException {
+	// default constructor, sets default message
+	public BadConfigFormatException() throws FileNotFoundException {	
 		super("Error loading config file from formatting incompatibility");
-		try {
+		try {	// exception handling writes to a log
 	    	PrintWriter out = new PrintWriter("logfile.txt");
 	    	out.println("Error logged: formatting incompatibility");
 	        out.close();
@@ -17,11 +18,12 @@ public class BadConfigFormatException extends Exception {
 	      }
 	}
 	
-	public BadConfigFormatException(String s) throws FileNotFoundException {
-		super(s);
-		try {
+	// 1-parameter constructor, will set specific message
+	public BadConfigFormatException(String message) throws FileNotFoundException {
+		super(message);
+		try {	// exception handling writes to a log
 	    	PrintWriter out = new PrintWriter("logfile.txt");
-	    	out.println("Error logged: " + s);
+	    	out.println("Error logged: " + message);
 	        out.close();
 	        
 	      } catch (Exception e) {

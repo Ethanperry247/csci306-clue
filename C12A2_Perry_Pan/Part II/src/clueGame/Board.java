@@ -30,7 +30,7 @@ public class Board {
 		// Initialize every row and column in board to a walkway.
 		for (int row = 0; row < numRows; row++) {
 			for (int col = 0; col < numColumns; col++) {
-				board[row][col] = new BoardCell(numRows, numColumns, 'w');
+				board[row][col] = new BoardCell(numRows, numColumns, "w");
 			}
 		}
 		

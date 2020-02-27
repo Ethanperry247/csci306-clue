@@ -4,9 +4,9 @@ public class BoardCell {
 	
 	private int row;
 	private int column;
-	private char initial;
+	private String initial;
 
-	public BoardCell(int row, int column, char initial) {
+	public BoardCell(int row, int column, String initial) {
 		this.row = row;
 		this.column = column;
 		this.initial = initial;
@@ -33,7 +33,7 @@ public class BoardCell {
 		return null;
 	}
 	
-	public char getInitial() {
+	public String getInitial() {
 		return initial;
 	}
 	
