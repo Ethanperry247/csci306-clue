@@ -28,8 +28,8 @@ public class JUnitBoardTests {
 	public static void setUp() {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
-		// set the file names to use my config files
-		board.setConfigFiles("CTest_ClueLayout.csv", "CTest_ClueLegend.txt");		
+		// set the file names to use config files
+		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt");		
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}
@@ -63,40 +63,42 @@ public class JUnitBoardTests {
 	}
 	
 	// These cells are white on the planning spreadsheet
-		@Test
-		public void FourDoorDirections() {
-			BoardCell room = board.getCellAt(2, 3);
-			assertTrue(room.isDoorway());
-			assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
-			room = board.getCellAt(6, 4);
-			assertTrue(room.isDoorway());
-			assertEquals(DoorDirection.DOWN, room.getDoorDirection());
-			room = board.getCellAt(15, 9);
-			assertTrue(room.isDoorway());
-			assertEquals(DoorDirection.LEFT, room.getDoorDirection());
-			room = board.getCellAt(14, 14);
-			assertTrue(room.isDoorway());
-			assertEquals(DoorDirection.UP, room.getDoorDirection());
-			// Test that room pieces that aren't doors know it
-			room = board.getCellAt(17, 9);
-			assertFalse(room.isDoorway());	
-			// Test that walkways are not doors
-			BoardCell cell = board.getCellAt(14, 9);
-			assertFalse(cell.isDoorway());		
+	@Test
+	public void FourDoorDirections() {
+		BoardCell room = board.getCellAt(2, 3);
+		assertTrue(room.isDoorway());
+		assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
+		room = board.getCellAt(6, 4);
+		assertTrue(room.isDoorway());
+		assertEquals(DoorDirection.DOWN, room.getDoorDirection());
+		room = board.getCellAt(15, 9);
+		assertTrue(room.isDoorway());
+		assertEquals(DoorDirection.LEFT, room.getDoorDirection());
+		room = board.getCellAt(14, 14);
+		assertTrue(room.isDoorway());
+		assertEquals(DoorDirection.UP, room.getDoorDirection());
+		// Test that room pieces that aren't doors know it
+		room = board.getCellAt(17, 9);
+		assertFalse(room.isDoorway());	
+		// Test that walkways are not doors
+		BoardCell cell = board.getCellAt(14, 9);
+		assertFalse(cell.isDoorway());		
 
-		}
+	}
 	
 	// Test that we have the correct number of doors
 	@Test
 	public void testNumberOfDoorways() 
 	{
+		// Loop through and count all doors. Then compare that to assure there are 13.
 		int numDoors = 0;
-		for (int row=0; row<board.getNumRows(); row++)
+		for (int row=0; row<board.getNumRows(); row++) {
 			for (int col=0; col<board.getNumColumns(); col++) {
 				BoardCell cell = board.getCellAt(row, col);
 				if (cell.isDoorway())
 					numDoors++;
 			}
+		}
 		Assert.assertEquals(13, numDoors);
 	}
 	
