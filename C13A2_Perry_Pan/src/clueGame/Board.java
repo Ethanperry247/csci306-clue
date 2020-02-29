@@ -22,12 +22,7 @@ public class Board {
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
 	// constructor is private to ensure only one can be created
-	private Board() {
-		// Board and legend must be loaded in order to run the loading meth
-		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
-		legend = new HashMap<Character, String>();
-		
-	}
+	private Board() {}
 	// this method returns the only Board
 	public static Board getInstance() {
 		return theInstance;
@@ -48,6 +43,9 @@ public class Board {
 	}
 	
 	public void loadRoomConfig() throws BadConfigFormatException, FileNotFoundException {
+		
+		// Reloading the legend to assure that there is a new legend every time a new config file is loaded.
+		legend = new HashMap<Character, String>();
 		
 		// Scanner will take in the room config file and parse it into the legend map.
 		Scanner scanner = new Scanner(new File(roomConfigFile));
@@ -73,6 +71,10 @@ public class Board {
 	}
 	
 	public void loadBoardConfig() throws BadConfigFormatException, FileNotFoundException {
+		
+		// Reloading the board matrix to ensure that a new board is loaded each time loadBoardConfig is called.
+		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		
 		Scanner scanner = new Scanner(new File(boardConfigFile));
 		int rowLength = 0;
 		int r = 0; // Will be incremented as elements are added to grid.

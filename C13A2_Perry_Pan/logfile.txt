@@ -1,0 +1,1 @@
+Error logged: Incorrect room type in room config file.

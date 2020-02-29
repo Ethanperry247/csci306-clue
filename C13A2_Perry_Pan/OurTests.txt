@@ -1,0 +1,11 @@
+Authors: Ethan Perry and Caleb Pan
+
+Our tests are quite similar to those of Dr. Baldwin's, as his tests were very comprehensive. However,
+our tests differ in a few ways. The first difference is in the testRooms class, where our rooms and
+room initials are present as opposed to the ones which were in the given test class. The next difference
+is in the four door directions tests, as our doors are in different places. We accordingly modified 
+the cells tested to cells which line up appropriately with our own file. The doors we tested were in
+the studio, cellar, parlor, and veranda. Our number of doorways are 13 rather than 16, so we made that
+change in test number of doorways. Lastly, test room initials is very different, as the initials for 
+our rooms are different from the given test class, and we also tested three differnt randomly dispersed 
+walkways and four dispersed closet positions.
