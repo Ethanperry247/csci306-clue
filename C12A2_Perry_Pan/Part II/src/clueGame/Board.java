@@ -133,15 +133,19 @@ public class Board {
 		
 	}
 	
+	//////////////////////////////////////////////////////////////////////////////////////
+	
 	// To be implemented...
 	public void calcAdjacencies() {
 		
 	}
 	
 	// To be implemented...
-	public void calcTargets() {
+	public void calcTargets(int i, int j, int k) {
 		
 	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////	
 	
 	public void setConfigFiles(String boardConfig, String roomConfig) {
 		boardConfigFile = boardConfig;
@@ -164,8 +168,17 @@ public class Board {
 		return board[row][col];
 	}
 	
+	//////////////////////////////////////////////////////////////////////////////////////
 	
+	public Set<BoardCell> getTargets() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public Set<BoardCell> getAdjList(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
 	
-	
+	//////////////////////////////////////////////////////////////////////////////////////
 
 }

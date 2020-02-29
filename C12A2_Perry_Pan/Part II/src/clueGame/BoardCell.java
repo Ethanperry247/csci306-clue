@@ -39,7 +39,7 @@ public class BoardCell {
 	}
 	
 	public boolean isRoom() {
-		// if statement to confirm the cell is not a door, walkway, or closet 
+		// if statement to confirm the cell is not a walkway, closet, or door
 		if (!this.initial.equals("W") && !this.initial.equals("X") && this.initial.length() == 1) {
 			return true;
 		} else {
@@ -49,7 +49,7 @@ public class BoardCell {
 	
 	public DoorDirection getDoorDirection() {
 		
-		if (this.initial.length() == 1) {	// returns null if cell has no door
+		if (this.initial.length() == 1) {	// returns none if cell has no door
 			return DoorDirection.NONE;
 		} else {	// else, a switch case to determine which direction for the door
 			switch(this.initial.charAt(1)) {
