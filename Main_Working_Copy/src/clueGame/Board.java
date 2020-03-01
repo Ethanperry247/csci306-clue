@@ -3,6 +3,7 @@ package clueGame;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -14,10 +15,11 @@ public class Board {
 	public static final int MAX_BOARD_SIZE = 50;
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
-	private Map<BoardCell, Set<BoardCell>> adjMatrix;
-	private Set<BoardCell> targets;
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private Set<BoardCell> visited = new HashSet<BoardCell>();
+	private Set<BoardCell> targets = new HashSet<BoardCell>();
+	private Map<BoardCell, Set<BoardCell>> adjMat = new HashMap<BoardCell, Set<BoardCell>>();
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -29,7 +31,6 @@ public class Board {
 	}
 	
 	public void initialize() {
-		
 		try {
 			loadRoomConfig();
 			loadBoardConfig();
@@ -37,9 +38,7 @@ public class Board {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
-		
-		
+		}		
 	}
 	
 	public void loadRoomConfig() throws BadConfigFormatException, FileNotFoundException {
@@ -132,18 +131,53 @@ public class Board {
 		numColumns = rowLength;
 		
 		scanner.close();
-		
 	}
 	
-	// To be implemented...
+//////////////////////////////////////////////////////////////////////////////////////
+	
 	public void calcAdjacencies() {
-		
+
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numColumns; j++) {
+				// finds all adjacent cells that can be entered
+				Set<BoardCell> adjCells = getAdjList(i,j);
+				// Adds the cell and its appropriate adjacent cells.
+				adjMat.put(board[i][j], adjCells);
+			}
+		}
 	}
 	
-	// To be implemented...
-	public void calcTargets() {
+
+	public void calcTargets(int i, int j, int k) {
 		
+		BoardCell cell = getCellAt(i,j);
+		
+		if (visited.contains(cell)) {
+			return;
+		} else {
+			visited.add(cell);
+		}
+		
+		if (k == 0) {
+			targets.add(cell);
+			visited.remove(cell);
+			return;
+		} else {
+			for (BoardCell adjCell : adjMat.get(cell)) {
+				int x = k - 1;
+				calcTargets(adjCell.getRow(), adjCell.getColumn(), x);
+				
+			}
+			visited.remove(cell);
+		}
 	}
+	
+	public Set<BoardCell> getTargets() {
+
+		 return targets;
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////	
 	
 	public void setConfigFiles(String boardConfig, String roomConfig) {
 		boardConfigFile = boardConfig;
@@ -166,8 +200,61 @@ public class Board {
 		return board[row][col];
 	}
 	
+	//////////////////////////////////////////////////////////////////////////////////////
 	
+	public Set<BoardCell> getAdjList(int i, int j) {
+		BoardCell current = getCellAt(i,j);
+		Set<BoardCell> adjacent = new HashSet<BoardCell>(); 
 	
-	
+		if (current.isRoom()) {	// if in room, cannot move
+			return adjacent;
+			
+		} else if (current.isDoorway()) {	// if on a door cell, finds adjacent cell to enter
+			
+			switch(current.getDoorDirection()) {
+				case LEFT: 
+					adjacent.add(getCellAt(i,j-1));
+					break;
+				case RIGHT:
+					adjacent.add(getCellAt(i,j+1));
+					break;
+				case UP:
+					adjacent.add(getCellAt(i-1,j));
+					break;
+				case DOWN:
+					adjacent.add(getCellAt(i+1,j));
+					break;
+				default:
+					break;
+			} 
+			
+		} else if (current.isWalkway()) {	// if on a walkway, check all adjacent cells if can move onto (other walkways or doors) 
+			
+			if (j > 0 && getCellAt(i,j-1).getInitial() == 'W' 
+					|| j > 0 && getCellAt(i,j-1).getDoorDirection() == DoorDirection.RIGHT) {
+				adjacent.add(getCellAt(i,j-1));
+			}
+			
+			if (j < numColumns-1 && getCellAt(i,j+1).getInitial() == 'W'
+					|| j < numColumns-1 && getCellAt(i,j+1).getDoorDirection() == DoorDirection.LEFT) {
+				adjacent.add(getCellAt(i,j+1));
+			}
+			
+			if (i > 0 && getCellAt(i-1,j).getInitial() == 'W'
+					|| i > 0 && getCellAt(i-1,j).getDoorDirection() == DoorDirection.DOWN) {
+				adjacent.add(getCellAt(i-1,j));
+			}
+			
+			if (i < numRows-1 && getCellAt(i+1,j).getInitial() == 'W'
+					|| i < numRows-1 && getCellAt(i+1,j).getDoorDirection() == DoorDirection.UP) {
+				adjacent.add(getCellAt(i+1,j));
+			}
+			
+		}
+		
+		return adjacent;
+	}	
+
+//////////////////////////////////////////////////////////////////////////////////////
 
 }
