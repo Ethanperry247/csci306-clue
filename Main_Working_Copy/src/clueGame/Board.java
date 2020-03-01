@@ -19,7 +19,7 @@ public class Board {
 	private String roomConfigFile;
 	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
-	private Map<BoardCell, Set<BoardCell>> adjMat = new HashMap<BoardCell, Set<BoardCell>>();
+	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -139,17 +139,15 @@ public class Board {
 
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numColumns; j++) {
-				// finds all adjacent cells that can be entered
-				Set<BoardCell> adjCells = getAdjList(i,j);
-				// Adds the cell and its appropriate adjacent cells.
-				adjMat.put(board[i][j], adjCells);
+				Set<BoardCell> adjCells = getAdjList(i,j);	// finds all adjacent cells that can be entered
+				adjMatrix.put(board[i][j], adjCells);		// Adds the cell and its appropriate adjacent cells.
 			}
 		}
 	}
 	
 
 	public void calcTargets(int i, int j, int k) {
-		
+		calcAdjacencies();
 		BoardCell cell = getCellAt(i,j);
 		
 		if (visited.contains(cell)) {
@@ -163,18 +161,20 @@ public class Board {
 			visited.remove(cell);
 			return;
 		} else {
-			for (BoardCell adjCell : adjMat.get(cell)) {
-				int x = k - 1;
-				calcTargets(adjCell.getRow(), adjCell.getColumn(), x);
-				
+			for (BoardCell adjCell : adjMatrix.get(cell)) {
+				int movesRemaining = k - 1;
+				calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);
 			}
 			visited.remove(cell);
 		}
 	}
 	
 	public Set<BoardCell> getTargets() {
-
-		 return targets;
+		Set<BoardCell> temp = new HashSet<BoardCell>(targets);	// makes copy of target cells
+		// clear sets for future use of CalcTargets
+		targets.clear();
+		visited.clear();	
+		return temp;	// returns preserved copy of target cells
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////	
