@@ -139,8 +139,8 @@ public class Board {
 
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numColumns; j++) {
-				Set<BoardCell> adjCells = getAdjList(i,j);	// finds all adjacent cells that can be entered
-				adjMatrix.put(board[i][j], adjCells);		// Adds the cell and its appropriate adjacent cells.
+				Set<BoardCell> adjCells = new HashSet<BoardCell>(getAdjList(i,j));	// finds all adjacent cells that can be entered
+				adjMatrix.put(board[i][j], adjCells);								// Adds the cell and its appropriate adjacent cells.
 			}
 		}
 	}
@@ -156,7 +156,7 @@ public class Board {
 			visited.add(cell);
 		}
 		
-		if (k == 0) {
+		if (k == 0 || cell.isDoorway()) {
 			targets.add(cell);
 			visited.remove(cell);
 			return;
@@ -177,7 +177,7 @@ public class Board {
 		return temp;	// returns preserved copy of target cells
 	}
 	
-	//////////////////////////////////////////////////////////////////////////////////////	
+//////////////////////////////////////////////////////////////////////////////////////	
 	
 	public void setConfigFiles(String boardConfig, String roomConfig) {
 		boardConfigFile = boardConfig;
@@ -200,7 +200,7 @@ public class Board {
 		return board[row][col];
 	}
 	
-	//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 	
 	public Set<BoardCell> getAdjList(int i, int j) {
 		BoardCell current = getCellAt(i,j);
