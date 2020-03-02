@@ -148,7 +148,7 @@ public class Board {
 
 	public void calcTargets(int i, int j, int k) {
 		calcAdjacencies();
-		BoardCell cell = getCellAt(i,j);
+		BoardCell cell = getCellAt(i,j); 
 		
 		if (visited.contains(cell)) {
 			return;
@@ -157,7 +157,15 @@ public class Board {
 		}
 		
 		if (k == 0 || cell.isDoorway()) {
-			targets.add(cell);
+			if (visited.size() == 1) {
+				for (BoardCell adjCell : adjMatrix.get(cell)) {
+					int movesRemaining = k - 1;
+					calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);
+				}
+				visited.remove(cell);
+			} else { 
+				targets.add(cell);
+			}
 			visited.remove(cell);
 			return;
 		} else {
