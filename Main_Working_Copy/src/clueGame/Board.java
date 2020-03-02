@@ -17,8 +17,9 @@ public class Board {
 	private Map<Character, String> legend;
 	private String boardConfigFile;
 	private String roomConfigFile;
-	private Set<BoardCell> visited = new HashSet<BoardCell>();
-	private Set<BoardCell> targets = new HashSet<BoardCell>();
+	private Set<BoardCell> visited = new HashSet<BoardCell>();	// set to keep track of cells already visited in a turn
+	private Set<BoardCell> targets = new HashSet<BoardCell>();	// set to keep track of target cells
+	// map with keys as cells on the board and a set of the cells adjacent to the key cell for the values 
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 
 	// variable used for singleton pattern
@@ -140,29 +141,30 @@ public class Board {
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numColumns; j++) {
 				Set<BoardCell> adjCells = new HashSet<BoardCell>(getAdjList(i,j));	// finds all adjacent cells that can be entered
-				adjMatrix.put(board[i][j], adjCells);								// Adds the cell and its appropriate adjacent cells.
+				adjMatrix.put(board[i][j], adjCells);	// Adds the cell and its appropriate adjacent cells.
 			}
 		}
 	}
 	
 
 	public void calcTargets(int i, int j, int k) {
+		
 		calcAdjacencies();
 		BoardCell cell = getCellAt(i,j); 
 		
-		if (visited.contains(cell)) {
+		if (visited.contains(cell)) {	// if the cell is already visited, return
 			return;
 		} else {
-			visited.add(cell);
+			visited.add(cell);	// else, add to set off cells visited
 		}
 		
-		if (k == 0 || cell.isDoorway()) {
-			if (visited.size() == 1) {
-				for (BoardCell adjCell : adjMatrix.get(cell)) {
-					int movesRemaining = k - 1;
-					calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);
+		if (k == 0 || cell.isDoorway()) {	// if there are no moves remaining or at a door cell
+			if (visited.size() == 1) {	// if starting at a door cell
+				for (BoardCell adjCell : adjMatrix.get(cell)) {	// loops through adjacent cells 
+					int movesRemaining = k - 1;	// decrements moves left
+					calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);	// recursive call with decremented moves left 
 				}
-				visited.remove(cell);
+				visited.remove(cell);	
 			} else { 
 				targets.add(cell);
 			}
@@ -211,55 +213,8 @@ public class Board {
 //////////////////////////////////////////////////////////////////////////////////////
 	
 	public Set<BoardCell> getAdjList(int i, int j) {
-		BoardCell current = getCellAt(i,j);
 		Set<BoardCell> adjacent = new HashSet<BoardCell>(); 
-	
-		if (current.isRoom()) {	// if in room, cannot move
-			return adjacent;
-			
-		} else if (current.isDoorway()) {	// if on a door cell, finds adjacent cell to enter
-			
-			switch(current.getDoorDirection()) {
-				case LEFT: 
-					adjacent.add(getCellAt(i,j-1));
-					break;
-				case RIGHT:
-					adjacent.add(getCellAt(i,j+1));
-					break;
-				case UP:
-					adjacent.add(getCellAt(i-1,j));
-					break;
-				case DOWN:
-					adjacent.add(getCellAt(i+1,j));
-					break;
-				default:
-					break;
-			} 
-			
-		} else if (current.isWalkway()) {	// if on a walkway, check all adjacent cells if can move onto (other walkways or doors) 
-			
-			if (j > 0 && getCellAt(i,j-1).getInitial() == 'W' 
-					|| j > 0 && getCellAt(i,j-1).getDoorDirection() == DoorDirection.RIGHT) {
-				adjacent.add(getCellAt(i,j-1));
-			}
-			
-			if (j < numColumns-1 && getCellAt(i,j+1).getInitial() == 'W'
-					|| j < numColumns-1 && getCellAt(i,j+1).getDoorDirection() == DoorDirection.LEFT) {
-				adjacent.add(getCellAt(i,j+1));
-			}
-			
-			if (i > 0 && getCellAt(i-1,j).getInitial() == 'W'
-					|| i > 0 && getCellAt(i-1,j).getDoorDirection() == DoorDirection.DOWN) {
-				adjacent.add(getCellAt(i-1,j));
-			}
-			
-			if (i < numRows-1 && getCellAt(i+1,j).getInitial() == 'W'
-					|| i < numRows-1 && getCellAt(i+1,j).getDoorDirection() == DoorDirection.UP) {
-				adjacent.add(getCellAt(i+1,j));
-			}
-			
-		}
-		
+		adjacent.add(getCellAt(i,j));	// adds current cell into adjacent list
 		return adjacent;
 	}	
 
