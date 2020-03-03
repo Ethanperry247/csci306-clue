@@ -213,8 +213,55 @@ public class Board {
 //////////////////////////////////////////////////////////////////////////////////////
 	
 	public Set<BoardCell> getAdjList(int i, int j) {
+		BoardCell current = getCellAt(i,j);
 		Set<BoardCell> adjacent = new HashSet<BoardCell>(); 
-		adjacent.add(getCellAt(i,j));	// adds current cell into adjacent list
+	
+		if (current.isRoom()) {	// if in room, cannot move
+			return adjacent;
+			
+		} else if (current.isDoorway()) {	// if on a door cell, finds adjacent cell to enter
+			
+			switch(current.getDoorDirection()) {
+				case LEFT: 
+					adjacent.add(getCellAt(i,j-1));
+					break;
+				case RIGHT:
+					adjacent.add(getCellAt(i,j+1));
+					break;
+				case UP:
+					adjacent.add(getCellAt(i-1,j));
+					break;
+				case DOWN:
+					adjacent.add(getCellAt(i+1,j));
+					break;
+				default:
+					break;
+			} 
+			
+		} else if (current.isWalkway()) {	// if on a walkway, check all adjacent cells if can move onto (other walkways or doors) 
+			
+			if (j > 0 && getCellAt(i,j-1).getInitial() == 'W' 
+					|| j > 0 && getCellAt(i,j-1).getDoorDirection() == DoorDirection.RIGHT) {
+				adjacent.add(getCellAt(i,j-1));
+			}
+			
+			if (j < numColumns-1 && getCellAt(i,j+1).getInitial() == 'W'
+					|| j < numColumns-1 && getCellAt(i,j+1).getDoorDirection() == DoorDirection.LEFT) {
+				adjacent.add(getCellAt(i,j+1));
+			}
+			
+			if (i > 0 && getCellAt(i-1,j).getInitial() == 'W'
+					|| i > 0 && getCellAt(i-1,j).getDoorDirection() == DoorDirection.DOWN) {
+				adjacent.add(getCellAt(i-1,j));
+			}
+			
+			if (i < numRows-1 && getCellAt(i+1,j).getInitial() == 'W'
+					|| i < numRows-1 && getCellAt(i+1,j).getDoorDirection() == DoorDirection.UP) {
+				adjacent.add(getCellAt(i+1,j));
+			}
+			
+		}
+		
 		return adjacent;
 	}	
 
