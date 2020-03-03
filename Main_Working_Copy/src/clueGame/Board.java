@@ -164,7 +164,7 @@ public class Board {
 					int movesRemaining = k - 1;	// decrements moves left
 					calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);	// recursive call with decremented moves left 
 				}
-				visited.remove(cell);	
+				visited.remove(cell);	// Remove the door, as it is not a valid target when starting on the door.
 			} else { 
 				targets.add(cell);
 			}
@@ -173,7 +173,7 @@ public class Board {
 		} else {
 			for (BoardCell adjCell : adjMatrix.get(cell)) {
 				int movesRemaining = k - 1;
-				calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);
+				calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);	// Recur on all adjacent cells.
 			}
 			visited.remove(cell);
 		}
