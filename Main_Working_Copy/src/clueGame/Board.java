@@ -138,19 +138,19 @@ public class Board {
 	
 	public void calcAdjacencies() {
 
-		for (int i = 0; i < numRows; i++) {
-			for (int j = 0; j < numColumns; j++) {
-				Set<BoardCell> adjCells = new HashSet<BoardCell>(getAdjList(i,j));	// finds all adjacent cells that can be entered
-				adjMatrix.put(board[i][j], adjCells);	// Adds the cell and its appropriate adjacent cells.
+		for (int row = 0; row < numRows; row++) {
+			for (int column = 0; column < numColumns; column++) {
+				Set<BoardCell> adjCells = new HashSet<BoardCell>(getAdjList(row,column));	// finds all adjacent cells that can be entered
+				adjMatrix.put(board[row][column], adjCells);	// Adds the cell and its appropriate adjacent cells.
 			}
 		}
 	}
 	
 
-	public void calcTargets(int i, int j, int k) {
+	public void calcTargets(int row, int column, int moves) {
 		
 		calcAdjacencies();
-		BoardCell cell = getCellAt(i,j); 
+		BoardCell cell = getCellAt(row,column); 
 		
 		if (visited.contains(cell)) {	// if the cell is already visited, return
 			return;
@@ -158,10 +158,10 @@ public class Board {
 			visited.add(cell);	// else, add to set off cells visited
 		}
 		
-		if (k == 0 || cell.isDoorway()) {	// if there are no moves remaining or at a door cell
+		if (moves == 0 || cell.isDoorway()) {	// if there are no moves remaining or at a door cell
 			if (visited.size() == 1) {	// if starting at a door cell
 				for (BoardCell adjCell : adjMatrix.get(cell)) {	// loops through adjacent cells 
-					int movesRemaining = k - 1;	// decrements moves left
+					int movesRemaining = moves - 1;	// decrements moves left
 					calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);	// recursive call with decremented moves left 
 				}
 				visited.remove(cell);	// Remove the door, as it is not a valid target when starting on the door.
@@ -172,7 +172,7 @@ public class Board {
 			return;
 		} else {
 			for (BoardCell adjCell : adjMatrix.get(cell)) {
-				int movesRemaining = k - 1;
+				int movesRemaining = moves - 1;
 				calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);	// Recur on all adjacent cells.
 			}
 			visited.remove(cell);
@@ -206,14 +206,14 @@ public class Board {
 		return legend;
 	}
 	
-	public BoardCell getCellAt(int row, int col) {
-		return board[row][col];
+	public BoardCell getCellAt(int row, int column) {
+		return board[row][column];
 	}
 	
 //////////////////////////////////////////////////////////////////////////////////////
 	
-	public Set<BoardCell> getAdjList(int i, int j) {
-		BoardCell current = getCellAt(i,j);
+	public Set<BoardCell> getAdjList(int row, int column) {
+		BoardCell current = getCellAt(row,column);
 		Set<BoardCell> adjacent = new HashSet<BoardCell>(); 
 	
 		if (current.isRoom()) {	// if in room, cannot move
@@ -223,16 +223,16 @@ public class Board {
 			
 			switch(current.getDoorDirection()) {
 				case LEFT: 
-					adjacent.add(getCellAt(i,j-1));
+					adjacent.add(getCellAt(row, column-1));
 					break;
 				case RIGHT:
-					adjacent.add(getCellAt(i,j+1));
+					adjacent.add(getCellAt(row, column+1));
 					break;
 				case UP:
-					adjacent.add(getCellAt(i-1,j));
+					adjacent.add(getCellAt(row-1, column));
 					break;
 				case DOWN:
-					adjacent.add(getCellAt(i+1,j));
+					adjacent.add(getCellAt(row+1, column));
 					break;
 				default:
 					break;
@@ -240,24 +240,24 @@ public class Board {
 			
 		} else if (current.isWalkway()) {	// if on a walkway, check all adjacent cells if can move onto (other walkways or doors) 
 			
-			if (j > 0 && getCellAt(i,j-1).getInitial() == 'W' 
-					|| j > 0 && getCellAt(i,j-1).getDoorDirection() == DoorDirection.RIGHT) {
-				adjacent.add(getCellAt(i,j-1));
+			if (column > 0 && getCellAt(row, column-1).getInitial() == 'W' 
+					|| column > 0 && getCellAt(row, column-1).getDoorDirection() == DoorDirection.RIGHT) {
+				adjacent.add(getCellAt(row, column-1));
 			}
 			
-			if (j < numColumns-1 && getCellAt(i,j+1).getInitial() == 'W'
-					|| j < numColumns-1 && getCellAt(i,j+1).getDoorDirection() == DoorDirection.LEFT) {
-				adjacent.add(getCellAt(i,j+1));
+			if (column < numColumns-1 && getCellAt(row, column+1).getInitial() == 'W'
+					|| column < numColumns-1 && getCellAt(row, column+1).getDoorDirection() == DoorDirection.LEFT) {
+				adjacent.add(getCellAt(row, column+1));
 			}
 			
-			if (i > 0 && getCellAt(i-1,j).getInitial() == 'W'
-					|| i > 0 && getCellAt(i-1,j).getDoorDirection() == DoorDirection.DOWN) {
-				adjacent.add(getCellAt(i-1,j));
+			if (row > 0 && getCellAt(row-1, column).getInitial() == 'W'
+					|| row > 0 && getCellAt(row-1, column).getDoorDirection() == DoorDirection.DOWN) {
+				adjacent.add(getCellAt(row-1, column));
 			}
 			
-			if (i < numRows-1 && getCellAt(i+1,j).getInitial() == 'W'
-					|| i < numRows-1 && getCellAt(i+1,j).getDoorDirection() == DoorDirection.UP) {
-				adjacent.add(getCellAt(i+1,j));
+			if (row < numRows-1 && getCellAt(row+1, column).getInitial() == 'W'
+					|| row < numRows-1 && getCellAt(row+1, column).getDoorDirection() == DoorDirection.UP) {
+				adjacent.add(getCellAt(row+1, column));
 			}
 			
 		}
