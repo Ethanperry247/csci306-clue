@@ -64,7 +64,6 @@ public class Board {
 				scanner.close();
 				throw new BadConfigFormatException("Incorrect room type in room config file.");
 			}
-
 		}
 
 		scanner.close();
@@ -77,7 +76,7 @@ public class Board {
 
 		Scanner scanner = new Scanner(new File(boardConfigFile));
 		int rowLength = 0;
-		int row = 0; // Will be incremented as elements are added to grid.
+		int row = 0;	// Will be incremented as elements are added to grid.
 
 		// This first if statement will get the length of the first column to be compared against all others.
 		if (scanner.hasNextLine()) {
@@ -189,6 +188,9 @@ public class Board {
 		roomConfigFile = roomConfig;	
 	}
 
+	
+	// getters for number of rows, columns, legend, and cell at a specific location are all below
+	
 	public int getNumRows() {
 		return numRows;
 	}
@@ -216,16 +218,16 @@ public class Board {
 		} else if (current.isDoorway()) {	// if on a door cell, finds adjacent cell to enter
 
 			switch(current.getDoorDirection()) {
-			case LEFT: 
+			case LEFT:	// check if can enter to the left cell
 				adjacent.add(getCellAt(row, column-1));
 				break;
-			case RIGHT:
+			case RIGHT:	// check if can enter to the right cell
 				adjacent.add(getCellAt(row, column+1));
 				break;
-			case UP:
+			case UP:	// check if can enter to the cell above
 				adjacent.add(getCellAt(row-1, column));
 				break;
-			case DOWN:
+			case DOWN:	// check if can enter to the cell below
 				adjacent.add(getCellAt(row+1, column));
 				break;
 			default:
@@ -234,21 +236,25 @@ public class Board {
 
 		} else if (current.isWalkway()) {	// if on a walkway, check all adjacent cells if can move onto (other walkways or doors) 
 
+			// check if can move to the cell to the right
 			if (column > 0 && getCellAt(row, column-1).getInitial() == 'W' 
 					|| column > 0 && getCellAt(row, column-1).getDoorDirection() == DoorDirection.RIGHT) {
 				adjacent.add(getCellAt(row, column-1));
 			}
-
+			
+			// check if can move to the cell to the left
 			if (column < numColumns-1 && getCellAt(row, column+1).getInitial() == 'W'
 					|| column < numColumns-1 && getCellAt(row, column+1).getDoorDirection() == DoorDirection.LEFT) {
 				adjacent.add(getCellAt(row, column+1));
 			}
-
+			
+			// check if can move to the cell below
 			if (row > 0 && getCellAt(row-1, column).getInitial() == 'W'
 					|| row > 0 && getCellAt(row-1, column).getDoorDirection() == DoorDirection.DOWN) {
 				adjacent.add(getCellAt(row-1, column));
 			}
-
+			
+			// check if can move to the cell above
 			if (row < numRows-1 && getCellAt(row+1, column).getInitial() == 'W'
 					|| row < numRows-1 && getCellAt(row+1, column).getDoorDirection() == DoorDirection.UP) {
 				adjacent.add(getCellAt(row+1, column));
@@ -256,7 +262,7 @@ public class Board {
 
 		}
 
-		return adjacent;
+		return adjacent;	// return all adjacent cells that can be moved onto from current board cell
 	}	
 
 }
