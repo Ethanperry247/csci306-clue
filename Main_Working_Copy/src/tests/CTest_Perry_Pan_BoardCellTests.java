@@ -12,13 +12,13 @@ import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.DoorDirection;
 
-public class JUnitBoardTests {
+public class CTest_Perry_Pan_BoardCellTests {
 	
 	public static final int LEGEND_SIZE = 11;
 	public static final int NUM_ROWS = 20;
 	public static final int NUM_COLUMNS = 20;
 
-	public JUnitBoardTests() {
+	public CTest_Perry_Pan_BoardCellTests() {
 		
 	}
 	
