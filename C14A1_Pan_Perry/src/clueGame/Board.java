@@ -12,9 +12,9 @@ public class Board {
 	
 	private int numRows;
 	private int numColumns;
-	public static final int MAX_BOARD_SIZE = 50;
-	private BoardCell[][] board;
-	private Map<Character, String> legend;
+	public static final int MAX_BOARD_SIZE = 50; // Arbitrarily set, but big enough for most boards.
+	private BoardCell[][] board; // Populated by loadBoardConfig.
+	private Map<Character, String> legend; // Populated by loadRoomConfig.
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private Set<BoardCell> visited = new HashSet<BoardCell>();	// set to keep track of cells already visited in a turn
@@ -131,7 +131,7 @@ public class Board {
 		numRows = r;
 		numColumns = rowLength;
 		
-		scanner.close(); // Protect resources
+		scanner.close();
 	}
 	
 //////////////////////////////////////////////////////////////////////////////////////
@@ -164,16 +164,16 @@ public class Board {
 					int movesRemaining = k - 1;	// decrements moves left
 					calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);	// recursive call with decremented moves left 
 				}
-				visited.remove(cell);	// Remove the door, as it is not a valid target when starting on the door.
+				visited.remove(cell); // Removes the door cell from possible moves if starting at a door cell.
 			} else { 
 				targets.add(cell);
 			}
 			visited.remove(cell);
-			return;
+			return; // Since zero moves and reaching doorways are base cases, return.
 		} else {
 			for (BoardCell adjCell : adjMatrix.get(cell)) {
 				int movesRemaining = k - 1;
-				calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining);	// Recur on all adjacent cells.
+				calcTargets(adjCell.getRow(), adjCell.getColumn(), movesRemaining); // Recur on all adjacent cells.
 			}
 			visited.remove(cell);
 		}
@@ -213,55 +213,8 @@ public class Board {
 //////////////////////////////////////////////////////////////////////////////////////
 	
 	public Set<BoardCell> getAdjList(int i, int j) {
-		BoardCell current = getCellAt(i,j);
 		Set<BoardCell> adjacent = new HashSet<BoardCell>(); 
-	
-		if (current.isRoom()) {	// if in room, cannot move
-			return adjacent;
-			
-		} else if (current.isDoorway()) {	// if on a door cell, finds adjacent cell to enter
-			
-			switch(current.getDoorDirection()) {
-				case LEFT: 
-					adjacent.add(getCellAt(i,j-1));
-					break;
-				case RIGHT:
-					adjacent.add(getCellAt(i,j+1));
-					break;
-				case UP:
-					adjacent.add(getCellAt(i-1,j));
-					break;
-				case DOWN:
-					adjacent.add(getCellAt(i+1,j));
-					break;
-				default:
-					break;
-			} 
-			
-		} else if (current.isWalkway()) {	// if on a walkway, check all adjacent cells if can move onto (other walkways or doors) 
-			
-			if (j > 0 && getCellAt(i,j-1).getInitial() == 'W' 
-					|| j > 0 && getCellAt(i,j-1).getDoorDirection() == DoorDirection.RIGHT) {
-				adjacent.add(getCellAt(i,j-1));
-			}
-			
-			if (j < numColumns-1 && getCellAt(i,j+1).getInitial() == 'W'
-					|| j < numColumns-1 && getCellAt(i,j+1).getDoorDirection() == DoorDirection.LEFT) {
-				adjacent.add(getCellAt(i,j+1));
-			}
-			
-			if (i > 0 && getCellAt(i-1,j).getInitial() == 'W'
-					|| i > 0 && getCellAt(i-1,j).getDoorDirection() == DoorDirection.DOWN) {
-				adjacent.add(getCellAt(i-1,j));
-			}
-			
-			if (i < numRows-1 && getCellAt(i+1,j).getInitial() == 'W'
-					|| i < numRows-1 && getCellAt(i+1,j).getDoorDirection() == DoorDirection.UP) {
-				adjacent.add(getCellAt(i+1,j));
-			}
-			
-		}
-		
+		adjacent.add(getCellAt(i,j));	// adds current cell into adjacent list
 		return adjacent;
 	}	
 

@@ -131,7 +131,7 @@ public class Board {
 		numRows = r;
 		numColumns = rowLength;
 		
-		scanner.close(); // Protect resources
+		scanner.close();
 	}
 	
 //////////////////////////////////////////////////////////////////////////////////////
