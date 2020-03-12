@@ -237,26 +237,26 @@ public class Board {
 		} else if (current.isWalkway()) {	// if on a walkway, check all adjacent cells if can move onto (other walkways or doors) 
 
 			// check if can move to the cell to the right
-			if (column > 0 && getCellAt(row, column-1).getInitial() == 'W' 
-					|| column > 0 && getCellAt(row, column-1).getDoorDirection() == DoorDirection.RIGHT) {
+			if (column > 0 && (getCellAt(row, column-1).getInitial() == 'W' 
+					|| getCellAt(row, column-1).getDoorDirection() == DoorDirection.RIGHT)) {
 				adjacent.add(getCellAt(row, column-1));
 			}
 			
 			// check if can move to the cell to the left
-			if (column < numColumns-1 && getCellAt(row, column+1).getInitial() == 'W'
-					|| column < numColumns-1 && getCellAt(row, column+1).getDoorDirection() == DoorDirection.LEFT) {
+			if (column < numColumns-1 && (getCellAt(row, column+1).getInitial() == 'W'
+					|| getCellAt(row, column+1).getDoorDirection() == DoorDirection.LEFT)) {
 				adjacent.add(getCellAt(row, column+1));
 			}
 			
 			// check if can move to the cell below
-			if (row > 0 && getCellAt(row-1, column).getInitial() == 'W'
-					|| row > 0 && getCellAt(row-1, column).getDoorDirection() == DoorDirection.DOWN) {
+			if (row > 0 && (getCellAt(row-1, column).getInitial() == 'W'
+					|| getCellAt(row-1, column).getDoorDirection() == DoorDirection.DOWN)) {
 				adjacent.add(getCellAt(row-1, column));
 			}
 			
 			// check if can move to the cell above
-			if (row < numRows-1 && getCellAt(row+1, column).getInitial() == 'W'
-					|| row < numRows-1 && getCellAt(row+1, column).getDoorDirection() == DoorDirection.UP) {
+			if (row < numRows-1 && (getCellAt(row+1, column).getInitial() == 'W'
+					|| getCellAt(row+1, column).getDoorDirection() == DoorDirection.UP)) {
 				adjacent.add(getCellAt(row+1, column));
 			}
 
