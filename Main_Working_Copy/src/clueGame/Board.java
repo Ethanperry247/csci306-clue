@@ -237,25 +237,25 @@ public class Board {
 		} else if (current.isWalkway()) {	// if on a walkway, check all adjacent cells if can move onto (other walkways or doors) 
 
 			// check if can move to the cell to the right
-			if (column > 0 && (getCellAt(row, column-1).getInitial() == 'W' 
+			if (column > 0 && (isAdjWalkway(row, column-1)
 					|| getCellAt(row, column-1).getDoorDirection() == DoorDirection.RIGHT)) {
 				adjacent.add(getCellAt(row, column-1));
 			}
 			
 			// check if can move to the cell to the left
-			if (column < numColumns-1 && (getCellAt(row, column+1).getInitial() == 'W'
+			if (column < numColumns-1 && (isAdjWalkway(row, column+1)
 					|| getCellAt(row, column+1).getDoorDirection() == DoorDirection.LEFT)) {
 				adjacent.add(getCellAt(row, column+1));
 			}
 			
 			// check if can move to the cell below
-			if (row > 0 && (getCellAt(row-1, column).getInitial() == 'W'
+			if (row > 0 && (isAdjWalkway(row-1, column)
 					|| getCellAt(row-1, column).getDoorDirection() == DoorDirection.DOWN)) {
 				adjacent.add(getCellAt(row-1, column));
 			}
 			
 			// check if can move to the cell above
-			if (row < numRows-1 && (getCellAt(row+1, column).getInitial() == 'W'
+			if (row < numRows-1 && (isAdjWalkway(row+1, column)
 					|| getCellAt(row+1, column).getDoorDirection() == DoorDirection.UP)) {
 				adjacent.add(getCellAt(row+1, column));
 			}
@@ -264,5 +264,14 @@ public class Board {
 
 		return adjacent;	// return all adjacent cells that can be moved onto from current board cell
 	}	
+	
+	// helper method to determine if an adjacent cell is a walkway
+	public boolean isAdjWalkway(int row, int column) {
+		if (getCellAt(row, column).getInitial() == 'W') {	// if evaluated cell is a Walkway, return true
+			return true;
+		} else {	// if not, return false
+			return false;
+		}
+	}
 
 }
