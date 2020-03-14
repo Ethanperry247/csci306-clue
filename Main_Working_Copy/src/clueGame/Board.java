@@ -75,7 +75,7 @@ public class Board {
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 
 		Scanner scanner = new Scanner(new File(boardConfigFile));
-		int rowLength = 0;
+		int numColumns = 0;
 		int row = 0;	// Will be incremented as elements are added to grid.
 
 		// This first if statement will get the length of the first column to be compared against all others.
@@ -87,7 +87,7 @@ public class Board {
 			String[] values = line.split(",");
 
 			// Assume every row should be the same length as the first row. Otherwise, exceptions will be thrown.
-			rowLength = values.length;
+			numColumns = values.length;
 
 			for (int column = 0; column < values.length; column++) {
 				if (legend.get(values[column].charAt(0)) == null) {
@@ -109,7 +109,7 @@ public class Board {
 			String[] values = line.split(",");
 
 			// If a row is found to have an inconsistent length from any other, throw an exception.
-			if (values.length != rowLength) {
+			if (values.length != numColumns) {
 				scanner.close();
 				throw new BadConfigFormatException("Inconsistant row length in board config file.");
 			}
@@ -128,7 +128,7 @@ public class Board {
 		}
 
 		numRows = row;
-		numColumns = rowLength;
+		this.numColumns = numColumns;
 
 		scanner.close(); // Protect resources
 	}
