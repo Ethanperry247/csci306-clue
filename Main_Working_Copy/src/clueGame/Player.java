@@ -2,6 +2,8 @@ package clueGame;
 
 import java.awt.Color;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 	
@@ -9,6 +11,7 @@ public class Player {
 	private int row;
 	private int column;
 	private Color color;
+	private List<Card> playerCards;	// note: each player has 3 cards
 	
 	
 	public Player(String playerName, int row, int column, Color color) {
@@ -16,6 +19,7 @@ public class Player {
 		this.column = column;
 		this.playerName = playerName;
 		this.color = color;
+		this.playerCards = new ArrayList<Card>();
 	}
 	
 	
@@ -34,7 +38,7 @@ public class Player {
 	
 	// to be implemented
 	public Card disproveSuggestion(Solution suggestion) {
-		Card x = new Card("x");
+		Card x = new Card("x", CardType.PERSON);
 		return x;
 	}
 	

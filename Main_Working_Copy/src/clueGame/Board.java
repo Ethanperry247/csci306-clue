@@ -280,7 +280,7 @@ public class Board {
 	
 	//will have TBD parameter
 	public Card handleSuggestion() {
-		Card x = new Card("x");
+		Card x = new Card("x", CardType.PERSON);
 		return x;
 	}
 	
