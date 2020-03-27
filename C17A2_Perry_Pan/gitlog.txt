@@ -1,0 +1,282 @@
+Authors: Ethan Perry and Caleb Pan
+The first commit for the code refactoring has a line underneath it.
+
+commit c3932bf386bd4966b3ae151f9e519d59148d1bc4
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 13 22:52:36 2020 -0600
+
+    Did a final review of all code. Added a few last comments and refactored any other confusing or inefficent code that I could find. Deleted some unnecessary files. Ready to submit.
+
+commit 07062e136c1b7470c40cb72dca73ed0736238127
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 13 22:43:36 2020 -0600
+
+    Renamed some confusing variables in the board and room configurations. Added more comments for clarity. Did a review of the helper method and fixed a few possible sources of error.
+
+commit 5f2a32ff8e5c1e50b08f36e8bf984060764207a3
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 16:21:49 2020 -0600
+
+    added a helper method to further streamline calcAdj when checking if an ajacent cell is a walkway
+
+commit b8b07419f3261026f188dcf8bccde2d7731f32f2
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 14:37:53 2020 -0600
+
+    refactored calcAdj for simplified checks if the index of a cell is not out of bounds
+
+commit 206455b5d0f0e7236274aa83847c3c386d0fbfe8
+Merge: 564532c ebe885c
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 13:46:05 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 564532c8fefc32da4c1160ba12cdadd0e92c63c9
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 13:45:56 2020 -0600
+
+    added numerous new comments clarifying functionalities of our calcAdj method
+
+commit ebe885cbc4deea426616aed6395237b5382099f9
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:43:21 2020 -0600
+
+    Added additional comments in BoardCell, BadConfigFormatException, and CTest_Perry_Pan_AdjTargetTests. Also renamed one of the test files because the name was originally confusing.
+
+commit 0e23d392f351e49f2e840e09ce5191d20d7fe128
+Merge: 199f24f e04851a
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:34:48 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 199f24fc73d64e5345b29ff39398ccfa89c9f218
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:34:41 2020 -0600
+
+    Changed back to JUnit 5 because there was serious errors with switching to JUnit 4.
+
+commit e04851ad59cf96779cee011d433007172b903d52
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 13:30:45 2020 -0600
+
+    renamed variable names in loadboard config for better clarity, cleaned some comments, and refactored calcTargets to avoid re-initalization of an int variable for each recurisive call
+
+commit 5aebd561e903e596f178c2f5d40b77848d6639ea
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:03:04 2020 -0600
+
+    Changed JUnit 5 to JUnit 4 in the build path.
+
+commit b577a4ccbcf606d2d02fa91d778069ca1f817291
+Merge: 5ba3260 9956685
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 12:58:26 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 5ba3260607785d9fee87d1c2e83ca01fbaeba9bc
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 12:58:21 2020 -0600
+
+    Added copy of the code without refactoring.
+
+commit 995668549c954bda920e924364907c83bac6d3b0
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Mar 10 13:35:02 2020 -0600
+
+    updated parameter names, still havent update r and c variable names for loadBoardConfig
+
+-----------------------------------------------------------------------------------------------------
+=====================================================================================================
+-----------------------------------------------------------------------------------------------------
+
+commit 3cddf79b5ba5688cfb44752eb60cebf4234442f6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Mar 2 22:18:10 2020 -0700
+
+    Added last zip file. Submitting III and IV.
+
+commit 98241fcd09880f28e848c492c1e6033301b139aa
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Mar 2 22:15:04 2020 -0700
+
+    Did a final review of the code. Added comments and assured that all tests ran properly. Ready to submit part IV.
+
+commit cea56e458fcb8f3b4c2f22d39c8af9a1d17511ef
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Mar 2 21:50:24 2020 -0700
+
+    Reorganized file structure.
+
+commit d8ec0c9bec024b72d3388960c278973eaecc0ddb
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Mon Mar 2 01:54:01 2020 -0700
+
+    finished Part III with Prof. Baldwin's and our tests all failing along with excel file for our board layout along with documentation.
+
+commit 2447c2c95a360af27afa4e08579f76795ce13072
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sun Mar 1 22:57:28 2020 -0700
+
+    Fixed the final test--was an error with the door.
+
+commit 1cc42a7b9264254cd6d7d9a3d56262539740ccb1
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sun Mar 1 22:39:39 2020 -0700
+
+    fixed calcTarget to stop after entering door cell
+
+commit 179aa8fc8d15d8c9023b2f988ef8a68b8eeb288e
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sun Mar 1 15:33:26 2020 -0700
+
+    calcAdjacencies now properly implemeted, modified calcTargets and getTargets so they no longer run into errors.
+
+commit e0f5418aa6f618174c60f6aacef44ab794871303
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Feb 29 21:13:46 2020 -0700
+
+    added in Prof. Baldwin's test file, implemeted getAdjList, created calcAdjacencies, calcTargets, and getTargets (currently not properly working), along with new getters for a cell's column and row
+
+commit 36eb99fab65b71718b6dabfdf72775bd1c9535af
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Feb 29 14:03:07 2020 -0700
+
+    inital commit for start of Part III: added in test file, skeleton methods, and updated documentation
+
+commit fdd947faaf30f12c3dab4aab65fe96e8041da8a0
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Feb 28 23:54:48 2020 -0700
+
+    Changed the name of the working copy folder
+
+commit 053d61403636a7a554028186d186b4b8a98a6491
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Feb 28 23:52:56 2020 -0700
+
+    Added a new folder for C14 Part I submission after implementation.
+
+commit 881d496f39db9371a5872ad1c06938b5ddb27c3e
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Feb 28 23:27:45 2020 -0700
+
+    Finished implementation of loading the config files. Seperated into two projects: the one with the failing tests and the one passing the tests. Verified all tests are working. Added any additional files for submission as required by the rubric.
+
+commit bbff2e891cebd3005364b0a04fab5a2463fdb980
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Feb 27 13:25:03 2020 -0700
+
+    finished BoardCell
+
+commit 34544ca20c4608501d7bb0ccf53440343e100b9b
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Feb 27 12:59:06 2020 -0700
+
+    updated boardcell and board to handle strings and documented exception
+
+commit 345246ef6df421eb9ff117a7fd6106eee091da69
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 27 12:54:31 2020 -0700
+
+    Added exception test class.
+
+commit 8c7ab484aaa51027db0797da0077968165c93363
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 27 12:33:43 2020 -0700
+
+    Continued to update test class.
+
+commit 1d70cc625855d158aa28c4b9245cab5cbab51b2a
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Wed Feb 26 21:42:38 2020 -0700
+
+    added cvs file for board layout
+
+commit de6f1d66e7a27639da6d12d697ce7080cc7aa44a
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Feb 25 13:48:09 2020 -0700
+
+    badconfig exception extended
+
+commit d9d8e20d44cf0f439a117d2d43f0508565e5f55b
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Feb 25 13:45:55 2020 -0700
+
+    Forgot to save files. Pushing again.
+
+commit 61e8ca52aeb3f780417e36f327b34724b948da81
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Feb 25 13:45:20 2020 -0700
+
+    Added new test file, finished new classes in clueGame package.
+
+commit 0ee441f8cab6b0564314ea200f588d9ec3132bc4
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Feb 25 13:27:49 2020 -0700
+
+    badconfig exception skeleton and enum type added
+
+commit c4d4858e91b29d7693061c06e9e117e7b99e61a6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Feb 25 13:11:46 2020 -0700
+
+    Added new clueGame package and class to that package.
+
+commit 1bf9432c6046ad12636a537966c7b0aa567258a1
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Feb 24 14:57:12 2020 -0700
+
+    Added zip file
+
+commit d76ab22d7f7a343ebfa578eb14ef66c3135eb531
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Feb 24 14:55:45 2020 -0700
+
+    Added the failing tests part I and cleaned up the part II implemented code. Also updated the constructor in the part II code. Ready for submission.
+
+commit f00233ffe88700c3e9180a7b00187b38198e30b5
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Feb 22 22:20:39 2020 -0700
+
+    Encapsulated C12_A2 in its own file.
+
+commit 9a90e938535359c7b5a5bb39964b6f59d05293b3
+Merge: f422b2c 9d064df
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Feb 22 22:18:37 2020 -0700
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit f422b2cc6b37229a6620fea6e5da0f6145d8595a
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Feb 22 22:18:24 2020 -0700
+
+    Implemented methods to fulfill the tests. No tests failed!
+
+commit 9d064df37a19ea1f906ac93d9c0b8756125ef003
+Author: CPanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Feb 22 17:50:38 2020 -0700
+
+    Add files via upload
+    
+    Added map layout excel file and legend/key for the rooms
+
+commit ac2ff317db50c81cd6e100e73d1c61e8724e29ae
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 20 13:41:49 2020 -0700
+
+    Added failing tests and all classes
+
+commit a6b6bf3644dd182a8c8c0a7765b8eef986e21a5f
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 20 12:58:11 2020 -0700
+
+    Added project files
+
+commit 4edd74471ec89f5b4b0a0917b2a3abeeb23f9ff6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 20 12:49:40 2020 -0700
+
+    Added README

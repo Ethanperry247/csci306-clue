@@ -32,8 +32,6 @@ public class Board {
 	}
 
 	public void initialize() {
-		
-		// Catch both Bad Configuration and file not found here where they can be handled best.
 		try {
 			loadRoomConfig();
 			loadBoardConfig();
@@ -77,7 +75,7 @@ public class Board {
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 
 		Scanner scanner = new Scanner(new File(boardConfigFile));
-		int numColumns = 0; // The length of the first row will populate this variable. All other rows will be checked against it for validity.
+		int numColumns = 0;
 		int row = 0;	// Will be incremented as elements are added to grid.
 
 		// This first if statement will get the length of the first column to be compared against all others.
@@ -129,7 +127,7 @@ public class Board {
 			row++;
 		}
 
-		this.numRows = row; // Finally, update the the instance variables if the board config is valid.
+		numRows = row;
 		this.numColumns = numColumns;
 
 		scanner.close(); // Protect resources
