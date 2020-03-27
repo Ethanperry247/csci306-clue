@@ -15,8 +15,12 @@ public class Board {
 	public static final int MAX_BOARD_SIZE = 50;
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
+	private Set<Player> players;
+	private Set<Card> deck;
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private String playerConfigFile;
+	private String weaponConfigFile;
 	private Set<BoardCell> visited = new HashSet<BoardCell>();	// set to keep track of cells already visited in a turn
 	private Set<BoardCell> targets = new HashSet<BoardCell>();	// set to keep track of target cells
 	// map with keys as cells on the board and a set of the cells adjacent to the key cell for the values 
@@ -185,9 +189,17 @@ public class Board {
 	}
 
 
-	public void setConfigFiles(String boardConfig, String roomConfig) {
+	public void setConfigFiles(String boardConfig, String roomConfig, String playerConfig, String weaponConfig) {
 		boardConfigFile = boardConfig;
 		roomConfigFile = roomConfig;	
+		playerConfigFile = playerConfig;
+		weaponConfigFile = weaponConfig;
+	}
+	
+	// Temporary ----- to be removed
+	public void setConfigFiles(String boardConfig, String roomConfig) {
+		boardConfigFile = boardConfig;
+		roomConfigFile = roomConfig;
 	}
 
 	
@@ -273,7 +285,31 @@ public class Board {
 	// all to be implemented
 	
 	public void loadConfigFiles() {
+		// Catch both Bad Configuration and file not found here where they can be handled best.
+		try {
+			loadPlayers();
+			loadWeapons();
+		} catch (BadConfigFormatException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void loadPlayers() throws BadConfigFormatException, FileNotFoundException {
 		
+		// Prepare to scan in plays from the config file.
+		Scanner scanner = new Scanner(new File(playerConfigFile));
+		
+		players = new HashSet<Player>();
+	}
+	
+	public void loadWeapons() throws BadConfigFormatException, FileNotFoundException {
+		
+		// Prepare to load in weapons from the config file.
+		Scanner scanner = new Scanner(new File(weaponConfigFile));
+		
+		deck = new HashSet<Card>();
 	}
 	
 	public void selectAnswer() {

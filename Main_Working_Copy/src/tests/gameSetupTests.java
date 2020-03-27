@@ -1,8 +1,16 @@
 package tests;
 
+import static org.junit.Assert.assertEquals;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class gameSetupTests {
+	
+	@BeforeClass
+	public static void setUp() {
+		
+	}
 	
 	@Test
 	public void testPlayerLoading() {
