@@ -500,32 +500,29 @@ public class Board {
 	
 	
 	public void dealDeck() {
-		List<Card> cards = new ArrayList<Card>(deck);
-		List<Player> people = new ArrayList<Player>(players);
-		int deckIndex = 0;
+		List<Card> cards = new ArrayList<Card>(deck);	// creates a list of cards from the deck to iterate through
+		int deckIndex = 0;	// variable to keep track of index in list, that way never visiting an index twice (cards only dealt once)
 		
-		while (deckIndex < cards.size()) {
-		
-			for (int i = 0; i < people.size(); i++) {
-				people.get(i).getCards().add(cards.get(deckIndex));
-				deckIndex++;
+		while (deckIndex < cards.size()) {	// while loop to iterate through list of cards
+			for (Player player : players) {	// goes through each player to deal a card to them
+				player.getCards().add(cards.get(deckIndex));
+				deckIndex++;						// increment index
+				if (deckIndex == cards.size()) {	// in the event deck runs out of cards early (not enough cards to deal evenly), break
+					break;
+				} 
 			}
-		
 		}
 	}
 	
 	
 	public Set<Integer> getNumCardsDealt() {
-		// Temporarily returning random players.
-		Set<Integer> numberOfCards = new HashSet<Integer>();
+		Set<Integer> numberOfCards = new HashSet<Integer>();	// set to hold the number of cards a player holds
 		
-		// Loop through the player array to check for human players.
-		for (Player player: players) {
-			numberOfCards.add(player.getCards().size());
+		for (Player player : players) {	
+			numberOfCards.add(player.getCards().size());	// go through players and add their number of cards into set
 		}
 
-		return numberOfCards;
-		
+		return numberOfCards;	
 	}
 	
 }

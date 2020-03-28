@@ -51,6 +51,7 @@ public class gameSetupTests {
 		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");
 		board.initialize();
 		board.loadConfigFiles();
+		board.dealDeck();
 		
 		// Should be of size 24 with 7 players, 6 weapons, and 9 rooms.
 		assertEquals(24, board.getDeck().size());
@@ -61,8 +62,10 @@ public class gameSetupTests {
 		assertEquals(board.getCard("Dagger").getType(), CardType.WEAPON);
 		assertEquals(board.getCard("Mr. Green").getType(), CardType.PERSON);
 		
-		assertTrue(board.getNumCardsDealt().contains(3));
+		// since we have 7 players and 24 cards, 3 players should end up with 4 cards and 4 players end up with 3 cards
 		assertTrue(board.getNumCardsDealt().contains(4));
+		assertTrue(board.getNumCardsDealt().contains(3));
+		assertTrue(board.getNumCardsDealt().size() == 2);	// verifies players either have 3 or 4 cards 
 		
 	}
 	
