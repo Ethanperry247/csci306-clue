@@ -291,7 +291,6 @@ public class Board {
 		try {
 			loadPlayers();
 			loadWeapons();
-			printCards();
 		} catch (BadConfigFormatException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -374,6 +373,7 @@ public class Board {
 	
 	// Getters for testing purposes: ////////////////////////////////////////////////////////////////
 	
+	// Returns the set of human players.
 	public Set<String> getHumanPlayerNames() {
 		// Temporarily returning random players.
 		Set<String> humanPlayers = new HashSet<String>();
@@ -388,6 +388,7 @@ public class Board {
 		return humanPlayers;
 	}
 	
+	// Returns the set of computer players.
 	public Set<String> getComputerPlayerNames() {
 		// Temporarily returning random players.
 		Set<String> computerPlayers = new HashSet<String>();
@@ -402,34 +403,94 @@ public class Board {
 		return computerPlayers;
 	}
 	
+	// Prints out all cards in the deck.
 	public void printCards() {
 		for (Card card: deck) {
 			System.out.println(card.getName());
 		}
 	}
 	
+	// Returns the number of computer players.
 	public int getNumComputerPlayers() {
-		return 0;
+		Set<String> computerPlayers = new HashSet<String>();
+		
+		// Loop through the player array to check for human players.
+		for (Player player: players) {
+			if (player instanceof ComputerPlayer) {
+				computerPlayers.add(player.getName());
+			}
+		}
+		
+		return computerPlayers.size();
 	}
 	
+	// Returns the number of human players.
 	public int getNumHumanPlayers() {
-		return 0;
+		Set<String> humanPlayers = new HashSet<String>();
+		
+		// Loop through the player array to check for human players.
+		for (Player player: players) {
+			if (player instanceof HumanPlayer) {
+				humanPlayers.add(player.getName());
+			}
+		}
+		
+		return humanPlayers.size();
 	}
 	
+	// Returns the number of weapons in the deck.
 	public int getNumWeapons() {
-		return 0;
+		int numWeapons = 0;
+		
+		for (Card card: deck) {
+			if (card.getType() == CardType.WEAPON) {
+				numWeapons++;
+			}
+		}
+		
+		return numWeapons;
 	}
 	
+	// Returns the number of players in the deck.
 	public int getNumPlayers() {
-		return 0;
+		int numPlayers = 0;
+		
+		for (Card card: deck) {
+			if (card.getType() == CardType.PERSON) {
+				numPlayers++;
+			}
+		}
+		
+		return numPlayers;
 	}
 	
+	// Returns the number of rooms in the deck.
 	public int getNumRooms() {
-		return 0;
+		int numRooms = 0;
+		
+		for (Card card: deck) {
+			if (card.getType() == CardType.ROOM) {
+				numRooms++;
+			}
+		}
+		
+		return numRooms;
 	}
 	
+	// Returns the deck.
 	public Set<Card> getDeck() {
 		return deck;
+	}
+	
+	// Returns the card whose name was passed in.
+	public Card getCard(String name) {
+		for (Card card: deck) {
+			if (card.getName().equals(name)) {
+				return card;
+			}
+		}
+		
+		return null;
 	}
 	
 	

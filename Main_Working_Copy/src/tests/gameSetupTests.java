@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.CardType;
 
 public class gameSetupTests {
 	
@@ -53,6 +54,12 @@ public class gameSetupTests {
 		
 		// Should be of size 24 with 7 players, 6 weapons, and 9 rooms.
 		assertEquals(24, board.getDeck().size());
+		assertEquals(7, board.getNumPlayers());
+		assertEquals(6, board.getNumWeapons());
+		assertEquals(11, board.getNumRooms());
+		assertEquals(board.getCard("Greenhouse").getType(), CardType.ROOM);
+		assertEquals(board.getCard("Dagger").getType(), CardType.WEAPON);
+		assertEquals(board.getCard("Mr. Green").getType(), CardType.PERSON);
 		
 	}
 	
