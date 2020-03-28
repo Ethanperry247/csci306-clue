@@ -10,8 +10,15 @@ import clueGame.Board;
 
 public class gameSetupTests {
 	
+	
+	
 	@BeforeClass
 	public static void setUp() {
+		
+		Board board = Board.getInstance();
+		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");
+		board.initialize();
+		board.loadConfigFiles();
 		
 	}
 	
@@ -34,12 +41,18 @@ public class gameSetupTests {
 		assertTrue(board.getComputerPlayerNames().contains("Mrs. White"));
 		assertTrue(board.getComputerPlayerNames().contains("Dr. Mr. Prof. Scott Strong"));
 		
-		
-		
 	}
 	
 	@Test
 	public void testDeckOfCards() {
+		
+		Board board = Board.getInstance();
+		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");
+		board.initialize();
+		board.loadConfigFiles();
+		
+		// Should be of size 24 with 7 players, 6 weapons, and 9 rooms.
+		assertEquals(24, board.getDeck().size());
 		
 	}
 	

@@ -16,7 +16,7 @@ public class Board {
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
 	private Set<Player> players;
-	private Set<Card> deck = new HashSet<Card>();
+	private Set<Card> deck;
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String playerConfigFile;
@@ -36,6 +36,10 @@ public class Board {
 	}
 
 	public void initialize() {
+		
+		// The deck must be created in the initialization as to not get duplicate values.
+		// Located in here for the purpose of testing.
+		deck = new HashSet<Card>();
 		
 		// Catch both Bad Configuration and file not found here where they can be handled best.
 		try {
@@ -287,6 +291,7 @@ public class Board {
 		try {
 			loadPlayers();
 			loadWeapons();
+			printCards();
 		} catch (BadConfigFormatException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -395,6 +400,12 @@ public class Board {
 		}
 
 		return computerPlayers;
+	}
+	
+	public void printCards() {
+		for (Card card: deck) {
+			System.out.println(card.getName());
+		}
 	}
 	
 	public int getNumComputerPlayers() {
