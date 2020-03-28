@@ -371,6 +371,9 @@ public class Board {
 		return false;
 	}
 	
+	
+	
+	
 	// Getters for testing purposes: ////////////////////////////////////////////////////////////////
 	
 	// Returns the set of human players.
@@ -492,7 +495,6 @@ public class Board {
 		
 		return null;
 	}
-	
 	
 	
 }
