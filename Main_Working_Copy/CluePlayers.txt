@@ -1,6 +1,7 @@
 Ms. Scarlett, Red, 0, 3, human
 Mr. Green, Green, 0, 9, human
-Col. Mustand, Yellow, 5, 19, human
+Col. Mustard, Yellow, 5, 19, human
 Prof. Plum, Purple, 13, 19, computer
 Mrs. Peacock, Blue, 19, 9, computer
 Mrs. White, White, 12, 0, computer
+Dr. Mr. Prof. Scott Strong, Gray, 19, 5, computer

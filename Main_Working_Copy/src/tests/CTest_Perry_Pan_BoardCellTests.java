@@ -29,7 +29,7 @@ public class CTest_Perry_Pan_BoardCellTests {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use config files
-		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt");		
+		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");		
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}

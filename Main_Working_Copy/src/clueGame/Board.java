@@ -16,7 +16,7 @@ public class Board {
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
 	private Set<Player> players;
-	private Set<Card> deck;
+	private Set<Card> deck = new HashSet<Card>();
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String playerConfigFile;
@@ -70,6 +70,10 @@ public class Board {
 				scanner.close();
 				throw new BadConfigFormatException("Incorrect room type in room config file.");
 			}
+			
+			// Load the room into the deck.
+			loadCard(values[1], CardType.ROOM);
+			
 		}
 
 		scanner.close();
@@ -195,12 +199,6 @@ public class Board {
 		playerConfigFile = playerConfig;
 		weaponConfigFile = weaponConfig;
 	}
-	
-	// Temporary ----- to be removed
-	public void setConfigFiles(String boardConfig, String roomConfig) {
-		boardConfigFile = boardConfig;
-		roomConfigFile = roomConfig;
-	}
 
 	
 	// getters for number of rows, columns, legend, and cell at a specific location are all below
@@ -300,8 +298,36 @@ public class Board {
 		
 		// Prepare to scan in plays from the config file.
 		Scanner scanner = new Scanner(new File(playerConfigFile));
-		
 		players = new HashSet<Player>();
+		
+		// Run through config file to grab player information.
+		while (scanner.hasNextLine()) {
+
+			// Grab a line from the file.
+			String line = scanner.nextLine();
+
+			// Split that line into an array.
+			String[] values = line.split(",");
+			
+			// Load in either a human or computer player depending on a value from the computer file.
+			Player player;
+			if (values[4].equals("human")) {
+				player = new HumanPlayer(values[0], Integer.parseInt(values[2]), Integer.parseInt(values[3]), values[1]);
+			} else if (values[4].equals("computer")) {
+				player = new ComputerPlayer(values[0], Integer.parseInt(values[2]), Integer.parseInt(values[3]), values[1]);
+			} else {
+				scanner.close();
+				throw new BadConfigFormatException("Incorrect player type in player config file.");
+			}
+			
+			// Add the player to the player set and create a new card for that player.
+			players.add(player);
+			loadCard(player.getName(), CardType.PERSON);
+			
+		}
+		
+		scanner.close();
+		
 	}
 	
 	public void loadWeapons() throws BadConfigFormatException, FileNotFoundException {
@@ -309,7 +335,22 @@ public class Board {
 		// Prepare to load in weapons from the config file.
 		Scanner scanner = new Scanner(new File(weaponConfigFile));
 		
-		deck = new HashSet<Card>();
+		// Run through config file to grab weapon information.
+		while (scanner.hasNextLine()) {
+
+			// Grab a line from the file.
+			String line = scanner.nextLine();
+			
+			// Load the weapon into the deck.
+			loadCard(line, CardType.WEAPON);
+		}
+		
+		scanner.close();
+	}
+	
+	// Creates a new card and loads it to the deck.
+	public void loadCard(String name, CardType type) {
+		deck.add(new Card(name, type));
 	}
 	
 	public void selectAnswer() {
@@ -325,5 +366,57 @@ public class Board {
 	public boolean checkAccusation(Solution accusation) {
 		return false;
 	}
+	
+	// Getters for testing purposes: ////////////////////////////////////////////////////////////////
+	
+	public Set<Player> getHumanPlayers() {
+		// Temporarily returning random players.
+		Set<Player> humanPlayers = new HashSet<Player>();
+		HumanPlayer human = new HumanPlayer("Nobody", 1, 1, "Red");
+		humanPlayers.add(human);
+		human = new HumanPlayer("Nobody", 1, 1, "Red");
+		humanPlayers.add(human);
+		human = new HumanPlayer("Nobody", 1, 1, "Red");
+		humanPlayers.add(human);
+		return humanPlayers;
+	}
+	
+	public Set<Player> getComputerPlayers() {
+		// Temporarily returning random players.
+		Set<Player> computerPlayers = new HashSet<Player>();
+		ComputerPlayer computer = new ComputerPlayer("Nobody", 1, 1, "Red");
+		computerPlayers.add(computer);
+		computer = new ComputerPlayer("Nobody", 1, 1, "Red");
+		computerPlayers.add(computer);
+		computer = new ComputerPlayer("Nobody", 1, 1, "Red");
+		computerPlayers.add(computer);
+		return computerPlayers;
+	}
+	
+	public int getNumComputerPlayers() {
+		return 0;
+	}
+	
+	public int getNumHumanPlayers() {
+		return 0;
+	}
+	
+	public int getNumWeapons() {
+		return 0;
+	}
+	
+	public int getNumPlayers() {
+		return 0;
+	}
+	
+	public int getNumRooms() {
+		return 0;
+	}
+	
+	public Set<Card> getDeck() {
+		return deck;
+	}
+	
+	
 	
 }

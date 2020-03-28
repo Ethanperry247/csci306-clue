@@ -14,14 +14,17 @@ public class Player {
 	private List<Card> playerCards;	// note: each player has 3 cards
 	
 	
-	public Player(String playerName, int row, int column, Color color) {
+	public Player(String playerName, int row, int column, String color) {
 		this.row = row;
 		this.column = column;
 		this.playerName = playerName;
-		this.color = color;
+		this.color = convertColor(color);
 		this.playerCards = new ArrayList<Card>();
 	}
 	
+	public String getName() {
+		return playerName;
+	}
 	
 	// from CluePlayer.pdf
 	// Be sure to trim the color, we don't want spaces around the name

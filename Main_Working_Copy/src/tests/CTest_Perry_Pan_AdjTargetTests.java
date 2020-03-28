@@ -20,7 +20,7 @@ public class CTest_Perry_Pan_AdjTargetTests {
 	@BeforeClass
 	public static void setUp() {
 		board = Board.getInstance();
-		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt");		
+		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");		
 		board.initialize();
 	}
 
