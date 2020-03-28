@@ -2,8 +2,10 @@ package clueGame;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -455,7 +457,7 @@ public class Board {
 	}
 	
 	// Returns the number of people cards in the deck.
-	public int getNumPeople() {
+	public int getNumPlayers() {
 		int numPlayers = 0;
 		
 		for (Card card: deck) {
@@ -496,5 +498,34 @@ public class Board {
 		return null;
 	}
 	
+	
+	public void dealDeck() {
+		List<Card> cards = new ArrayList<Card>(deck);
+		List<Player> people = new ArrayList<Player>(players);
+		int deckIndex = 0;
+		
+		while (deckIndex < cards.size()) {
+		
+			for (int i = 0; i < people.size(); i++) {
+				people.get(i).getCards().add(cards.get(deckIndex));
+				deckIndex++;
+			}
+		
+		}
+	}
+	
+	
+	public Set<Integer> getNumCardsDealt() {
+		// Temporarily returning random players.
+		Set<Integer> numberOfCards = new HashSet<Integer>();
+		
+		// Loop through the player array to check for human players.
+		for (Player player: players) {
+			numberOfCards.add(player.getCards().size());
+		}
+
+		return numberOfCards;
+		
+	}
 	
 }
