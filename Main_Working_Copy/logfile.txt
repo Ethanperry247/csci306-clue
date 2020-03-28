@@ -1,1 +1,1 @@
-Error logged: Incorrect player type in player config file.
+Error logged: Incorrect room type in room config file.

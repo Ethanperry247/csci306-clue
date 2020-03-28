@@ -307,7 +307,7 @@ public class Board {
 			String line = scanner.nextLine();
 
 			// Split that line into an array.
-			String[] values = line.split(",");
+			String[] values = line.split(", ");
 			
 			// Load in either a human or computer player depending on a value from the computer file.
 			Player player;
@@ -369,27 +369,31 @@ public class Board {
 	
 	// Getters for testing purposes: ////////////////////////////////////////////////////////////////
 	
-	public Set<Player> getHumanPlayers() {
+	public Set<String> getHumanPlayerNames() {
 		// Temporarily returning random players.
-		Set<Player> humanPlayers = new HashSet<Player>();
-		HumanPlayer human = new HumanPlayer("Nobody", 1, 1, "Red");
-		humanPlayers.add(human);
-		human = new HumanPlayer("Nobody", 1, 1, "Red");
-		humanPlayers.add(human);
-		human = new HumanPlayer("Nobody", 1, 1, "Red");
-		humanPlayers.add(human);
+		Set<String> humanPlayers = new HashSet<String>();
+		
+		// Loop through the player array to check for human players.
+		for (Player player: players) {
+			if (player instanceof HumanPlayer) {
+				humanPlayers.add(player.getName());
+			}
+		}
+		
 		return humanPlayers;
 	}
 	
-	public Set<Player> getComputerPlayers() {
+	public Set<String> getComputerPlayerNames() {
 		// Temporarily returning random players.
-		Set<Player> computerPlayers = new HashSet<Player>();
-		ComputerPlayer computer = new ComputerPlayer("Nobody", 1, 1, "Red");
-		computerPlayers.add(computer);
-		computer = new ComputerPlayer("Nobody", 1, 1, "Red");
-		computerPlayers.add(computer);
-		computer = new ComputerPlayer("Nobody", 1, 1, "Red");
-		computerPlayers.add(computer);
+		Set<String> computerPlayers = new HashSet<String>();
+		
+		// Loop through the player array to check for human players.
+		for (Player player: players) {
+			if (player instanceof ComputerPlayer) {
+				computerPlayers.add(player.getName());
+			}
+		}
+
 		return computerPlayers;
 	}
 	

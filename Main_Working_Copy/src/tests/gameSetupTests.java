@@ -7,9 +7,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
-import clueGame.ComputerPlayer;
-import clueGame.HumanPlayer;
-import clueGame.Player;
 
 public class gameSetupTests {
 	
@@ -27,22 +24,17 @@ public class gameSetupTests {
 		board.loadConfigFiles();
 		
 		// Test the three possible human players.
-		Player human = new HumanPlayer("Ms. Scarlett", 0, 3, "Red");
-		assertTrue(board.getHumanPlayers().contains(human));
-		human = new HumanPlayer("Mr. Green", 0, 9, "Green");
-		assertTrue(board.getHumanPlayers().contains(human));
-		human = new HumanPlayer("Col Mustard", 5, 19, "Yellow");
-		assertTrue(board.getHumanPlayers().contains(human));
+		assertTrue(board.getHumanPlayerNames().contains("Ms. Scarlett"));
+		assertTrue(board.getHumanPlayerNames().contains("Mr. Green"));
+		assertTrue(board.getHumanPlayerNames().contains("Col. Mustard"));
 		
 		// Test the four possible computer players.
-		Player computer = new ComputerPlayer("Prof. Plum", 13, 19, "Purple");
-		assertTrue(board.getComputerPlayers().contains(computer));
-		computer = new ComputerPlayer("Mrs. Peacock", 19, 9, "Blue");
-		assertTrue(board.getComputerPlayers().contains(computer));
-		computer = new ComputerPlayer("Mrs. White", 12, 0, "White");
-		assertTrue(board.getComputerPlayers().contains(computer));
-		computer = new ComputerPlayer("Dr. Mr. Prof. Scott Strong", 19, 5, "Gray");
-		assertTrue(board.getComputerPlayers().contains(computer));
+		assertTrue(board.getComputerPlayerNames().contains("Prof. Plum"));
+		assertTrue(board.getComputerPlayerNames().contains("Mrs. Peacock"));
+		assertTrue(board.getComputerPlayerNames().contains("Mrs. White"));
+		assertTrue(board.getComputerPlayerNames().contains("Dr. Mr. Prof. Scott Strong"));
+		
+		
 		
 	}
 	
