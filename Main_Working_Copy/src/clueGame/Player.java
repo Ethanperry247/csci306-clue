@@ -11,7 +11,7 @@ public class Player {
 	private int row;
 	private int column;
 	private Color color;
-	private List<Card> playerCards;	// note: each player has 3 cards
+	private ArrayList<Card> playerCards;	// note: each player has 3 cards
 	
 	
 	public Player(String playerName, int row, int column, String color) {
@@ -24,6 +24,10 @@ public class Player {
 	
 	public String getName() {
 		return playerName;
+	}
+	
+	public ArrayList<Card> getCards() {
+		return playerCards;
 	}
 	
 	// from CluePlayer.pdf

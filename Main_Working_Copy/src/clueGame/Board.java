@@ -441,7 +441,7 @@ public class Board {
 		return humanPlayers.size();
 	}
 	
-	// Returns the number of weapons in the deck.
+	// Returns the number of weapons cards in the deck.
 	public int getNumWeapons() {
 		int numWeapons = 0;
 		
@@ -454,8 +454,8 @@ public class Board {
 		return numWeapons;
 	}
 	
-	// Returns the number of players in the deck.
-	public int getNumPlayers() {
+	// Returns the number of people cards in the deck.
+	public int getNumPeople() {
 		int numPlayers = 0;
 		
 		for (Card card: deck) {
@@ -467,7 +467,7 @@ public class Board {
 		return numPlayers;
 	}
 	
-	// Returns the number of rooms in the deck.
+	// Returns the number of rooms cards in the deck.
 	public int getNumRooms() {
 		int numRooms = 0;
 		
