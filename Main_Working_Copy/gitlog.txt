@@ -1,5 +1,123 @@
-Authors: Ethan Perry and Caleb Pan
-The first commit for the code refactoring has a line underneath it.
+commit 676cd05a8f9c468aa65bf6c0d5596e1e007ea28b
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 28 22:16:40 2020 -0600
+
+    modified tests so that @BeforeClass is properly implemented along with final thorough documentation for Player Part I
+
+commit 0f4453f52c40421f24cb54b7cfc525258a8596d8
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Mar 28 20:59:14 2020 -0600
+
+    Fixed another color error--there is no color purple so Prof. Plum will have to settle for magenta. Additionally added more getters to the board and the player classes, and added tests for position and color of players.
+
+commit b2ae54a51c56c935629efb4b3195d52994c5b7e5
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Mar 28 20:39:06 2020 -0600
+
+    Did a few run throughs of the code, moved a few methods around, and added extra comments.
+
+commit e4a542bf9c86c8c51b986b203097cdfe3a94312b
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Mar 28 20:28:36 2020 -0600
+
+    Fixed error with assigning java Colors to players.
+
+commit f0b2c33ec131c8e410db890dd8fa4b16a3bc8a57
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 28 00:33:14 2020 -0600
+
+    tests now pass for number of cards dealt to each player along with being equally distributed as possible
+
+commit 8ec6734e561cc8f3ed8d0cd759df514489ab0c63
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Mar 27 23:59:23 2020 -0600
+
+    added in failing tests for number of cards dealt to each player
+
+commit d519b4962a855d784c97c1cb13bc20fcc97a9ff6
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Mar 27 23:04:51 2020 -0600
+
+    added in dealCards method to deal cards to players from deck, also adjusted createDeck to create cards and add them to queues for divided decks for better sorting
+
+commit 7444c72b4b4a6422ffb4e03a3427403c65e77ce0
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 21:25:00 2020 -0600
+
+    Small refactor on board class.
+
+commit c83d4dcb45a2bfc377c05e781f8c3d66f61f3e87
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 21:22:36 2020 -0600
+
+    Did some refactoring, fixed a bug with adding extra cards to a deck, added comments to board class, implemented deck tests and all tests pass!
+
+commit 42690db8914be863daf8825dfb706215177c0d33
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 21:06:22 2020 -0600
+
+    Added failing deck tests.
+
+commit d1ea00fa70668826200e0f1076e768867cbaf9ba
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 20:42:49 2020 -0600
+
+    Player loading tests now pass.
+
+commit 066761e2a496a55beefb8c525092a23fe822fa10
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 18:39:27 2020 -0600
+
+    Made updates for the failing tests for loading players.
+
+commit 2046f41e3242ed9fcf2442cc423a4671e4f0eb17
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 17:53:05 2020 -0600
+
+    Fixed some errors in Player class and added failing test for loading the players.
+
+commit 36733d73ef42abaecea5cf3d59a38ad9d1a6e373
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 17:17:57 2020 -0600
+
+    Outlined all tests as empty methods.
+
+commit 98f69b561c748632b3fe73c0baa7efeb83b9362a
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 15:17:36 2020 -0600
+
+    Created player and weapon configuation files.
+
+commit 448ceaf9637303cab426a6725206c5aca2c1fb9f
+Merge: 1f78e67 0cac57f
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 14:53:20 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 1f78e67e638360d6ca0f8704be03f4fdda30d0f1
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 14:53:08 2020 -0600
+
+    Older commits from last submission.
+
+commit 0cac57f17d5c28442570122c317cbd25c107a222
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Wed Mar 25 22:27:56 2020 -0600
+
+    added createDeck in Card.java that creates all required cards in the game
+
+commit d63df91ec36066fc35e6076f11a4ef4f41f47ed9
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 21 22:52:35 2020 -0600
+
+    added a list variable to Player.java to hold cards and enum CardType variable to Card.java
+
+commit 52cbcde972d98c09dc73135cc057652e0e68e61a
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Mar 20 17:48:21 2020 -0600
+
+    modified Board.java slightly, added set up for gameSetupTests.java for Part I, along with the set ups for everything in the UML diagram in Part I
 
 commit c3932bf386bd4966b3ae151f9e519d59148d1bc4
 Author: Ethanperry247 <eperry1@gmail.com>
@@ -87,10 +205,6 @@ Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
 Date:   Tue Mar 10 13:35:02 2020 -0600
 
     updated parameter names, still havent update r and c variable names for loadBoardConfig
-
------------------------------------------------------------------------------------------------------
-=====================================================================================================
------------------------------------------------------------------------------------------------------
 
 commit 3cddf79b5ba5688cfb44752eb60cebf4234442f6
 Author: Ethanperry247 <eperry1@gmail.com>
