@@ -3,6 +3,8 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.Color;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -33,14 +35,35 @@ public class gameSetupTests {
 		
 		// Test the three possible human players.
 		assertTrue(board.getHumanPlayerNames().contains("Ms. Scarlett"));
+		assertEquals(0, board.getPlayer("Ms. Scarlett").getRow());
+		assertEquals(3, board.getPlayer("Ms. Scarlett").getCol());
+		assertEquals(Color.RED, board.getPlayer("Ms. Scarlett").getColor());
 		assertTrue(board.getHumanPlayerNames().contains("Mr. Green"));
+		assertEquals(0, board.getPlayer("Mr. Green").getRow());
+		assertEquals(9, board.getPlayer("Mr. Green").getCol());
+		assertEquals(Color.GREEN, board.getPlayer("Mr. Green").getColor());
 		assertTrue(board.getHumanPlayerNames().contains("Col. Mustard"));
+		assertEquals(5, board.getPlayer("Col. Mustard").getRow());
+		assertEquals(19, board.getPlayer("Col. Mustard").getCol());
+		assertEquals(Color.YELLOW, board.getPlayer("Col. Mustard").getColor());
 		
 		// Test the four possible computer players.
 		assertTrue(board.getComputerPlayerNames().contains("Prof. Plum"));
+		assertEquals(13, board.getPlayer("Prof. Plum").getRow());
+		assertEquals(19, board.getPlayer("Prof. Plum").getCol());
+		assertEquals(Color.MAGENTA, board.getPlayer("Prof. Plum").getColor());
 		assertTrue(board.getComputerPlayerNames().contains("Mrs. Peacock"));
+		assertEquals(19, board.getPlayer("Mrs. Peacock").getRow());
+		assertEquals(9, board.getPlayer("Mrs. Peacock").getCol());
+		assertEquals(Color.BLUE, board.getPlayer("Mrs. Peacock").getColor());
 		assertTrue(board.getComputerPlayerNames().contains("Mrs. White"));
+		assertEquals(12, board.getPlayer("Mrs. White").getRow());
+		assertEquals(0, board.getPlayer("Mrs. White").getCol());
+		assertEquals(Color.WHITE, board.getPlayer("Mrs. White").getColor());
 		assertTrue(board.getComputerPlayerNames().contains("Dr. Mr. Prof. Scott Strong"));
+		assertEquals(19, board.getPlayer("Dr. Mr. Prof. Scott Strong").getRow());
+		assertEquals(5, board.getPlayer("Dr. Mr. Prof. Scott Strong").getCol());
+		assertEquals(Color.GRAY, board.getPlayer("Dr. Mr. Prof. Scott Strong").getColor());
 		
 	}
 	

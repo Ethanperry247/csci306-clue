@@ -26,6 +26,18 @@ public class Player {
 		return playerName;
 	}
 	
+	public Color getColor() {
+		return color;
+	}
+	
+	public int getRow() {
+		return row;
+	}
+	
+	public int getCol() {
+		return column;
+	}
+	
 	public ArrayList<Card> getCards() {
 		return playerCards;
 	}

@@ -513,6 +513,17 @@ public class Board {
 		return null;
 	}
 	
+	// Returns the player whose name was passed in.
+	public Player getPlayer(String name) {
+		for (Player player: players) {
+			if (player.getName().equals(name)) {
+				return player;
+			}
+		}
+		
+		return null;
+	}
+	
 	
 	public Set<Integer> getNumCardsDealt() {
 		Set<Integer> numberOfCards = new HashSet<Integer>();	// set to hold the number of cards a player holds
