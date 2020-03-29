@@ -1,3 +1,5 @@
+// Authors: Caleb Pan, Ethan Perry
+
 package tests;
 
 import static org.junit.Assert.assertEquals;

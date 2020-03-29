@@ -1,3 +1,5 @@
+// Authors: Caleb Pan, Ethan Perry
+
 package clueGame;
 
 import java.awt.Color;

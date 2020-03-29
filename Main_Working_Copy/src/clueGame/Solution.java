@@ -1,3 +1,5 @@
+// Authors: Caleb Pan, Ethan Perry
+
 package clueGame;
 
 public class Solution {
