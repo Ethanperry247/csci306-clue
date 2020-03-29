@@ -286,7 +286,6 @@ public class Board {
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	// all to be implemented
 	
 	public void loadConfigFiles() {
 		// Catch both Bad Configuration and file not found here where they can be handled best.
@@ -387,7 +386,6 @@ public class Board {
 			}
 		}
 	}
-	
 	
 	
 	

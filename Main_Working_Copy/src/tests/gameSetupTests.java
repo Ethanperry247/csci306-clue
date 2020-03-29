@@ -16,7 +16,7 @@ public class gameSetupTests {
 	private static Board board;
 	
 	@BeforeClass
-	public static void setUp() {
+	public static void setUp() {	// sets up the board and a variety of cards (of each type) 
 		
 		board = Board.getInstance();
 		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");
@@ -73,7 +73,7 @@ public class gameSetupTests {
 	@Test
 	public void testDeckOfCards() {
 		
-		// tests for deck creation: size deck of 24 with 7 players, 6 weapons, and 9 rooms
+		// tests for deck created: size deck of 24 with 7 players, 6 weapons, and 9 rooms
 		
 		assertEquals(24, board.getDeck().size());	// tests if expected amount of total cards are created 
 		assertEquals(7, board.getNumPlayers());		// tests if expected amount of player cards are created 
