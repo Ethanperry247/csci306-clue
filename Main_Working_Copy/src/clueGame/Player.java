@@ -18,7 +18,7 @@ public class Player {
 		this.row = row;
 		this.column = column;
 		this.playerName = playerName;
-		this.color = convertColor(color);
+		this.color = convertColor(color); // The colors passed in must be in all caps (i.e. RED, GREEN, etc.).
 		this.playerCards = new ArrayList<Card>();
 	}
 	

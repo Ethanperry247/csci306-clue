@@ -373,6 +373,21 @@ public class Board {
 		return false;
 	}
 	
+	public void dealDeck() {
+		List<Card> cards = new ArrayList<Card>(deck);	// creates a list of cards from the deck to iterate through
+		int deckIndex = 0;	// variable to keep track of index in list, that way never visiting an index twice (cards only dealt once)
+		
+		while (deckIndex < cards.size()) {	// while loop to iterate through list of cards
+			for (Player player : players) {	// goes through each player to deal a card to them
+				player.getCards().add(cards.get(deckIndex));
+				deckIndex++;						// increment index
+				if (deckIndex == cards.size()) {	// in the event deck runs out of cards early (not enough cards to deal evenly), break
+					break;
+				} 
+			}
+		}
+	}
+	
 	
 	
 	
@@ -496,22 +511,6 @@ public class Board {
 		}
 		
 		return null;
-	}
-	
-	
-	public void dealDeck() {
-		List<Card> cards = new ArrayList<Card>(deck);	// creates a list of cards from the deck to iterate through
-		int deckIndex = 0;	// variable to keep track of index in list, that way never visiting an index twice (cards only dealt once)
-		
-		while (deckIndex < cards.size()) {	// while loop to iterate through list of cards
-			for (Player player : players) {	// goes through each player to deal a card to them
-				player.getCards().add(cards.get(deckIndex));
-				deckIndex++;						// increment index
-				if (deckIndex == cards.size()) {	// in the event deck runs out of cards early (not enough cards to deal evenly), break
-					break;
-				} 
-			}
-		}
 	}
 	
 	
