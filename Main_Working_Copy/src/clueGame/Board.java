@@ -29,6 +29,7 @@ public class Board {
 	private Set<BoardCell> targets = new HashSet<BoardCell>();	// set to keep track of target cells
 	// map with keys as cells on the board and a set of the cells adjacent to the key cell for the values 
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
+	private Solution solution;
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -206,6 +207,40 @@ public class Board {
 		roomConfigFile = roomConfig;	
 		playerConfigFile = playerConfig;
 		weaponConfigFile = weaponConfig;
+	}
+	
+	// Takes three parameters and creates a solution from those strings, if they are valid cards.
+	// Also removes them from the deck.
+	// Note that this method must run before the cards are delt.
+	public void createSolution(String name, String weapon, String room) {
+		Card solutionName = getCard(name);
+		Card solutionWeapon = getCard(weapon);
+		Card solutionRoom = getCard(room);
+		
+		deck.remove(solutionName);
+		deck.remove(solutionWeapon);
+		deck.remove(solutionRoom);
+		
+		solution = new Solution(solutionName, solutionWeapon, solutionRoom);
+	}
+	
+	// Same as the above method, but instead creates a random solution.
+	public void createSolution() {
+		ArrayList<Set<Card>> categorizedDeck = getCategorizedDeck();
+		
+		List<Card> players = new ArrayList<Card>(categorizedDeck.get(0));
+		List<Card> weapons = new ArrayList<Card>(categorizedDeck.get(1));
+		List<Card> rooms = new ArrayList<Card>(categorizedDeck.get(2));
+		
+		Card solutionName = players.get(((int)Math.random())%players.size());
+		Card solutionWeapon = weapons.get(((int)Math.random())%weapons.size());
+		Card solutionRoom = rooms.get(((int)Math.random())%rooms.size());
+		
+		deck.remove(solutionName);
+		deck.remove(solutionWeapon);
+		deck.remove(solutionRoom);
+		
+		solution = new Solution(solutionName, solutionWeapon, solutionRoom);
 	}
 
 	
@@ -533,6 +568,37 @@ public class Board {
 		}
 
 		return numberOfCards;	
+	}
+	
+	// Returns the deck divided into three parts: persons, weapons, and rooms.
+	public ArrayList<Set<Card>> getCategorizedDeck() {
+		
+		ArrayList<Set<Card>> categorizedDeck = new ArrayList<Set<Card>>();
+		categorizedDeck.add(new HashSet<Card>());
+		categorizedDeck.add(new HashSet<Card>());
+		categorizedDeck.add(new HashSet<Card>());
+		
+		for (Card card: deck) {
+			if (card.getType() == CardType.PERSON) {
+				categorizedDeck.get(0).add(card);
+			}
+		}
+		
+		for (Card card: deck) {
+			if (card.getType() == CardType.WEAPON) {
+				categorizedDeck.get(1).add(card);
+			}
+		}
+		
+		for (Card card: deck) {
+			if (card.getType() == CardType.ROOM) {
+				categorizedDeck.get(2).add(card);
+			}
+		}
+		
+		return categorizedDeck;
+		
+		
 	}
 	
 }
