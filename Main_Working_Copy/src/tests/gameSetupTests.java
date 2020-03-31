@@ -110,6 +110,8 @@ public class gameSetupTests {
 	
 	@Test
 	public void testAccusation() {
+		
+		// Tests the correct solution, one incorrect person, incorrect room, and incorrect weapon.
 		Solution correctSolution = new Solution("Mr. Green", "Dagger", "Greenhouse");
 		Solution incorrectPlayer = new Solution("Ms. Scarlett", "Dagger", "Greenhouse");
 		Solution incorrectWeapon = new Solution("Mr. Green", "Rope", "Greenhouse");
