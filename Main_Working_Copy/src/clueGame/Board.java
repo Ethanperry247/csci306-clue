@@ -221,7 +221,7 @@ public class Board {
 		deck.remove(solutionWeapon);
 		deck.remove(solutionRoom);
 		
-		solution = new Solution(solutionName, solutionWeapon, solutionRoom);
+		solution = new Solution(solutionName.getName(), solutionWeapon.getName(), solutionRoom.getName());
 	}
 	
 	// Same as the above method, but instead creates a random solution.
@@ -240,7 +240,7 @@ public class Board {
 		deck.remove(solutionWeapon);
 		deck.remove(solutionRoom);
 		
-		solution = new Solution(solutionName, solutionWeapon, solutionRoom);
+		solution = new Solution(solutionName.getName(), solutionWeapon.getName(), solutionRoom.getName());
 	}
 
 	
@@ -406,7 +406,11 @@ public class Board {
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
-		return false;
+		if (solution.equals(accusation)) {
+			return true;
+		} else { 
+			return false; 
+		}
 	}
 	
 	public void dealDeck() {

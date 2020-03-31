@@ -3,6 +3,7 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
@@ -12,6 +13,7 @@ import org.junit.Test;
 
 import clueGame.Board;
 import clueGame.CardType;
+import clueGame.Solution;
 
 public class gameSetupTests {
 	
@@ -24,6 +26,7 @@ public class gameSetupTests {
 		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");
 		board.initialize();
 		board.loadConfigFiles();
+		board.createSolution("Mr. Green", "Dagger", "Greenhouse");
 		board.dealDeck();
 		
 	}
@@ -76,21 +79,22 @@ public class gameSetupTests {
 	public void testDeckOfCards() {
 		
 		// tests for deck created: size deck of 24 with 7 players, 6 weapons, and 9 rooms
+		// However, 3 cards (the solution cards) should not be found in the deck.
+		// So the total number of cards should be 21.
 		
-		assertEquals(24, board.getDeck().size());	// tests if expected amount of total cards are created 
-		assertEquals(7, board.getNumPlayers());		// tests if expected amount of player cards are created 
-		assertEquals(6, board.getNumWeapons());		// tests if expected amount of weapons cards are created 
-		assertEquals(11, board.getNumRooms());		// tests if expected amount of room cards are created 
+		assertEquals(21, board.getDeck().size());	// tests if expected amount of total cards are created 
+		assertEquals(6, board.getNumPlayers());		// tests if expected amount of player cards are created 
+		assertEquals(5, board.getNumWeapons());		// tests if expected amount of weapons cards are created 
+		assertEquals(10, board.getNumRooms());		// tests if expected amount of room cards are created 
 		
 		// check if card types were loaded correctly
-		assertEquals(board.getCard("Greenhouse").getType(), CardType.ROOM);	
-		assertEquals(board.getCard("Dagger").getType(), CardType.WEAPON);
-		assertEquals(board.getCard("Mr. Green").getType(), CardType.PERSON);
+		assertEquals(board.getCard("Dungeon").getType(), CardType.ROOM);	
+		assertEquals(board.getCard("Rope").getType(), CardType.WEAPON);
+		assertEquals(board.getCard("Ms. Scarlett").getType(), CardType.PERSON);
 		
-		// since we have 7 players and 24 cards, 3 players should end up with 4 cards and 4 players end up with 3 cards
-		assertTrue(board.getNumCardsDealt().contains(4));
+		// since we have 7 players and 21 cards, all players should end up with 3 cards.
 		assertTrue(board.getNumCardsDealt().contains(3));
-		assertTrue(board.getNumCardsDealt().size() == 2);	// verifies players either have 3 or 4 cards 
+		assertTrue(board.getNumCardsDealt().size() == 1);	// verifies players either have 3 or 4 cards 
 		
 	}
 	
@@ -106,7 +110,16 @@ public class gameSetupTests {
 	
 	@Test
 	public void testAccusation() {
+		Solution correctSolution = new Solution("Mr. Green", "Dagger", "Greenhouse");
+		Solution incorrectPlayer = new Solution("Ms. Scarlett", "Dagger", "Greenhouse");
+		Solution incorrectWeapon = new Solution("Mr. Green", "Rope", "Greenhouse");
+		Solution incorrectRoom = new Solution("Mr. Green", "Dagger", "Dungeon");
 		
+		
+		assertTrue(board.checkAccusation(correctSolution));
+		assertFalse(board.checkAccusation(incorrectPlayer));
+		assertFalse(board.checkAccusation(incorrectWeapon));
+		assertFalse(board.checkAccusation(incorrectRoom));
 	}
 	
 	@Test
