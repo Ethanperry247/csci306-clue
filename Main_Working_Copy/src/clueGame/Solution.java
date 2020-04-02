@@ -16,8 +16,8 @@ public class Solution {
 	
 	@Override
 	public boolean equals(Object o) {
-		if (person.equals(((Solution) o).getPerson())
-			&& room.equals(((Solution) o).getRoom())
+		if (person.equals(((Solution) o).getPerson()) // If the person equals the passed in object's person, 
+			&& room.equals(((Solution) o).getRoom())  // and room and weapon are also equal, then return true. 
 			&& weapon.equals(((Solution) o).getWeapon())) {
 			return true;
 		} else {

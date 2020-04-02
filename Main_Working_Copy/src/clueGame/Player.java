@@ -57,9 +57,19 @@ public class Player {
 		return color;
 	}
 	
-	// to be implemented
 	public Card disproveSuggestion(Solution suggestion) {
 		Card x = new Card("x", CardType.PERSON);
+		
+		// If the suggestion contains any of the same cards as contained in the players hand,
+		// return that card. Otherwise return a dummy card called 'x.'
+		for (Card card: playerCards) {
+			if (card.getName().equals(suggestion.getPerson()) ||
+				card.getName().equals(suggestion.getWeapon()) ||
+				card.getName().equals(suggestion.getRoom())) {
+				return card;
+			}
+		}
+		
 		return x;
 	}
 	

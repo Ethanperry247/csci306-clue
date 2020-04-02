@@ -209,7 +209,7 @@ public class Board {
 		weaponConfigFile = weaponConfig;
 	}
 	
-	// Takes three parameters and creates a solution from those strings, if they are valid cards.
+	// Takes three parameters and creates a solution from those strings, if they are valid cards. (Overloaded)
 	// Also removes them from the deck.
 	// Note that this method must run before the cards are delt.
 	public void createSolution(String name, String weapon, String room) {
@@ -224,7 +224,7 @@ public class Board {
 		solution = new Solution(solutionName.getName(), solutionWeapon.getName(), solutionRoom.getName());
 	}
 	
-	// Same as the above method, but instead creates a random solution.
+	// Same as the above method, but instead creates a random solution. 
 	public void createSolution() {
 		ArrayList<Set<Card>> categorizedDeck = getCategorizedDeck();
 		
@@ -236,11 +236,7 @@ public class Board {
 		Card solutionWeapon = weapons.get(((int)Math.random())%weapons.size());
 		Card solutionRoom = rooms.get(((int)Math.random())%rooms.size());
 		
-		deck.remove(solutionName);
-		deck.remove(solutionWeapon);
-		deck.remove(solutionRoom);
-		
-		solution = new Solution(solutionName.getName(), solutionWeapon.getName(), solutionRoom.getName());
+		createSolution(solutionName.getName(), solutionWeapon.getName(), solutionRoom.getName());
 	}
 
 	
