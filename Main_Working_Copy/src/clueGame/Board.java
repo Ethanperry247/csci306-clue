@@ -347,18 +347,6 @@ public class Board {
 		roomCards = new HashSet<Card>(categorizedDeck.get(2));
 	}
 	
-	public Set<Card> getPlayers() {
-		return playerCards;
-	}
-	
-	public Set<Card> getWeapons() {
-		return weaponCards;
-	}
-	
-	public Set<Card> getRooms() {
-		return roomCards;
-	}
-	
 	public void loadPlayers() throws BadConfigFormatException, FileNotFoundException {
 		
 		// Prepare to scan in plays from the config file.
@@ -443,13 +431,17 @@ public class Board {
 		
 		while (deckIndex < cards.size()) {	// while loop to iterate through list of cards
 			for (Player player : players) {	// goes through each player to deal a card to them
-				player.getCards().add(cards.get(deckIndex));
+				player.addCard(cards.get(deckIndex));
 				deckIndex++;						// increment index
 				if (deckIndex == cards.size()) {	// in the event deck runs out of cards early (not enough cards to deal evenly), break
 					break;
 				} 
 			}
 		}
+	}
+	
+	public Card handlesuggestion() {
+		return null;
 	}
 	
 	
@@ -491,6 +483,20 @@ public class Board {
 		for (Card card: deck) {
 			System.out.println(card.getName());
 		}
+	}
+	
+
+	
+	public Set<Card> getPlayers() {
+		return playerCards;
+	}
+	
+	public Set<Card> getWeapons() {
+		return weaponCards;
+	}
+	
+	public Set<Card> getRooms() {
+		return roomCards;
 	}
 	
 	// Returns the number of computer players.

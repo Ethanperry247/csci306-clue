@@ -49,6 +49,10 @@ public class Player {
 		return playerCards;
 	}
 	
+	public void addCard(Card card) {
+		playerCards.add(card);
+	}
+	
 	// from CluePlayer.pdf
 	// Be sure to trim the color, we don't want spaces around the name
 	public Color convertColor(String strColor) {

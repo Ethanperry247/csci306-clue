@@ -141,9 +141,9 @@ public class gameSetupTests {
 		Card room = new Card("Room", CardType.ROOM);
 		Card person = new Card("Person", CardType.PERSON);
 		
-		player.getCards().add(weapon); // Give the player three arbitrary cards.
-		player.getCards().add(room);
-		player.getCards().add(person);
+		player.addCard(weapon); // Give the player three arbitrary cards.
+		player.addCard(room);
+		player.addCard(person);
 		
 		// Create a suggestion without any matching cards to the player's hand.
 		Solution suggestion = new Solution("NotMatching", "NotMatching", "NotMatching");
