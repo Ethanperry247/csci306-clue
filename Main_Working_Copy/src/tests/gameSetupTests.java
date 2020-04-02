@@ -7,12 +7,17 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
+import java.awt.List;
+import java.util.ArrayList;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.Card;
 import clueGame.CardType;
+import clueGame.HumanPlayer;
+import clueGame.Player;
 import clueGame.Solution;
 
 public class gameSetupTests {
@@ -131,9 +136,27 @@ public class gameSetupTests {
 	
 	@Test
 	public void testSuggestionDisproval() {
-
-		System.out.println(board.getPlayer("Ms. Scarlett").getCards());
+		Player player = new HumanPlayer("Mr. Caleb Pan", 0, 0, "RED"); // Create a dummy player.
+		Card weapon = new Card("Weapon", CardType.WEAPON);
+		Card room = new Card("Room", CardType.ROOM);
+		Card person = new Card("Person", CardType.PERSON);
 		
+		player.getCards().add(weapon); // Give the player three arbitrary cards.
+		player.getCards().add(room);
+		player.getCards().add(person);
+		
+		// Create a suggestion without any matching cards to the player's hand.
+		Solution suggestion = new Solution("NotMatching", "NotMatching", "NotMatching");
+		assertEquals(null, player.disproveSuggestion(suggestion));
+		
+		// Create a suggestion with one matching card in the player's hand.
+		suggestion = new Solution("Weapon", "NotMatching", "NotMatching");
+		assertEquals(weapon, player.disproveSuggestion(suggestion));
+		
+		// Create a suggestion with one matching card in the player's hand.
+		ArrayList<Card> matchingCards = new ArrayList<Card>();
+		suggestion = new Solution("Weapon", "Room", "Person");
+		assertEquals(player.disproveSuggestion(suggestion));
 	}
 	
 	@Test
