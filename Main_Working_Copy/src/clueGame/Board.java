@@ -3,6 +3,7 @@
 package clueGame;
 
 import java.io.File;
+import java.util.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -412,6 +413,7 @@ public class Board {
 	public void dealDeck() {
 		List<Card> cards = new ArrayList<Card>(deck);	// creates a list of cards from the deck to iterate through
 		int deckIndex = 0;	// variable to keep track of index in list, that way never visiting an index twice (cards only dealt once)
+		Collections.shuffle(cards); // Shuffle the deck to get a random arrangement of cards.
 		
 		while (deckIndex < cards.size()) {	// while loop to iterate through list of cards
 			for (Player player : players) {	// goes through each player to deal a card to them

@@ -131,6 +131,8 @@ public class gameSetupTests {
 	
 	@Test
 	public void testSuggestionDisproval() {
+
+		System.out.println(board.getPlayer("Ms. Scarlett").getCards());
 		
 	}
 	

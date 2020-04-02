@@ -14,9 +14,19 @@ public class Card {
 		this.type = type;
 	}
 	
-	
-	// to be implemeted
-	public boolean equals() {
+	@Override
+	public String toString() {
+		return "Card [cardName=" + cardName + ", type=" + type + "]";
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		
+		if (((Card)o).getName().equals(cardName) &&
+			((Card)o).getType() == type) {
+			return true;
+		}
+		
 		return false;
 	}
 	
