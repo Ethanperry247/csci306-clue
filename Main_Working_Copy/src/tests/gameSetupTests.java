@@ -152,11 +152,18 @@ public class gameSetupTests {
 		// Create a suggestion with one matching card in the player's hand.
 		suggestion = new Solution("Weapon", "NotMatching", "NotMatching");
 		assertEquals(weapon, player.disproveSuggestion(suggestion));
-		
-		// Create a suggestion with one matching card in the player's hand.
-		ArrayList<Card> matchingCards = new ArrayList<Card>();
+
+		// Create a suggestion with three matching card in the player's hand.
 		suggestion = new Solution("Weapon", "Room", "Person");
-		assertEquals(player.disproveSuggestion(suggestion));
+		
+		// Create a list of all matching cards since disprove suggestion will return them randomly.
+		ArrayList<Card> matchingCards = new ArrayList<Card>();
+		matchingCards.add(weapon);
+		matchingCards.add(room);
+		matchingCards.add(person);
+		
+		// Player returns s random disproving card, which should be contained in the matching cards list.
+		assertTrue(matchingCards.contains(player.disproveSuggestion(suggestion)));
 	}
 	
 	@Test

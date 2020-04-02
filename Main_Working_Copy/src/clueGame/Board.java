@@ -31,6 +31,11 @@ public class Board {
 	// map with keys as cells on the board and a set of the cells adjacent to the key cell for the values 
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 	private Solution solution;
+	
+	// Sets of individual cards, weapons, and players.
+	private Set<Card> weaponCards;
+	private Set<Card> roomCards;
+	private Set<Card> playerCards;
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -326,11 +331,32 @@ public class Board {
 		try {
 			loadPlayers();
 			loadWeapons();
+			populateCardSets();
 		} catch (BadConfigFormatException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}	
+	}
+	
+	// This method takes the cards loaded into deck and populates the sets of weapons, players, and rooms.
+	public void populateCardSets() {
+		ArrayList<Set<Card>> categorizedDeck = getCategorizedDeck(); // Gets cards from the deck split up by their types.
+		playerCards = new HashSet<Card>(categorizedDeck.get(0));
+		weaponCards = new HashSet<Card>(categorizedDeck.get(1));
+		roomCards = new HashSet<Card>(categorizedDeck.get(2));
+	}
+	
+	public Set<Card> getPlayers() {
+		return playerCards;
+	}
+	
+	public Set<Card> getWeapons() {
+		return weaponCards;
+	}
+	
+	public Set<Card> getRooms() {
+		return roomCards;
 	}
 	
 	public void loadPlayers() throws BadConfigFormatException, FileNotFoundException {
