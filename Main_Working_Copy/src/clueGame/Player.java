@@ -15,8 +15,9 @@ public class Player {
 	private Color color;
 	protected ArrayList<Card> playerCards;	// note: each player has 3 cards
 	protected ArrayList<Card> weaponsSeen;	// The weapons observed from disproved suggestions.
-	protected ArrayList<Card> roomsSeen;		// The rooms observed from disproved suggestions.
+	protected ArrayList<Card> roomsSeen;	// The rooms observed from disproved suggestions.
 	protected ArrayList<Card> playersSeen;	// The players observed from disproved suggestions.
+	protected BoardCell justVisited;		// board cell to represent the last room they just visited
 	
 	public Player(String playerName, int row, int column, String color) {
 		this.row = row;
@@ -27,6 +28,7 @@ public class Player {
 		this.weaponsSeen = new ArrayList<Card>();
 		this.roomsSeen = new ArrayList<Card>();
 		this.playersSeen = new ArrayList<Card>();
+		this.justVisited = null;
 	}
 	
 	public String getName() {

@@ -16,7 +16,7 @@ public class ComputerPlayer extends Player{
 	
 	// all methods below to be implemented
 	
-	public BoardCell pickLocation(Set<BoardCell> targets, BoardCell justVisited) {	// parameters are set of calculated target cells and the doorway cell of most recently visited room
+	public BoardCell pickLocation(Set<BoardCell> targets) {	// parameters are set of calculated target cells and the doorway cell of most recently visited room
 		ArrayList<BoardCell> rooms = new ArrayList<BoardCell>();	
 		
 		for (BoardCell cell : targets) {	// finds cells that are doorways (able to enter into those rooms)
@@ -42,7 +42,7 @@ public class ComputerPlayer extends Player{
 	}
 	
 	// has TBD parameter
-	public Solution createSuggestion(Set<Card> peopleDeck, Set<Card> weaponsDeck, BoardCell location) {
+	public Solution createSuggestion(Set<Card> peopleDeck, BoardCell location, Set<Card> weaponsDeck) {
 		
 		ArrayList<Card> missing = new ArrayList<Card>();	
 		Random random = new Random();

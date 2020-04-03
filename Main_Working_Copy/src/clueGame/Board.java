@@ -217,7 +217,7 @@ public class Board {
 	
 	// Takes three parameters and creates a solution from those strings, if they are valid cards. (Overloaded)
 	// Also removes them from the deck.
-	// Note that this method must run before the cards are delt.
+	// Note that this method must run before the cards are dealt.
 	public void createSolution(String name, String weapon, String room) {
 		Card solutionName = getCard(name);
 		Card solutionWeapon = getCard(weapon);
@@ -610,6 +610,16 @@ public class Board {
 		return null;
 	}
 	
+	public ComputerPlayer getComputerPlayer(String name) {
+		for (Player player: players) {
+			if (player.getName().equals(name)) {
+				return (ComputerPlayer) player;
+			}
+		}
+		
+		return null;
+	}
+	
 	
 	public Set<Integer> getNumCardsDealt() {
 		Set<Integer> numberOfCards = new HashSet<Integer>();	// set to hold the number of cards a player holds
@@ -658,5 +668,6 @@ public class Board {
 	public void removePlayers() {
 		players = new ArrayList<Player>();
 	}
+	
 	
 }

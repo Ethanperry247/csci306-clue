@@ -14,6 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.CardType;
 import clueGame.ComputerPlayer;
@@ -100,7 +101,9 @@ public class gameSetupTests {
 		
 		// since we have 7 players and 21 cards, all players should end up with 3 cards.
 		assertTrue(board.getNumCardsDealt().contains(3));
-		assertTrue(board.getNumCardsDealt().size() == 1);	// verifies players either have 3 or 4 cards 
+		assertTrue(board.getNumCardsDealt().size() == 1);	// verifies players either have 3 or 4 cards
+		
+		
 		
 	}
 	
@@ -111,6 +114,12 @@ public class gameSetupTests {
 	
 	@Test
 	public void testComputerTargetSelection() {
+		
+		
+		BoardCell location = board.getCellAt(board.getPlayer("Mrs. Peacock").getRow(),board.getPlayer("Mrs. Peacock").getRow());
+		Solution testOne = board.getComputerPlayer("Mrs. Peacock").createSuggestion(board.getPlayers(), location, board.getWeapons());
+		
+		//assertEquals(testOne, );
 		
 	}
 	
