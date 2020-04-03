@@ -20,7 +20,7 @@ public class Board {
 	public static final int MAX_BOARD_SIZE = 50;
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
-	private Set<Player> players;
+	private List<Player> players;
 	private Set<Card> deck;
 	private String boardConfigFile;
 	private String roomConfigFile;
@@ -351,7 +351,7 @@ public class Board {
 		
 		// Prepare to scan in plays from the config file.
 		Scanner scanner = new Scanner(new File(playerConfigFile));
-		players = new HashSet<Player>();
+		players = new ArrayList<Player>();
 		
 		// Run through config file to grab player information.
 		while (scanner.hasNextLine()) {
@@ -410,10 +410,11 @@ public class Board {
 		
 	}
 	
-	//will have TBD parameter
-	public Card handleSuggestion() {
-		Card x = new Card("x", CardType.PERSON);
-		return x;
+	public Card handleSuggestion(Player accusingPlayer, Solution suggestion) {
+		
+		
+		
+		return null;
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
@@ -440,12 +441,7 @@ public class Board {
 		}
 	}
 	
-	public Card handleSuggestion(Solution suggestion) {
-		
-		
-		
-		return null;
-	}
+	
 	
 	
 	
@@ -605,6 +601,10 @@ public class Board {
 		}
 
 		return numberOfCards;	
+	}
+	
+	public void addPlayer(Player player) {
+		players.add(player);
 	}
 	
 	// Returns the deck divided into three parts: persons, weapons, and rooms.
