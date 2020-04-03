@@ -20,7 +20,7 @@ public class Board {
 	public static final int MAX_BOARD_SIZE = 50;
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
-	private Set<Player> players;
+	private List<Player> players;
 	private Set<Card> deck;
 	private String boardConfigFile;
 	private String roomConfigFile;
@@ -238,9 +238,9 @@ public class Board {
 		List<Card> weapons = new ArrayList<Card>(categorizedDeck.get(1));
 		List<Card> rooms = new ArrayList<Card>(categorizedDeck.get(2));
 		
-		Card solutionName = players.get(((int)Math.random())%players.size());
-		Card solutionWeapon = weapons.get(((int)Math.random())%weapons.size());
-		Card solutionRoom = rooms.get(((int)Math.random())%rooms.size());
+		Card solutionName = players.get(((int)(Math.random())*players.size()));
+		Card solutionWeapon = weapons.get(((int)(Math.random())*weapons.size()));
+		Card solutionRoom = rooms.get(((int)(Math.random())*rooms.size()));
 		
 		createSolution(solutionName.getName(), solutionWeapon.getName(), solutionRoom.getName());
 	}
@@ -347,23 +347,11 @@ public class Board {
 		roomCards = new HashSet<Card>(categorizedDeck.get(2));
 	}
 	
-	public Set<Card> getPlayers() {
-		return playerCards;
-	}
-	
-	public Set<Card> getWeapons() {
-		return weaponCards;
-	}
-	
-	public Set<Card> getRooms() {
-		return roomCards;
-	}
-	
 	public void loadPlayers() throws BadConfigFormatException, FileNotFoundException {
 		
 		// Prepare to scan in plays from the config file.
 		Scanner scanner = new Scanner(new File(playerConfigFile));
-		players = new HashSet<Player>();
+		players = new ArrayList<Player>();
 		
 		// Run through config file to grab player information.
 		while (scanner.hasNextLine()) {
@@ -422,10 +410,29 @@ public class Board {
 		
 	}
 	
-	//will have TBD parameter
-	public Card handleSuggestion() {
-		Card x = new Card("x", CardType.PERSON);
-		return x;
+	public Card handleSuggestion(Player accusingPlayer, Solution suggestion) {
+		
+		Card suggestionDisproval = null;
+		
+		// First, find the index of the player who is making the suggestion.
+		int playerIndex = 0;
+		for (int i = 0; i < players.size(); i++) {
+			if (accusingPlayer.equals(players.get(i))) {
+				playerIndex = i;
+			}
+		}
+		
+		// Next loop through all the players, starting with the player following the accusing player.
+		int index = 0;
+		while (index < players.size() - 1) { // The reason for the -1 is that we don't want to include the accusing player.
+			suggestionDisproval = players.get((index+playerIndex+1)%players.size()).disproveSuggestion(suggestion);
+			if (suggestionDisproval != null) { // If a card is used to disprove the suggestion, break the loop and return it.
+				break;
+			}
+			index++;
+		}
+		
+		return suggestionDisproval;
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
@@ -443,7 +450,7 @@ public class Board {
 		
 		while (deckIndex < cards.size()) {	// while loop to iterate through list of cards
 			for (Player player : players) {	// goes through each player to deal a card to them
-				player.getCards().add(cards.get(deckIndex));
+				player.addCard(cards.get(deckIndex));
 				deckIndex++;						// increment index
 				if (deckIndex == cards.size()) {	// in the event deck runs out of cards early (not enough cards to deal evenly), break
 					break;
@@ -451,6 +458,8 @@ public class Board {
 			}
 		}
 	}
+	
+	
 	
 	
 	
@@ -491,6 +500,20 @@ public class Board {
 		for (Card card: deck) {
 			System.out.println(card.getName());
 		}
+	}
+	
+
+	
+	public Set<Card> getPlayers() {
+		return playerCards;
+	}
+	
+	public Set<Card> getWeapons() {
+		return weaponCards;
+	}
+	
+	public Set<Card> getRooms() {
+		return roomCards;
 	}
 	
 	// Returns the number of computer players.
@@ -598,6 +621,10 @@ public class Board {
 		return numberOfCards;	
 	}
 	
+	public void addPlayer(Player player) {
+		players.add(player);
+	}
+	
 	// Returns the deck divided into three parts: persons, weapons, and rooms.
 	public ArrayList<Set<Card>> getCategorizedDeck() {
 		
@@ -626,7 +653,10 @@ public class Board {
 		
 		return categorizedDeck;
 		
-		
+	}
+	
+	public void removePlayers() {
+		players = new ArrayList<Player>();
 	}
 	
 }

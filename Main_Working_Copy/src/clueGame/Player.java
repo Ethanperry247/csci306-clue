@@ -49,6 +49,15 @@ public class Player {
 		return playerCards;
 	}
 	
+	public void addCard(Card card) {
+		playerCards.add(card);
+	}
+	
+	@Override
+	public String toString() {
+		return "[Player: " + playerName + "]";
+	}
+
 	// from CluePlayer.pdf
 	// Be sure to trim the color, we don't want spaces around the name
 	public Color convertColor(String strColor) {
@@ -81,7 +90,7 @@ public class Player {
 		} else if (matchingCards.size() == 1) { // If one card matches, return that card.
 			return matchingCards.get(0);
 		} else { // Otherwise, if multiple match it, return a random selection.
-			return matchingCards.get((int)Math.random()%matchingCards.size());
+			return matchingCards.get((int)(Math.random()*matchingCards.size()));
 		}
 	}
 	
