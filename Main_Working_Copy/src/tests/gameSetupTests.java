@@ -161,9 +161,40 @@ public class gameSetupTests {
 		matchingCards.add(weapon);
 		matchingCards.add(room);
 		matchingCards.add(person);
-		
 		// Player returns s random disproving card, which should be contained in the matching cards list.
 		assertTrue(matchingCards.contains(player.disproveSuggestion(suggestion)));
+		
+		// To test this further, we use three booleans to check and affirm that all cards in hand are all return at least once.
+		boolean weaponReturned = false;
+		boolean roomReturned = false;
+		boolean personReturned = false;
+		
+		// We do this, as mentioned in the design document, by looping so that each matching card is returned.
+		// First for the weapon.
+		for (int i = 0; i < 100; i++) {
+			if (weapon.equals(player.disproveSuggestion(suggestion))) {
+				weaponReturned = true;
+			}
+		}
+		// Demonstrates that a weapon was returned by the disprove suggestion method.
+		assertTrue(weaponReturned);
+		
+		for (int i = 0; i < 100; i++) {
+			if (room.equals(player.disproveSuggestion(suggestion))) {
+				roomReturned = true;
+			}
+		}
+		// Demonstrates that a room was returned by the disprove suggestion method.
+		assertTrue(roomReturned);
+		
+		for (int i = 0; i < 100; i++) {
+			if (person.equals(player.disproveSuggestion(suggestion))) {
+				personReturned = true;
+			}
+		}
+		// Demonstrates that a person was returned by the disprove suggestion method.
+		assertTrue(personReturned);
+		
 	}
 	
 	@Test
@@ -173,6 +204,8 @@ public class gameSetupTests {
 	
 	@Test
 	public void testSuggestionHandling() {
+		
+		
 		
 	}
 	

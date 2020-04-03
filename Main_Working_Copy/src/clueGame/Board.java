@@ -238,9 +238,9 @@ public class Board {
 		List<Card> weapons = new ArrayList<Card>(categorizedDeck.get(1));
 		List<Card> rooms = new ArrayList<Card>(categorizedDeck.get(2));
 		
-		Card solutionName = players.get(((int)Math.random())%players.size());
-		Card solutionWeapon = weapons.get(((int)Math.random())%weapons.size());
-		Card solutionRoom = rooms.get(((int)Math.random())%rooms.size());
+		Card solutionName = players.get(((int)(Math.random())*players.size()));
+		Card solutionWeapon = weapons.get(((int)(Math.random())*weapons.size()));
+		Card solutionRoom = rooms.get(((int)(Math.random())*rooms.size()));
 		
 		createSolution(solutionName.getName(), solutionWeapon.getName(), solutionRoom.getName());
 	}
@@ -440,7 +440,10 @@ public class Board {
 		}
 	}
 	
-	public Card handlesuggestion() {
+	public Card handleSuggestion(Solution suggestion) {
+		
+		
+		
 		return null;
 	}
 	
