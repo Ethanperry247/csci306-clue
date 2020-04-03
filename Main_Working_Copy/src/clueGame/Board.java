@@ -412,9 +412,27 @@ public class Board {
 	
 	public Card handleSuggestion(Player accusingPlayer, Solution suggestion) {
 		
+		Card suggestionDisproval = null;
 		
+		// First, find the index of the player who is making the suggestion.
+		int playerIndex = 0;
+		for (int i = 0; i < players.size(); i++) {
+			if (accusingPlayer.equals(players.get(i))) {
+				playerIndex = i;
+			}
+		}
 		
-		return null;
+		// Next loop through all the players, starting with the player following the accusing player.
+		int index = 0;
+		while (index < players.size() - 1) { // The reason for the -1 is that we don't want to include the accusing player.
+			suggestionDisproval = players.get((index+playerIndex+1)%players.size()).disproveSuggestion(suggestion);
+			if (suggestionDisproval != null) { // If a card is used to disprove the suggestion, break the loop and return it.
+				break;
+			}
+			index++;
+		}
+		
+		return suggestionDisproval;
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
@@ -635,7 +653,10 @@ public class Board {
 		
 		return categorizedDeck;
 		
-		
+	}
+	
+	public void removePlayers() {
+		players = new ArrayList<Player>();
 	}
 	
 }

@@ -206,6 +206,7 @@ public class gameSetupTests {
 	@Test
 	public void testSuggestionHandling() {
 		
+		board.removePlayers(); // Clears the board so that we only have to deal with the players we need.
 		// Create a fake board and set its configuration files.
 		Board fakeBoard = Board.getInstance();
 		fakeBoard.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");
@@ -264,9 +265,9 @@ public class gameSetupTests {
 	
 		// The following queries test playerTwo and playerThree, the computer players.
 		suggestion = new Solution("CandleStick", "Greenhouse", "NoMatches"); // Suggestion with a matching card in the hands of playerOne and playerThree. 
-		assertEquals(new Card("Greenhouse", CardType.WEAPON), fakeBoard.handleSuggestion(playerTwo, suggestion)); // Affirm that the board handles the suggestion and returns the card of playerThree.
+		assertEquals(new Card("Greenhouse", CardType.ROOM), fakeBoard.handleSuggestion(playerTwo, suggestion)); // Affirm that the board handles the suggestion and returns the card of playerThree.
 	
-		suggestion = new Solution("CandleStick", "NoMatches", "NoMatches"); // Suggestion with a matching card in the hands of playerOne and playerThree. 
+		suggestion = new Solution("Candlestick", "NoMatches", "NoMatches"); // Suggestion with a matching card in the hands of playerOne and playerThree. 
 		assertEquals(new Card("Candlestick", CardType.WEAPON), fakeBoard.handleSuggestion(playerTwo, suggestion)); // Affirm that the board handles the suggestion and returns the card of the human player.
 	}
 	

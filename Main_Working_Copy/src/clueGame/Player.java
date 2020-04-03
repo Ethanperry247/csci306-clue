@@ -53,6 +53,11 @@ public class Player {
 		playerCards.add(card);
 	}
 	
+	@Override
+	public String toString() {
+		return "[Player: " + playerName + "]";
+	}
+
 	// from CluePlayer.pdf
 	// Be sure to trim the color, we don't want spaces around the name
 	public Color convertColor(String strColor) {
