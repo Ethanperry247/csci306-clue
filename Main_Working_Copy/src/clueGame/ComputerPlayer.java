@@ -42,26 +42,36 @@ public class ComputerPlayer extends Player{
 	}
 	
 	// has TBD parameter
-	public Solution createSuggestion(Set<Card> seenPeople, Set<Card> seenWeapons, BoardCell location) {
+	public Solution createSuggestion(Set<Card> peopleDeck, Set<Card> weaponsDeck, BoardCell location) {
+		
+		ArrayList<Card> missing = new ArrayList<Card>();	
+		Random random = new Random();
+		
+		for (Card person : peopleDeck) {
+			if (!playersSeen.contains(person)) {
+				missing.add(person);
+			}
+		}
+		
+		int someCard = random.nextInt(missing.size());
+		String person = missing.get(someCard).getName();
+		missing.clear();
+				
+	
+		for (Card weapon : weaponsDeck) {
+			if (!weaponsSeen.contains(weapon)) {
+				missing.add(weapon);
+			}
+		}
+		
+		someCard = random.nextInt(missing.size());
+		String weapon = missing.get(someCard).getName();
+		
 		char initial = location.getInitial();
-		String room = String.valueOf(initial);  
-		int missing = 0;
+		String room = String.valueOf(initial);
+
 		
-		for (Card person : seenPeople) {
-			missing++;
-		}
-		
-		if (missing == 1) {
-			
-		}
-		
-		for (Card weapon : seenWeapons) {
-			
-		}
-		
-		
-		
-		Solution accusation = new Solution("X",room,"X");
+		Solution accusation = new Solution(person, room, weapon);
 		return accusation;
 	}
 

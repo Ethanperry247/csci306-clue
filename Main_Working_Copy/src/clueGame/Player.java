@@ -13,10 +13,10 @@ public class Player {
 	private int row;
 	private int column;
 	private Color color;
-	private ArrayList<Card> playerCards;	// note: each player has 3 cards
-	private ArrayList<Card> weaponsSeen;	// The weapons observed from disproved suggestions.
-	private ArrayList<Card> roomsSeen;		// The rooms observed from disproved suggestions.
-	private ArrayList<Card> playersSeen;	// The players observed from disproved suggestions.
+	protected ArrayList<Card> playerCards;	// note: each player has 3 cards
+	protected ArrayList<Card> weaponsSeen;	// The weapons observed from disproved suggestions.
+	protected ArrayList<Card> roomsSeen;		// The rooms observed from disproved suggestions.
+	protected ArrayList<Card> playersSeen;	// The players observed from disproved suggestions.
 	
 	public Player(String playerName, int row, int column, String color) {
 		this.row = row;
