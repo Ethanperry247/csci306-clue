@@ -9,6 +9,8 @@ import static org.junit.Assert.assertTrue;
 import java.awt.Color;
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -115,11 +117,22 @@ public class gameSetupTests {
 	@Test
 	public void testComputerTargetSelection() {
 		
-		
-		BoardCell location = board.getCellAt(board.getPlayer("Mrs. Peacock").getRow(),board.getPlayer("Mrs. Peacock").getRow());
-		Solution testOne = board.getComputerPlayer("Mrs. Peacock").createSuggestion(board.getPlayers(), location, board.getWeapons());
-		
-		//assertEquals(testOne, );
+//		ComputerPlayer playerTwo = new ComputerPlayer("GLaDOS", 0, 0, "RED"); // Create a dummy player.
+//		Card weapon = new Card("Rope", CardType.WEAPON);
+//		Card room = new Card("Dungeon", CardType.ROOM);
+//		Card person = new Card("Mrs. White", CardType.PERSON);
+//		
+//		playerTwo.addCard(weapon); // Give the dummy player three arbitrary cards.
+//		playerTwo.addCard(room);
+//		playerTwo.addCard(person);
+//		
+//		BoardCell location = board.getCellAt(playerTwo.getRow(),playerTwo.getRow());
+//		Solution testOne = playerTwo.createSuggestion(board.getPlayers(), location, board.getWeapons());
+//		
+//		assertEquals(testOne.getRoom(), "V");
+//		assertTrue(board.getHumanPlayerNames().contains(testOne.getPerson()) || board.getComputerPlayerNames().contains(testOne.getPerson()));
+//		
+//		playerTwo.getWeaponsSeen();
 		
 	}
 	
@@ -141,6 +154,31 @@ public class gameSetupTests {
 	
 	@Test
 	public void testComputerSuggestion() {
+		
+		ComputerPlayer playerOne = new ComputerPlayer("GLaDOS", 0, 0, "RED"); // Create a dummy player.
+		
+		BoardCell location = board.getCellAt(playerOne.getRow(),playerOne.getRow());
+		Solution testOne = playerOne.createSuggestion(board.getPlayers(), location, board.getWeapons());
+		
+		assertEquals(testOne.getRoom(), "V");
+		System.out.println(testOne.getPerson());
+		//assertTrue(board.getHumanPlayerNames().contains(testOne.getPerson()) || board.getComputerPlayerNames().contains(testOne.getPerson()));
+		
+		ArrayList<Card> seenWeapons = new ArrayList<Card>(board.getWeapons());
+		ArrayList<Card> seenPeople = new ArrayList<Card>(board.getPlayers());
+		Card missingWeapon = new Card("Rope", CardType.WEAPON);
+		Card missingPerson = new Card("Mrs. White", CardType.PERSON);
+		seenWeapons.remove(missingWeapon);
+		seenPeople.remove(missingPerson);
+		
+		ComputerPlayer playerTwo = new ComputerPlayer("HAL9000", 19, 19, "RED", seenWeapons, seenPeople); 
+		location = board.getCellAt(playerTwo.getRow(),playerTwo.getRow());
+		Solution testTwo = playerTwo.createSuggestion(board.getPlayers(), location, board.getWeapons());
+		
+		System.out.println(testTwo.getPerson());
+		assertTrue(testTwo.getPerson().equals("Mrs. White"));
+		assertEquals(testTwo.getRoom(), "D");
+		
 		
 	}
 	

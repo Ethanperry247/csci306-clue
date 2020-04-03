@@ -610,15 +610,6 @@ public class Board {
 		return null;
 	}
 	
-	public ComputerPlayer getComputerPlayer(String name) {
-		for (Player player: players) {
-			if (player.getName().equals(name)) {
-				return (ComputerPlayer) player;
-			}
-		}
-		
-		return null;
-	}
 	
 	
 	public Set<Integer> getNumCardsDealt() {

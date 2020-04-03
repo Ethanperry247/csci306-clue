@@ -14,6 +14,10 @@ public class ComputerPlayer extends Player{
 		super(playerName, row, column, color);
 	}
 	
+	public ComputerPlayer(String playerName, int row, int column, String color, ArrayList<Card> weaponsSeen, ArrayList<Card> playersSeen) {
+		super(playerName, row, column, color, weaponsSeen, playersSeen);
+	}
+	
 	// all methods below to be implemented
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {	// parameters are set of calculated target cells and the doorway cell of most recently visited room

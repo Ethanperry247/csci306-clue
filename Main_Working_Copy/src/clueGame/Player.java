@@ -31,6 +31,18 @@ public class Player {
 		this.justVisited = null;
 	}
 	
+	public Player(String playerName, int row, int column, String color, ArrayList<Card> weaponsSeen, ArrayList<Card> playersSeen) {
+		this.row = row;
+		this.column = column;
+		this.playerName = playerName;
+		this.color = convertColor(color); // The colors passed in must be in all caps (i.e. RED, GREEN, etc.).
+		this.playerCards = new ArrayList<Card>();
+		this.weaponsSeen = weaponsSeen;
+		this.roomsSeen = new ArrayList<Card>();
+		this.playersSeen = playersSeen;
+		this.justVisited = null;
+	}
+	
 	public String getName() {
 		return playerName;
 	}
@@ -49,6 +61,18 @@ public class Player {
 	
 	public ArrayList<Card> getCards() {
 		return playerCards;
+	}
+	
+	public ArrayList<Card> getWeaponsSeen() {
+		return weaponsSeen;
+	}
+	
+	public ArrayList<Card> getRoomsSeen() {
+		return roomsSeen;
+	}
+	
+	public ArrayList<Card> getPlayersSeen() {
+		return playersSeen;
 	}
 	
 	public void addCard(Card card) {
