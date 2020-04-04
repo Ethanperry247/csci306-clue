@@ -1,3 +1,167 @@
+commit 09c26a7a6ed3b8d2a17b899babd8019620534079
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 22:02:50 2020 -0600
+
+    added documentation for gamesetuptests
+
+commit 88c7bf6c68c834c266cee98697ab0d02b7d7c464
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 21:00:54 2020 -0600
+
+    added in JUnit test ordering so suggestionHandling would not interfere with other tests
+
+commit 4dc9dbc018c66c85a60054edbf9338f89ffa7cb0
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 20:33:08 2020 -0600
+
+    tests now all pass for testComputerTargetSelection
+
+commit d1210ac715e7580ac06973ebe94fd857095895e6
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 20:10:36 2020 -0600
+
+    addded in failing tests for testComputerTargetSelection
+
+commit 4cb25b14437bf6f49f33991672cf3de18c267e29
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 18:29:04 2020 -0600
+
+    testComputerSuggestion tests now all pass
+
+commit e361eb0ea7f5ff79a62a2517b38773d94820605b
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 17:46:53 2020 -0600
+
+    added in failing tests for testComputerSuggestion along with constructor refactroing for Player
+
+commit d06ce2b29cd5649ae79e7a85d570ae4f77c260e2
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Apr 2 22:19:25 2020 -0600
+
+    added in methods to help set up testing ComputerPlayer
+
+commit e7a75342c6a9919346ac1dc5fbc16d785ab52ad8
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Apr 2 21:04:21 2020 -0600
+
+    finished implementing createSuggestion for ComputerPlayer
+
+commit 4604910ac0a40568ee39eb5a034bb544b75aef5f
+Merge: fe41ef3 597c40a
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Apr 2 19:26:32 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 597c40abc70859c639d9c2d0555c9134531f4c74
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 19:16:21 2020 -0600
+
+    Added a new testing method to clear players. Did some significant bug fixing in the test class. Implemented handle suggestion in board, and all tests pass!
+
+commit a9f841f46eda3e6863b07987f052a05191272e38
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 18:39:49 2020 -0600
+
+    Added a huge number of failing tests for handling a suggestion. To be implemented.
+
+commit 8b8a79b1c044a810cbce796135f8bc0cc8d9f3c6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 18:01:38 2020 -0600
+
+    Fixed an unseen major bug related to random number generation in board and player.
+
+commit 8727cc52cd0705706d45216995c7bcaf151f99a3
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 17:42:17 2020 -0600
+
+    Refector and cleanup of methods in board and player.
+
+commit fe41ef397b9bf07b348f454d312a0d2216f3fdc4
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Apr 2 14:15:53 2020 -0600
+
+    refactored pickLocation and began createSuggestions (to be finished)
+
+commit 45192e5a379201c644a1a20a769d39649ad67087
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 14:02:58 2020 -0600
+
+    Implemented tests for suggestion disproval, all tests pass.
+
+commit 04d25f5522f41c7f70e33bac210b9c8da76694a6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 13:54:36 2020 -0600
+
+    Added individualized card sets in board and added seen lists in player.
+
+commit a0178eaa717062d84ed18325585f9f9402659991
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 13:24:06 2020 -0600
+
+    Created failing tests for disprove suggestion in player.
+
+commit 72c2e34689a2a626588bcf4b8b0c457ee2e46eb6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 13:04:09 2020 -0600
+
+    Made some small changes in board and player.
+
+commit 8bc5890e74b64586a5e5f04a6b58e97923a19ff3
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Mar 31 14:11:44 2020 -0600
+
+    Added override .equals() in solution and implemented testing accusations.
+
+commit b60ad1c45c427a88bb23be2b0a10e56811fa2698
+Merge: b3a35bc bb35788
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Mar 31 14:11:14 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit b3a35bc34063c68dca3832f1a82dbdd7816d9e51
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Mar 31 14:10:30 2020 -0600
+
+    Added failing tests for testing accusations.
+
+commit bb35788764fbe055a8bdd283592947e0e91e690b
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Mar 31 14:08:38 2020 -0600
+
+    added in pickLocation for ComputerPlayer, still needs to be intergrated into the gameplay for testing
+
+commit 59041b35657390470fc2fd3d79efdafb51fc07cc
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Mar 31 13:43:57 2020 -0600
+
+    Forgot to save.
+
+commit c5e86cabde685b848ea1a3c476e733e3c04a9315
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Mar 31 13:43:29 2020 -0600
+
+    Changed Strings to Cards in the solution class. Also implemented a solution creator in the board class, both one with params and one generating randomly.
+
+commit 9aad7b296779ce5b7663447d6aaba46b969536cb
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 28 22:26:08 2020 -0600
+
+    correcting first attempt to add gitlog to repo
+
+commit b5ea37ae767697204612a4c06f53bfbb7607ba53
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 28 22:23:48 2020 -0600
+
+    added author documentation to all new created files
+
+commit 9dca85d1fa4edb85141f22311e0232b26576466d
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 28 22:20:30 2020 -0600
+
+    added new gitlog
+
 commit 676cd05a8f9c468aa65bf6c0d5596e1e007ea28b
 Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
 Date:   Sat Mar 28 22:16:40 2020 -0600
