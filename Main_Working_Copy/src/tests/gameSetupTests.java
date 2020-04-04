@@ -13,8 +13,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
-//import org.junit.jupiter.api.BeforeClass;
-//import org.junit.Test;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -29,7 +27,7 @@ import clueGame.HumanPlayer;
 import clueGame.Player;
 import clueGame.Solution;
 
-@TestMethodOrder(OrderAnnotation.class)
+@TestMethodOrder(OrderAnnotation.class)	// executes tests in order since testSuggestionHandling will need to go last
 public class gameSetupTests {
 	
 	private static Board board;
@@ -142,30 +140,34 @@ public class gameSetupTests {
 	@Test
 	@Order(5) 
 	public void testComputerSuggestion() {
-
+		
+		// in this scenario, a computer player is in the Veranda (V) and they have not seen any cards
 		ComputerPlayer playerOne = new ComputerPlayer("GLaDOS", 0, 0, "RED"); 
 		BoardCell location = board.getCellAt(playerOne.getRow(),playerOne.getRow());
 		Solution testOne = playerOne.createSuggestion(board.getPlayers(), location, board.getWeapons());
 		
+		// therefore, the Room in their suggestion would be where they currently are: V 
 		assertEquals(testOne.getRoom(), "V");
+		// since they have not seen any cards, they will pick a random Person and Weapon for their suggestion
 		assertTrue(board.getAllPlayerNames().contains(testOne.getPerson()));
 		assertTrue(board.getWeaponNames().contains(testOne.getWeapon()));
 	
-		
+		// set up so that in our next scenario the computer player has not seen only one weapon and one person
 		ArrayList<Card> seenWeapons = new ArrayList<Card>(board.getWeapons());
 		ArrayList<Card> seenPeople = new ArrayList<Card>(board.getPlayers());
 		Card missingWeapon = new Card("Rope", CardType.WEAPON);
 		Card missingPerson = new Card("Mrs. White", CardType.PERSON);
-		seenWeapons.remove(missingWeapon);
-		seenPeople.remove(missingPerson);
+		seenWeapons.remove(missingWeapon);								// missing weapon control case: only Rope has not been seen
+		seenPeople.remove(missingPerson);								// missing person control case: only Mrs. White has not been seen
 		
+		// in this scenario, a computer player is in the Dungeon (D) and they have seen all weapon and people cards except our control cases
 		ComputerPlayer playerTwo = new ComputerPlayer("HAL9000", 19, 19, "RED", seenWeapons, seenPeople); 
 		location = board.getCellAt(playerTwo.getRow(),playerTwo.getRow());
 		Solution testTwo = playerTwo.createSuggestion(board.getPlayers(), location, board.getWeapons());
 		
-		assertTrue(testTwo.getPerson().equals("Mrs. White"));
-		assertTrue(testTwo.getWeapon().equals("Rope"));
-		assertEquals(testTwo.getRoom(), "D");
+		assertTrue(testTwo.getPerson().equals("Mrs. White"));	// will suggest the missing person control case
+		assertTrue(testTwo.getWeapon().equals("Rope"));			// will suggest the missing weapon control case
+		assertEquals(testTwo.getRoom(), "D");					// will suggest current room: D
 		
 	}
 	
@@ -173,6 +175,7 @@ public class gameSetupTests {
 	@Order(6) 
 	public void testComputerTargetSelection() {
 		
+		// our computer player to get select targets
 		ComputerPlayer playerOne = new ComputerPlayer("Ultron", 0, 0, "RED");
 		
 		// there is an unvisited room, picks to go to the room
@@ -188,13 +191,6 @@ public class gameSetupTests {
 		board.calcTargets(13, 19, 4);
 		targets = board.getTargets();
 		assertTrue(targets.contains(playerOne.pickLocation(targets)));
-		
-//		// 
-//		playerOne.updateJustVisited(board.getCellAt(7,0));
-//		board.calcTargets(7, 5, 4);
-//		targets = board.getTargets();
-//		assertEquals(playerOne.pickLocation(targets), board.getCellAt(4, 6));
-//		
 		
 	}
 	

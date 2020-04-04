@@ -21,15 +21,20 @@ public class ComputerPlayer extends Player{
 	// all methods below to be implemented
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {	// parameters are set of calculated target cells and the doorway cell of most recently visited room
-		ArrayList<BoardCell> rooms = new ArrayList<BoardCell>();	
+		ArrayList<BoardCell> rooms = new ArrayList<BoardCell>();
+		boolean justThere = false;
 		
 		for (BoardCell cell : targets) {	// finds cells that are doorways (able to enter into those rooms)
 			if (cell.isDoorway()) {
 				rooms.add(cell);
 			}
+			
+			if (justVisited != null && cell.getInitial() == justVisited.getInitial()) {	// checks if room was just visited or not
+				justThere = true;
+			}
 		}
 		
-		if (rooms.isEmpty() || (justVisited != null && rooms.contains(justVisited))) {	// if there is no rooms to go into or room just visited is an option...
+		if (rooms.isEmpty() || justThere == true) {	// if there is no rooms to go into or room just visited is an option...
 			rooms = new ArrayList<BoardCell>(targets);
 			Random random = new Random();
 			int someCell = random.nextInt(rooms.size());					// ...select an available target randomly
