@@ -105,8 +105,6 @@ public class gameSetupTests {
 		assertTrue(board.getNumCardsDealt().contains(3));
 		assertTrue(board.getNumCardsDealt().size() == 1);	// verifies players either have 3 or 4 cards
 		
-		
-		
 	}
 	
 	@Test
@@ -114,27 +112,6 @@ public class gameSetupTests {
 		
 	}
 	
-	@Test
-	public void testComputerTargetSelection() {
-		
-//		ComputerPlayer playerTwo = new ComputerPlayer("GLaDOS", 0, 0, "RED"); // Create a dummy player.
-//		Card weapon = new Card("Rope", CardType.WEAPON);
-//		Card room = new Card("Dungeon", CardType.ROOM);
-//		Card person = new Card("Mrs. White", CardType.PERSON);
-//		
-//		playerTwo.addCard(weapon); // Give the dummy player three arbitrary cards.
-//		playerTwo.addCard(room);
-//		playerTwo.addCard(person);
-//		
-//		BoardCell location = board.getCellAt(playerTwo.getRow(),playerTwo.getRow());
-//		Solution testOne = playerTwo.createSuggestion(board.getPlayers(), location, board.getWeapons());
-//		
-//		assertEquals(testOne.getRoom(), "V");
-
-//		
-//		playerTwo.getWeaponsSeen();
-		
-	}
 	
 	@Test
 	public void testAccusation() {
@@ -155,7 +132,7 @@ public class gameSetupTests {
 	@Test
 	public void testComputerSuggestion() {
 
-		ComputerPlayer playerOne = new ComputerPlayer("GLaDOS", 0, 0, "RED"); // Create a dummy player.
+		ComputerPlayer playerOne = new ComputerPlayer("GLaDOS", 0, 0, "RED"); 
 		BoardCell location = board.getCellAt(playerOne.getRow(),playerOne.getRow());
 		Solution testOne = playerOne.createSuggestion(board.getPlayers(), location, board.getWeapons());
 		
@@ -178,13 +155,40 @@ public class gameSetupTests {
 		assertTrue(testTwo.getPerson().equals("Mrs. White"));
 		assertTrue(testTwo.getWeapon().equals("Rope"));
 		assertEquals(testTwo.getRoom(), "D");
-		//board.getAllNames();
+		
+	}
+	
+	@Test
+	public void testComputerTargetSelection() {
+		
+		ComputerPlayer playerOne = new ComputerPlayer("Ultron", 0, 0, "RED");
+		
+		// there is an unvisited room, picks to go to the room
+		board.calcTargets(19, 10, 1);
+		Set<BoardCell> targets = board.getTargets();
+		assertEquals(playerOne.pickLocation(targets), board.getCellAt(19, 11));
+		
+		// just visited the nearby available room, so will pick randomly
+		playerOne.updateJustVisited(board.getCellAt(19,14));
+		assertTrue(targets.contains(playerOne.pickLocation(targets)));
+		
+		// no rooms to visit, picks random
+		board.calcTargets(13, 19, 4);
+		targets = board.getTargets();
+		assertTrue(targets.contains(playerOne.pickLocation(targets)));
+		
+		// 
+		playerOne.updateJustVisited(board.getCellAt(7,0));
+		board.calcTargets(7, 5, 4);
+		targets = board.getTargets();
+		assertEquals(playerOne.pickLocation(targets), board.getCellAt(4, 6));
 		
 		
 	}
 	
 	@Test
 	public void testSuggestionDisproval() {
+		
 		Player player = new HumanPlayer("Mr. Caleb Pan", 0, 0, "RED"); // Create a dummy player.
 		Card weapon = new Card("Weapon", CardType.WEAPON);
 		Card room = new Card("Room", CardType.ROOM);
@@ -253,70 +257,70 @@ public class gameSetupTests {
 	
 	@Test
 	public void testSuggestionHandling() {
+		board.removePlayers(); // Clears the board so that we only have to deal with the players we need.
+		// Create a fake board and set its configuration files.
+		Board fakeBoard = Board.getInstance();
+		fakeBoard.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");
 		
-//		board.removePlayers(); // Clears the board so that we only have to deal with the players we need.
-//		// Create a fake board and set its configuration files.
-//		Board fakeBoard = Board.getInstance();
-//		fakeBoard.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");
-//		
-//		Player playerOne = new HumanPlayer("Mr. Caleb Pan", 0, 0, "RED"); // Create a dummy player.
-//		Card weapon = new Card("Candlestick", CardType.WEAPON);
-//		Card room = new Card("Lounge", CardType.ROOM);
-//		Card person = new Card("Mr. Green", CardType.PERSON);
-//		
-//		playerOne.addCard(weapon); // Give the dummy player three arbitrary cards.
-//		playerOne.addCard(room);
-//		playerOne.addCard(person);
-//		
-//		fakeBoard.addPlayer(playerOne); // Add that fake player to the board.
-//		
-//		Player playerTwo = new ComputerPlayer("Mr. Another Player", 0, 0, "RED"); // Create a dummy player.
-//		weapon = new Card("Rope", CardType.WEAPON);
-//		room = new Card("Dungeon", CardType.ROOM);
-//		person = new Card("Mrs. White", CardType.PERSON);
-//		
-//		playerTwo.addCard(weapon); // Give the dummy player three arbitrary cards.
-//		playerTwo.addCard(room);
-//		playerTwo.addCard(person);
-//		
-//		fakeBoard.addPlayer(playerTwo); // Add that fake player to the board.
-//		
-//		Player playerThree = new ComputerPlayer("Mr. New Player", 0, 0, "RED"); // Create a dummy player.
-//		weapon = new Card("Dagger", CardType.WEAPON);
-//		room = new Card("Greenhouse", CardType.ROOM);
-//		person = new Card("Prof. Plum", CardType.PERSON);
-//		
-//		playerThree.addCard(weapon); // Give the dummy player three arbitrary cards.
-//		playerThree.addCard(room);
-//		playerThree.addCard(person);
-//		
-//		fakeBoard.addPlayer(playerThree); // Add that fake player to the board.
-//		
-//		
-//		// We now have a fake board populated with fake players (each with three cards).
-//		Solution suggestion = new Solution("NoMatches", "NoMatches", "NoMatches"); // Suggestion with no possible matching cards in the hands of the players.
-//		assertEquals(null, fakeBoard.handleSuggestion(playerOne, suggestion)); // Affirm that the board handles the suggestion and returns null.
-//		
-//		// The following queries test playerOne, the human player.
-//		// This below query also satisfies the human being the accuser and suggesting his own card.
-//		suggestion = new Solution("Candlestick", "NoMatches", "NoMatches"); // Suggestion with only a matching card in the hands of the accusing player.
-//		assertEquals(null, fakeBoard.handleSuggestion(playerOne, suggestion)); // Affirm that the board handles the suggestion and returns null.
-//		
-//		suggestion = new Solution("Rope", "NoMatches", "NoMatches"); // Suggestion with a matching card in the hands of the second player.
-//		assertEquals(new Card("Rope", CardType.WEAPON), fakeBoard.handleSuggestion(playerOne, suggestion)); // Affirm that the board handles the suggestion and returns the correct card.
-//	
-//		suggestion = new Solution("Dagger", "NoMatches", "NoMatches"); // Suggestion with a matching card in the hands of the third player.
-//		assertEquals(new Card("Dagger", CardType.WEAPON), fakeBoard.handleSuggestion(playerOne, suggestion)); // Affirm that the board handles the suggestion and returns the correct card.
-//	
-//		suggestion = new Solution("Rope", "Greenhouse", "NoMatches"); // Suggestion with a matching card in the hands of the second and third player.
-//		assertEquals(new Card("Rope", CardType.WEAPON), fakeBoard.handleSuggestion(playerOne, suggestion)); // Affirm that the board handles the suggestion and returns the card of player two, not three.
-//	
-//		// The following queries test playerTwo and playerThree, the computer players.
-//		suggestion = new Solution("CandleStick", "Greenhouse", "NoMatches"); // Suggestion with a matching card in the hands of playerOne and playerThree. 
-//		assertEquals(new Card("Greenhouse", CardType.ROOM), fakeBoard.handleSuggestion(playerTwo, suggestion)); // Affirm that the board handles the suggestion and returns the card of playerThree.
-//	
-//		suggestion = new Solution("Candlestick", "NoMatches", "NoMatches"); // Suggestion with a matching card in the hands of playerOne and playerThree. 
-//		assertEquals(new Card("Candlestick", CardType.WEAPON), fakeBoard.handleSuggestion(playerTwo, suggestion)); // Affirm that the board handles the suggestion and returns the card of the human player.
+		Player playerOne = new HumanPlayer("Mr. Caleb Pan", 0, 0, "RED"); // Create a dummy player.
+		Card weapon = new Card("Candlestick", CardType.WEAPON);
+		Card room = new Card("Lounge", CardType.ROOM);
+		Card person = new Card("Mr. Green", CardType.PERSON);
+		
+		playerOne.addCard(weapon); // Give the dummy player three arbitrary cards.
+		playerOne.addCard(room);
+		playerOne.addCard(person);
+		
+		fakeBoard.addPlayer(playerOne); // Add that fake player to the board.
+		
+		Player playerTwo = new ComputerPlayer("Mr. Another Player", 0, 0, "RED"); // Create a dummy player.
+		weapon = new Card("Rope", CardType.WEAPON);
+		room = new Card("Dungeon", CardType.ROOM);
+		person = new Card("Mrs. White", CardType.PERSON);
+		
+		playerTwo.addCard(weapon); // Give the dummy player three arbitrary cards.
+		playerTwo.addCard(room);
+		playerTwo.addCard(person);
+		
+		fakeBoard.addPlayer(playerTwo); // Add that fake player to the board.
+		
+		Player playerThree = new ComputerPlayer("Mr. New Player", 0, 0, "RED"); // Create a dummy player.
+		weapon = new Card("Dagger", CardType.WEAPON);
+		room = new Card("Greenhouse", CardType.ROOM);
+		person = new Card("Prof. Plum", CardType.PERSON);
+		
+		playerThree.addCard(weapon); // Give the dummy player three arbitrary cards.
+		playerThree.addCard(room);
+		playerThree.addCard(person);
+		
+		fakeBoard.addPlayer(playerThree); // Add that fake player to the board.
+		
+		
+		// We now have a fake board populated with fake players (each with three cards).
+		Solution suggestion = new Solution("NoMatches", "NoMatches", "NoMatches"); // Suggestion with no possible matching cards in the hands of the players.
+		assertEquals(null, fakeBoard.handleSuggestion(playerOne, suggestion)); // Affirm that the board handles the suggestion and returns null.
+		
+		// The following queries test playerOne, the human player.
+		// This below query also satisfies the human being the accuser and suggesting his own card.
+		suggestion = new Solution("Candlestick", "NoMatches", "NoMatches"); // Suggestion with only a matching card in the hands of the accusing player.
+		assertEquals(null, fakeBoard.handleSuggestion(playerOne, suggestion)); // Affirm that the board handles the suggestion and returns null.
+		
+		suggestion = new Solution("Rope", "NoMatches", "NoMatches"); // Suggestion with a matching card in the hands of the second player.
+		assertEquals(new Card("Rope", CardType.WEAPON), fakeBoard.handleSuggestion(playerOne, suggestion)); // Affirm that the board handles the suggestion and returns the correct card.
+	
+		suggestion = new Solution("Dagger", "NoMatches", "NoMatches"); // Suggestion with a matching card in the hands of the third player.
+		assertEquals(new Card("Dagger", CardType.WEAPON), fakeBoard.handleSuggestion(playerOne, suggestion)); // Affirm that the board handles the suggestion and returns the correct card.
+	
+		suggestion = new Solution("Rope", "Greenhouse", "NoMatches"); // Suggestion with a matching card in the hands of the second and third player.
+		assertEquals(new Card("Rope", CardType.WEAPON), fakeBoard.handleSuggestion(playerOne, suggestion)); // Affirm that the board handles the suggestion and returns the card of player two, not three.
+	
+		// The following queries test playerTwo and playerThree, the computer players.
+		suggestion = new Solution("CandleStick", "Greenhouse", "NoMatches"); // Suggestion with a matching card in the hands of playerOne and playerThree. 
+		assertEquals(new Card("Greenhouse", CardType.ROOM), fakeBoard.handleSuggestion(playerTwo, suggestion)); // Affirm that the board handles the suggestion and returns the card of playerThree.
+	
+		suggestion = new Solution("Candlestick", "NoMatches", "NoMatches"); // Suggestion with a matching card in the hands of playerOne and playerThree. 
+		assertEquals(new Card("Candlestick", CardType.WEAPON), fakeBoard.handleSuggestion(playerTwo, suggestion)); // Affirm that the board handles the suggestion and returns the card of the human player.
+	
 	}
 	
 }

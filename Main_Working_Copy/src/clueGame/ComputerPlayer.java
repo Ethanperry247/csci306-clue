@@ -32,8 +32,8 @@ public class ComputerPlayer extends Player{
 		if (rooms.isEmpty() || (justVisited != null && rooms.contains(justVisited))) {	// if there is no rooms to go into or room just visited is an option...
 			rooms = new ArrayList<BoardCell>(targets);
 			Random random = new Random();
-			int someCard = random.nextInt(rooms.size());					// ...select an available target randomly
-			return rooms.get(someCard);
+			int someCell = random.nextInt(rooms.size());					// ...select an available target randomly
+			return rooms.get(someCell);
 		} else {
 			return rooms.get(0);								// else, room that was not just visited must be selected
 		}
@@ -45,7 +45,7 @@ public class ComputerPlayer extends Player{
 		
 	}
 	
-	// has TBD parameter
+
 	public Solution createSuggestion(Set<Card> peopleDeck, BoardCell location, Set<Card> weaponsDeck) {
 		
 		ArrayList<Card> missing = new ArrayList<Card>();	

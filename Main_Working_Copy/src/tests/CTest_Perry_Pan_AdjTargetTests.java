@@ -137,7 +137,7 @@ public class CTest_Perry_Pan_AdjTargetTests {
 	@Test
 	public void testTargetsOneStep() {
 		board.calcTargets(19, 10, 1);
-		Set<BoardCell> targets= board.getTargets();
+		Set<BoardCell> targets = board.getTargets();
 		assertEquals(3, targets.size());
 		assertTrue(targets.contains(board.getCellAt(19, 11))); // door entry
 		assertTrue(targets.contains(board.getCellAt(19, 9)));

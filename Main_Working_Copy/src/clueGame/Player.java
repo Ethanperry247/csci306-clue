@@ -43,6 +43,10 @@ public class Player {
 		this.justVisited = null;
 	}
 	
+	public void updateJustVisited(BoardCell update) {
+		this.justVisited = update;
+	}
+	
 	public String getName() {
 		return playerName;
 	}
