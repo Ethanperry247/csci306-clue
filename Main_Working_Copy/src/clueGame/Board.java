@@ -465,6 +465,24 @@ public class Board {
 	
 	// Getters for testing purposes: ////////////////////////////////////////////////////////////////
 	
+	public Set<String> getWeaponNames() {
+		Set<String> weapons = new HashSet<String>();
+		for (Card weapon: weaponCards) {
+			weapons.add(weapon.getName());
+		}
+		
+		return weapons;
+	}
+	
+	public Set<String> getAllPlayerNames() {
+		Set<String> Players = new HashSet<String>();
+		for (Player player: players) {
+				Players.add(player.getName());	
+		}
+		
+		return Players;
+	}
+	
 	// Returns the set of human players.
 	public Set<String> getHumanPlayerNames() {
 		// Temporarily returning random players.
@@ -489,6 +507,7 @@ public class Board {
 		for (Player player: players) {
 			if (player instanceof ComputerPlayer) {
 				computerPlayers.add(player.getName());
+				//System.out.println(player.getName());
 			}
 		}
 
