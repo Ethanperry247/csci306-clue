@@ -14,6 +14,7 @@ import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
 
 import clueGame.Board;
 import clueGame.BoardCell;
@@ -255,7 +256,8 @@ public class gameSetupTests {
 		
 	}
 	
-	@Test
+	
+	@AfterAll
 	public void testSuggestionHandling() {
 		board.removePlayers(); // Clears the board so that we only have to deal with the players we need.
 		// Create a fake board and set its configuration files.
@@ -324,3 +326,4 @@ public class gameSetupTests {
 	}
 	
 }
+
