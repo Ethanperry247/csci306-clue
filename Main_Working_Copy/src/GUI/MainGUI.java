@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 public class MainGUI extends JFrame {
 	private ControlGUI controlGUI;
 	private FileMenu menuBar;
+	private MyCardsGUI myCardsGUI;
 
 	public MainGUI(String name) {
 		// Create a JFrame with all the normal functionality
@@ -17,6 +18,8 @@ public class MainGUI extends JFrame {
 		add(controlGUI, BorderLayout.SOUTH); // Put the JPanel in the center
 		menuBar = new FileMenu(); // Create and set a menu bar for our game.
 		setJMenuBar(menuBar);
+		myCardsGUI = new MyCardsGUI();
+		add(myCardsGUI, BorderLayout.EAST);
 		
 	}
 	
