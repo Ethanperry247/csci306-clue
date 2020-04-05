@@ -11,11 +11,11 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class controlGUI extends JPanel {
-	public static final int WIDTH = 900; // Controls the size of the JFrame.
+public class ControlGUI extends JPanel {
+	public static final int WIDTH = 900; // Controls the size of the control GUI.
 	public static final int HEIGHT = 200; // Kind of an attempt at responsive designing.
 
-	public controlGUI() {
+	public ControlGUI() {
 		// Create a layout with 2 rows and 3 columns
 		setLayout(new GridLayout(2,0));
 		JPanel panel = createNamePanel("Whose Turn?"); // Display of whose turn it is.
@@ -81,18 +81,6 @@ public class controlGUI extends JPanel {
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add(button);
 		return panel;
-	}
-	
-	public static void main(String[] args) {
-		// Create a JFrame with all the normal functionality
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Control GUI");
-		frame.setSize(WIDTH, HEIGHT); // Set the desired size
-		// Create the JPanel and add it to the JFrame
-		controlGUI gui = new controlGUI();
-		frame.add(gui, BorderLayout.CENTER); // Put the JPanel in the center
-		frame.setVisible(true); // Reveal the JFrame
 	}
 
 }
