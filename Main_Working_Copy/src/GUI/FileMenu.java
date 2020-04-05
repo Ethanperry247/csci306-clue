@@ -9,7 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class FileMenu extends JMenuBar {
-	private DetectiveNotesDialog detectiveNotes; // The custom dialog to be shown when opened.
+	private DetectiveNotesDialog dialog; // The custom dialog to be shown when opened.
 
 	public FileMenu() {
 		add(createFileMenu()); // Add the file menu.
@@ -27,6 +27,8 @@ public class FileMenu extends JMenuBar {
 		
 		class MenuItemListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) { // Action to be implemented.
+				dialog = new DetectiveNotesDialog();
+				dialog.setVisible(true);
 			}
 		}
 		
