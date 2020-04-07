@@ -3,6 +3,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -124,8 +125,11 @@ public class Player {
 		}
 	}
 	
-	public void draw() {
-		
+	public void draw(Graphics g) {
+		g.setColor(color);
+		g.fillOval(row*25,column*25,25,25);
+		g.setColor(Color.BLACK);
+		g.drawOval(row*25,column*25,25,25);
 	}
 	
 }
