@@ -2,6 +2,7 @@
 
 package GUI;
 
+import clueGame.*;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
@@ -9,7 +10,6 @@ public class MainGUI extends JFrame {
 	private ControlGUI controlGUI;
 	private FileMenu menuBar;
 	private MyCardsGUI myCardsGUI;
-	private BoardGUI boardGUI;
 
 	public MainGUI(String name) {
 		// Create a JFrame with all the normal functionality
@@ -22,8 +22,6 @@ public class MainGUI extends JFrame {
 		setJMenuBar(menuBar);
 		myCardsGUI = new MyCardsGUI();
 		add(myCardsGUI, BorderLayout.EAST);
-		boardGUI = new BoardGUI();
-		add(boardGUI, BorderLayout.CENTER);
 		
 	}
 	
