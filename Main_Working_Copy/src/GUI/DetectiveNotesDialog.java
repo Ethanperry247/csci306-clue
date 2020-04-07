@@ -22,7 +22,7 @@ public class DetectiveNotesDialog extends JDialog {
 		setLayout(new GridLayout(3,2)); // Three rows, two columns.
 		
 		String[] personArray = {"Mr. Green", "Mrs. White", "Mrs. Peacock", "Ms. Scarlett", "Col. Mustard", "Prof. Plum"};
-		ArrayList<String> personNames = new ArrayList<String>(); // Create an array list with the names of the players.
+		ArrayList<String> personNames = new ArrayList<String>(Arrays.asList(personArray)); // Create an array list with the names of the players.
 		JPanel people = createCheckBoxPanel(personNames, "People");
 		add(people);
 		JPanel personGuess = createComboBoxPanel(personNames, "Person Guess");
