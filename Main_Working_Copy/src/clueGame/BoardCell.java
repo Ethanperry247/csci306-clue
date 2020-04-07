@@ -94,10 +94,19 @@ public class BoardCell {
 	}
 	
 	public void draw(Graphics cell) {
-		cell.setColor(Color.WHITE);
-		cell.fillRect(row*25, column*25, 25, 25);
-		cell.setColor(Color.BLACK);
-		cell.drawRect(row*25, column*25, 25, 25);
+		if (initial.equals("W")) {
+			cell.setColor(Color.YELLOW);
+			cell.fillRect(row*25, column*25, 25, 25);
+			cell.setColor(Color.BLACK);
+			cell.drawRect(row*25, column*25, 25, 25); 
+			
+		} else {
+			cell.setColor(Color.GRAY);
+			cell.fillRect(row*25, column*25, 25, 25);
+			
+		}
+		
+		
 	}
 
 }
