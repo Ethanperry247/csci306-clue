@@ -683,8 +683,8 @@ public class Board {
 		return board;
 	}
 	
-	public List<Player> getPlayerList() {
-		return players;
+	public ArrayList<Player> getPlayerList() {
+		return (ArrayList<Player>) players;
 	}
 	
 	
