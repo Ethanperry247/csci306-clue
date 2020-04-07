@@ -127,9 +127,9 @@ public class Player {
 	
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval(row*25,column*25,25,25);
+		g.fillOval(column*25, row*25, 25, 25);
 		g.setColor(Color.BLACK);
-		g.drawOval(row*25,column*25,25,25);
+		g.drawOval(column*25, row*25, 25, 25);
 	}
 	
 }
