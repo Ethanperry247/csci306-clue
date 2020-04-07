@@ -7,11 +7,18 @@ public class BoardCell {
 	private int row;
 	private int column;
 	private String initial;
+	private int pixelLength;
+	private int pixelHeight;
+	private int pixelRow;
+	private int pixelColumn;
+	
 
 	public BoardCell(int row, int column, String initial) {
 		this.row = row;
 		this.column = column;
 		this.initial = initial;
+		this.pixelLength = 20;
+		this.pixelHeight = 20;
 	}
 
 	@Override
@@ -83,6 +90,8 @@ public class BoardCell {
 		return column;
 	}
 	
-	
+	public void draw() {
+		
+	}
 
 }
