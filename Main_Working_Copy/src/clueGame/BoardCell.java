@@ -2,6 +2,7 @@
 
 package clueGame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class BoardCell {
@@ -93,8 +94,10 @@ public class BoardCell {
 	}
 	
 	public void draw(Graphics cell) {
-		cell.drawRect(10,10,10,10);
-		cell.fillRect(100, 10, 70, 70);
+		cell.setColor(Color.WHITE);
+		cell.fillRect(row*25, column*25, 25, 25);
+		cell.setColor(Color.BLACK);
+		cell.drawRect(row*25, column*25, 25, 25);
 	}
 
 }

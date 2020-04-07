@@ -2,6 +2,7 @@
 
 package clueGame;
 
+import java.awt.Graphics;
 import java.io.File;
 import java.util.*;
 import java.io.FileNotFoundException;
@@ -681,6 +682,15 @@ public class Board {
 	
 	public BoardCell[][] getBoard() {
 		return board;
+	}
+	
+	public void drawBoardCells(Graphics g) {
+		// Loop through and call the draw method for all board cell.
+		for (BoardCell[] row: board) {
+			for (BoardCell cell: row) {
+				cell.draw(g);
+			}
+		}
 	}
 	
 	public ArrayList<Player> getPlayerList() {
