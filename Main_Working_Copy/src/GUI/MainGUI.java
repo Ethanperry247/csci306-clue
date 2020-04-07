@@ -24,12 +24,8 @@ public class MainGUI extends JFrame {
 		add(myCardsGUI, BorderLayout.EAST);
 		boardGUI = new BoardGUI();
 		add(boardGUI, BorderLayout.CENTER);
+		setVisible(true); // Reveal the JFrame
 		
-	}
-	
-	public static void main(String[] args) {
-		MainGUI mainGUI = new MainGUI("CLUE");
-		mainGUI.setVisible(true); // Reveal the JFrame
 	}
 
 }
