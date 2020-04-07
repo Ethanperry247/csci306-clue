@@ -679,5 +679,14 @@ public class Board {
 		players = new ArrayList<Player>();
 	}
 	
+	public BoardCell[][] getBoard() {
+		return board;
+	}
+	
+	public List<Player> getPlayerList() {
+		return players;
+	}
+	
+	
 	
 }

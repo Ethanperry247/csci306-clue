@@ -8,12 +8,15 @@ public class ClueGame {
 	Board board;
 
 	public ClueGame() {
+		// Create the game board.
 		board = Board.getInstance();
 		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");
 		board.initialize();
 		board.loadConfigFiles();
-		board.createSolution("Mr. Green", "Dagger", "Greenhouse");
+		board.createSolution();
 		board.dealDeck();
+		
+		// Create the GUI.
 		mainGUI = new MainGUI("CLUE");
 	}
 
