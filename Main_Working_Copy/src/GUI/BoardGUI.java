@@ -29,7 +29,7 @@ public class BoardGUI extends JPanel{
 		// Loop through and call the draw method for all board cell.
 		for (BoardCell[] row: boardCells) {
 			for (BoardCell cell: row) {
-				cell.draw();
+				cell.draw(g);
 			}
 		}
 		

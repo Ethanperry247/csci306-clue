@@ -2,6 +2,8 @@
 
 package clueGame;
 
+import java.awt.Graphics;
+
 public class BoardCell {
 	
 	private int row;
@@ -17,8 +19,8 @@ public class BoardCell {
 		this.row = row;
 		this.column = column;
 		this.initial = initial;
-		this.pixelLength = 20;
-		this.pixelHeight = 20;
+		this.pixelLength = 25;
+		this.pixelHeight = 25;
 	}
 
 	@Override
@@ -90,8 +92,9 @@ public class BoardCell {
 		return column;
 	}
 	
-	public void draw() {
-		
+	public void draw(Graphics cell) {
+		cell.drawRect(10,10,10,10);
+		cell.fillRect(100, 10, 70, 70);
 	}
 
 }
