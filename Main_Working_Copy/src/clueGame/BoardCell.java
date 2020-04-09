@@ -94,7 +94,7 @@ public class BoardCell {
 	}
 	
 	public void draw(Graphics cell) {
-		if (initial.equals("W")) {
+		if (this.initial.equals("W")) {
 			cell.setColor(Color.YELLOW);
 			cell.fillRect(column*25, row*25, 25, 25);
 			cell.setColor(Color.BLACK);
@@ -106,7 +106,21 @@ public class BoardCell {
 			
 		}
 		
-		
+		if (this.initial.length() == 2) {
+			cell.setColor(Color.BLUE);
+			char door = this.initial.charAt(1);
+			if (door == 'L') {
+				cell.fillRect(column*25, row*25, 5, 25);
+			} else if (door == 'U') {
+				cell.fillRect(column*25, row*25, 25, 5);
+			} else if (door == 'R') {
+				cell.fillRect((column*25) + 20, row*25, 5, 25);
+			} else {
+				cell.fillRect(column*25, (row*25) + 20, 25, 5);
+			}
+			
+		}
 	}
+	
 
 }
