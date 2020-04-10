@@ -1,11 +1,11 @@
-G, Greenhouse, Card
-D, Dungeon, Card
-S, Studio, Card
-C, Cellar, Card
-A, Atrium, Card
-V, Veranda, Card
-L, Lounge, Card
-P, Parlor, Card
-O, Office, Card
-W, Walkway, Other
-X, Closet, Other
+G, Greenhouse, Card, 9, 1
+D, Dungeon, Card, 17, 17
+S, Studio, Card, 2, 6
+C, Cellar, Card, 9, 17
+A, Atrium, Card, 2, 15
+V, Veranda, Card, 2, 1
+L, Lounge, Card, 19, 1
+P, Parlor, Card, 19, 13
+O, Office, Card, 16, 7
+W, Walkway, Other, 0, 0
+X, Closet, Other, 0, 0
