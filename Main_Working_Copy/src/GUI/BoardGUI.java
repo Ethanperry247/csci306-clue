@@ -1,9 +1,12 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.List;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.Map;
+
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -15,11 +18,9 @@ public class BoardGUI extends JPanel{
 	ArrayList<Player> players;
 
 	public BoardGUI() {
-		board = Board.getInstance(); // Get the board.
-		JLabel label = new JLabel("Board"); // Draw a label for the board.
-		add(label);
-		boardCells = board.getBoard(); // Get all of the board cells from the board.
-		players = board.getPlayerList(); // Get all of the players from the board.
+		board = Board.getInstance(); 		// Get the board.	
+		boardCells = board.getBoard();		// Get all of the board cells from the board.
+		players = board.getPlayerList();	// Get all of the players from the board.
 	}
 	
 	@Override
@@ -35,13 +36,27 @@ public class BoardGUI extends JPanel{
 			}
 		}
 		
+		// iterates through a set of room initials to draw room names on the board
+		for (char initial : board.getInitials()) {
+			drawName(initial, g, board.getLegend(), board.getNameLocations());
+		}
+		
 		// Loop through and call the draw method for all players.
 		for (Player player: players) {
 			player.draw(g);
 		}
 		
+	}
+	
+	// method to draw room names
+	private void drawName(char initial, Graphics cell, Map<Character, String> legend, Map<Character, ArrayList<String>> nameLocations) {
 		
+		// retrieves row and column values for the location of the room name
+		int row = Integer.parseInt(nameLocations.get(initial).get(0));	
+		int column = Integer.parseInt(nameLocations.get(initial).get(1));
 		
+		cell.setColor(Color.BLUE);
+		cell.drawString(legend.get(initial), column*25, row*25);
 	}
 
 }

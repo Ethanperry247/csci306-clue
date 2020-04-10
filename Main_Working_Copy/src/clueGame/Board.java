@@ -20,15 +20,21 @@ public class Board {
 	private int numColumns;
 	public static final int MAX_BOARD_SIZE = 50;
 	private BoardCell[][] board;
-	private Map<Character, String> legend;
+	
+	private Map<Character, String> legend;					  // stores room initial with the room name
+	private Map<Character, ArrayList<String>> nameLocations;  // stores room initial with the cell location where room name will be drawn on BoardGUI 
 	private List<Player> players;
 	private Set<Card> deck;
+	
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String playerConfigFile;
 	private String weaponConfigFile;
+	
+	private Set<Character> initials = new HashSet<Character>();	// set to keep all the initials of the rooms
 	private Set<BoardCell> visited = new HashSet<BoardCell>();	// set to keep track of cells already visited in a turn
 	private Set<BoardCell> targets = new HashSet<BoardCell>();	// set to keep track of target cells
+	
 	// map with keys as cells on the board and a set of the cells adjacent to the key cell for the values 
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 	private Solution solution;
@@ -68,6 +74,7 @@ public class Board {
 
 		// Reloading the legend to assure that there is a new legend every time a new config file is loaded.
 		legend = new HashMap<Character, String>();
+		nameLocations = new HashMap<Character, ArrayList<String>>();
 
 		// Scanner will take in the room config file and parse it into the legend map.
 		Scanner scanner = new Scanner(new File(roomConfigFile));
@@ -75,7 +82,7 @@ public class Board {
 			// Grab a line from the file.
 			String row = scanner.nextLine();
 
-			// Split that line into an array (will be length three for the three fields of the file.)
+			// Split that line into an array (will be length three for the five fields of the file.)
 			String[] values = row.split(", ");
 
 			// Put that into the legend.
@@ -86,6 +93,16 @@ public class Board {
 				scanner.close();
 				throw new BadConfigFormatException("Incorrect room type in room config file.");
 			}
+			
+			// if the legend indicates the room will be a card, add the initial to the set of room initials
+			if (values[2].equals("Card")) {	
+				initials.add(values[0].charAt(0));
+			}
+			
+			ArrayList<String> location = new ArrayList<String>();	// array to hold location of cell where room name is drawn
+			location.add(values[3]);								// index 0 to store row value
+			location.add(values[4]);								// index 1 to store column value
+			nameLocations.put(values[0].charAt(0), location);		// puts the room initial with the cell location into map
 			
 			// Load the room into the deck.
 			loadCard(values[1], CardType.ROOM);
@@ -159,7 +176,6 @@ public class Board {
 		scanner.close(); // Protect resources
 	}
 
-
 	public void calcAdjacencies() {
 
 		for (int row = 0; row < numRows; row++) {
@@ -208,7 +224,6 @@ public class Board {
 		return temp;	// returns preserved copy of target cells
 	}
 
-
 	public void setConfigFiles(String boardConfig, String roomConfig, String playerConfig, String weaponConfig) {
 		boardConfigFile = boardConfig;
 		roomConfigFile = roomConfig;	
@@ -245,7 +260,6 @@ public class Board {
 		
 		createSolution(solutionName.getName(), solutionWeapon.getName(), solutionRoom.getName());
 	}
-
 	
 	// getters for number of rows, columns, legend, and cell at a specific location are all below
 	
@@ -264,7 +278,6 @@ public class Board {
 	public BoardCell getCellAt(int row, int column) {
 		return board[row][column];
 	}
-
 
 	public Set<BoardCell> getAdjList(int row, int column) {
 		BoardCell current = getCellAt(row,column);
@@ -323,6 +336,13 @@ public class Board {
 		return adjacent;	// return all adjacent cells that can be moved onto from current board cell
 	}	
 	
+	public Set<Character> getInitials() {
+		return initials;
+	}
+	
+	public Map<Character, ArrayList<String>> getNameLocations() {
+		return nameLocations;
+	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
