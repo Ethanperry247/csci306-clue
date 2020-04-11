@@ -23,8 +23,8 @@ public class Board {
 	
 	private Map<Character, String> legend;					  // stores room initial with the room name
 	private Map<Character, ArrayList<String>> nameLocations;  // stores room initial with the cell location where room name will be drawn on BoardGUI 
-	private List<Player> players;
-	private Set<Card> deck;
+	private List<Player> players;							  // stores all players in the game
+	private Set<Card> deck;									  // stores all cards in the game
 	
 	private String boardConfigFile;
 	private String roomConfigFile;

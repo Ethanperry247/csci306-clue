@@ -24,26 +24,26 @@ public class BoardGUI extends JPanel{
 	}
 	
 	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	public void paintComponent(Graphics graphic) {
+		super.paintComponent(graphic);
 		
 		// Loop through and call the draw method for all board cell.
 		for (BoardCell[] row: boardCells) {
 			for (BoardCell cell: row) {
 				if (cell != null) { // Since some of the cells will be null (since the board array is bigger than it needs to be), do this check first.
-					cell.draw(g);
+					cell.draw(graphic);
 				}
 			}
 		}
 		
 		// iterates through a set of room initials to draw room names on the board
 		for (char initial : board.getInitials()) {
-			drawName(initial, g, board.getLegend(), board.getNameLocations());
+			drawName(initial, graphic, board.getLegend(), board.getNameLocations());
 		}
 		
 		// Loop through and call the draw method for all players.
 		for (Player player: players) {
-			player.draw(g);
+			player.draw(graphic);
 		}
 		
 	}
@@ -55,6 +55,7 @@ public class BoardGUI extends JPanel{
 		int row = Integer.parseInt(nameLocations.get(initial).get(0));	
 		int column = Integer.parseInt(nameLocations.get(initial).get(1));
 		
+		// colors in the doors
 		cell.setColor(Color.BLUE);
 		cell.drawString(legend.get(initial), column*25, row*25);
 	}
