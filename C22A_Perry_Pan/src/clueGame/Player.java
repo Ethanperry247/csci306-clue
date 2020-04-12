@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Player {
+public class Player {
 	
 	private String playerName;
 	private int row;
@@ -88,8 +88,6 @@ public abstract class Player {
 	public String toString() {
 		return "[Player: " + playerName + "]";
 	}
-	
-	public abstract void makeMove();
 
 	// from CluePlayer.pdf
 	// Be sure to trim the color, we don't want spaces around the name

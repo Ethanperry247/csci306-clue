@@ -73,10 +73,6 @@ public class Board {
 	public Player currentPlayer() {
 		return players.get(turn);
 	}
-	
-	public void playTurn() {
-		currentPlayer().makeMove();
-	}
 
 	public void initialize() {
 		

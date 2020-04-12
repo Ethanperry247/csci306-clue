@@ -45,11 +45,6 @@ public class ComputerPlayer extends Player{
 		
 	}
 	
-	@Override
-	public void makeMove() {
-		
-	}
-	
 	
 	public void makeAccusation() {
 		
