@@ -4,8 +4,8 @@ import GUI.*;
 import clueGame.*;
 
 public class ClueGame {
-	MainGUI mainGUI;
-	Board board;
+	private MainGUI mainGUI;
+	private Board board;
 
 	public ClueGame() {
 		// Create the game board.

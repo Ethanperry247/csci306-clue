@@ -44,6 +44,9 @@ public class Board {
 	private Set<Card> roomCards;
 	private Set<Card> playerCards;
 
+	// Variable controls whose turn in the game it is.
+	private int turn = 0;
+	
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
 	// constructor is private to ensure only one can be created
@@ -51,6 +54,23 @@ public class Board {
 	// this method returns the only Board
 	public static Board getInstance() {
 		return theInstance;
+	}
+	
+	public int getTurn() {
+		return turn;
+	}
+	
+	// Moves on to the turn of the next player.
+	public void nextTurn() {
+		turn++;
+		if (turn > players.size()) {
+			turn = 0;
+		}
+	}
+	
+	// Returns the current player.
+	public Player currentPlayer() {
+		return players.get(turn);
 	}
 
 	public void initialize() {
