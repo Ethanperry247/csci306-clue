@@ -6,18 +6,24 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import clueGame.Board;
+import clueGame.Player;
+
 public class ControlGUI extends JPanel {
 	public static final int WIDTH = 900; // Controls the size of the control GUI.
 	public static final int HEIGHT = 200; // Kind of an attempt at responsive designing.
+	private Board board;
+	private Player currentPlayer;
 
 	public ControlGUI() {
+		board = Board.getInstance();
+		currentPlayer = board.currentPlayer();
 		// Create a layout with 2 rows and 3 columns
 		setLayout(new GridLayout(2,0));
 		JPanel panel = createNamePanel("Whose Turn?"); // Display of whose turn it is.
@@ -45,7 +51,7 @@ public class ControlGUI extends JPanel {
 		panel.setLayout(new GridLayout(2,1)); // Two rows, one column
 	 	JLabel nameLabel = new JLabel(label);
 	 	nameLabel.setHorizontalAlignment(JLabel.CENTER); // Center the label.
-	 	JTextField name = new JTextField(20);
+	 	JTextField name = new JTextField(currentPlayer.getName());
 		name.setEditable(false); // Disable editing of the text field.
 		panel.add(nameLabel);
 		// panel.setPreferredSize(new Dimension(10, 10)); // Set Dimensions if desired.

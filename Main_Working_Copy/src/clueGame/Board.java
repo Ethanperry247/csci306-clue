@@ -46,6 +46,7 @@ public class Board {
 
 	// Variable controls whose turn in the game it is.
 	private int turn = 0;
+	private int diceRoll;
 	
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();

@@ -4,14 +4,22 @@ package GUI;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import clueGame.Board;
+import clueGame.Player;
 
 public class MainGUI extends JFrame {
 	private ControlGUI controlGUI;
 	private FileMenu menuBar;
 	private MyCardsGUI myCardsGUI;
 	private BoardGUI boardGUI;
+	private Board board;
+	private Player player;
 
 	public MainGUI(String name) {
+		board = Board.getInstance();
+		player = board.currentPlayer();
 		// Create a JFrame with all the normal functionality
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(name);
@@ -26,6 +34,14 @@ public class MainGUI extends JFrame {
 		add(boardGUI, BorderLayout.CENTER);
 		setVisible(true); // Reveal the JFrame
 		
+		// Display the opening dialog.
+		openingDialog();
+		
+	}
+	
+	public void openingDialog() {
+		String message = "You are " + player.getName() + ", Press Next Player to begin play."; 
+		JOptionPane.showMessageDialog(null, message);
 	}
 
 }
