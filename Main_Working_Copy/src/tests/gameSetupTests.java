@@ -50,12 +50,13 @@ public class gameSetupTests {
 		
 		// there are 7 loaded players, each player has 4 tests: if name, location (row and column), and color are all loaded correctly
 		
-		// Test the three possible human players.
+		// Test the one possible human players.
 		assertTrue(board.getHumanPlayerNames().contains("Ms. Scarlett"));	 // test if name has been loaded in correctly
 		assertEquals(0, board.getPlayer("Ms. Scarlett").getRow());			 // tests if location has been loaded in correctly (row and column)
 		assertEquals(3, board.getPlayer("Ms. Scarlett").getCol());
 		assertEquals(Color.RED, board.getPlayer("Ms. Scarlett").getColor()); // tests if color has been loaded in correctly
 		
+		// Test remaining computer players.
 		assertTrue(board.getComputerPlayerNames().contains("Mr. Green"));
 		assertEquals(0, board.getPlayer("Mr. Green").getRow());
 		assertEquals(9, board.getPlayer("Mr. Green").getCol());
@@ -66,7 +67,6 @@ public class gameSetupTests {
 		assertEquals(19, board.getPlayer("Col. Mustard").getCol());
 		assertEquals(Color.YELLOW, board.getPlayer("Col. Mustard").getColor());
 		
-		// Test the four possible computer players.
 		assertTrue(board.getComputerPlayerNames().contains("Prof. Plum"));
 		assertEquals(13, board.getPlayer("Prof. Plum").getRow());
 		assertEquals(19, board.getPlayer("Prof. Plum").getCol());
