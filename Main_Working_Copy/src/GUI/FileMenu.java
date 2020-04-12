@@ -14,6 +14,7 @@ public class FileMenu extends JMenuBar {
 	private DetectiveNotesDialog dialog; // The custom dialog to be shown when opened.
 
 	public FileMenu() {
+		dialog = new DetectiveNotesDialog();
 		add(createFileMenu()); // Add the file menu.
 	}
 	
@@ -28,8 +29,7 @@ public class FileMenu extends JMenuBar {
 		JMenuItem item = new JMenuItem("Detective Notes");
 		
 		class MenuItemListener implements ActionListener {
-			public void actionPerformed(ActionEvent e) { // Action to be implemented.
-				dialog = new DetectiveNotesDialog();
+			public void actionPerformed(ActionEvent e) { // Make the dialog visible when clicked.
 				dialog.setVisible(true);
 			}
 		}

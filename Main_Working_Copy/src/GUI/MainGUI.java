@@ -39,6 +39,7 @@ public class MainGUI extends JFrame {
 		
 	}
 	
+	// Opening dialog will display the name of the human (first) player.
 	public void openingDialog() {
 		String message = "You are " + player.getName() + ", Press Next Player to begin play."; 
 		JOptionPane.showMessageDialog(null, message);
