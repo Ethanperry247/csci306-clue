@@ -4,9 +4,10 @@ package clueGame;
 
 import java.awt.Graphics;
 import java.io.File;
-import java.util.*;
+import java.util.Random;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -74,8 +75,20 @@ public class Board {
 		return players.get(turn);
 	}
 	
+	// A method to play a turn. Will be called by GUI classes.
 	public void playTurn() {
-		currentPlayer().makeMove();
+		Player player = currentPlayer(); // Get the current player.
+		rollDice(); // Get a new dice roll.
+		calcTargets(player.getRow(), player.getCol(), getDiceRoll()); // Calculate the targets for this player.
+		player.makeMove();
+	}
+	
+	public void rollDice() {
+		diceRoll = (int)(Math.random()*7);
+	}
+	
+	public int getDiceRoll() {
+		return diceRoll;
 	}
 
 	public void initialize() {

@@ -56,12 +56,12 @@ public class gameSetupTests {
 		assertEquals(3, board.getPlayer("Ms. Scarlett").getCol());
 		assertEquals(Color.RED, board.getPlayer("Ms. Scarlett").getColor()); // tests if color has been loaded in correctly
 		
-		assertTrue(board.getHumanPlayerNames().contains("Mr. Green"));
+		assertTrue(board.getComputerPlayerNames().contains("Mr. Green"));
 		assertEquals(0, board.getPlayer("Mr. Green").getRow());
 		assertEquals(9, board.getPlayer("Mr. Green").getCol());
 		assertEquals(Color.GREEN, board.getPlayer("Mr. Green").getColor());
 		
-		assertTrue(board.getHumanPlayerNames().contains("Col. Mustard"));
+		assertTrue(board.getComputerPlayerNames().contains("Col. Mustard"));
 		assertEquals(5, board.getPlayer("Col. Mustard").getRow());
 		assertEquals(19, board.getPlayer("Col. Mustard").getCol());
 		assertEquals(Color.YELLOW, board.getPlayer("Col. Mustard").getColor());
