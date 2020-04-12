@@ -93,14 +93,14 @@ public class gameSetupTests {
 	@Order(2) 
 	public void testDeckOfCards() {
 		
-		// tests for deck created: size deck of 24 with 7 players, 6 weapons, and 9 rooms
+		// tests for deck created: size deck of 22 with 7 players, 6 weapons, and 9 rooms
 		// However, 3 cards (the solution cards) should not be found in the deck.
-		// So the total number of cards should be 21.
+		// So the total number of cards should be 19.
 		
-		assertEquals(21, board.getDeck().size());	// tests if expected amount of total cards are created 
+		assertEquals(19, board.getDeck().size());	// tests if expected amount of total cards are created 
 		assertEquals(6, board.getNumPlayers());		// tests if expected amount of player cards are created 
 		assertEquals(5, board.getNumWeapons());		// tests if expected amount of weapons cards are created 
-		assertEquals(10, board.getNumRooms());		// tests if expected amount of room cards are created 
+		assertEquals(8, board.getNumRooms());		// tests if expected amount of room cards are created 
 		
 		// check if card types were loaded correctly
 		assertEquals(board.getCard("Dungeon").getType(), CardType.ROOM);	
@@ -109,7 +109,7 @@ public class gameSetupTests {
 		
 		// since we have 7 players and 21 cards, all players should end up with 3 cards.
 		assertTrue(board.getNumCardsDealt().contains(3));
-		assertTrue(board.getNumCardsDealt().size() == 1);	// verifies players either have 3 or 4 cards
+		assertTrue(board.getNumCardsDealt().size() == 2);	// verifies players either have 3 or 4 cards
 		
 	}
 	

@@ -135,15 +135,13 @@ public class Board {
 			// if the legend indicates the room will be a card, add the initial to the set of room initials
 			if (values[2].equals("Card")) {	
 				initials.add(values[0].charAt(0));
+				loadCard(values[1], CardType.ROOM);		// Load the room into the deck.
 			}
 			
 			ArrayList<String> location = new ArrayList<String>();	// array to hold location of cell where room name is drawn
 			location.add(values[3]);								// index 0 to store row value
 			location.add(values[4]);								// index 1 to store column value
 			nameLocations.put(values[0].charAt(0), location);		// puts the room initial with the cell location into map
-			
-			// Load the room into the deck.
-			loadCard(values[1], CardType.ROOM);
 			
 		}
 
@@ -655,8 +653,11 @@ public class Board {
 		for (Card card: deck) {
 			if (card.getType() == CardType.ROOM) {
 				numRooms++;
+				//System.out.println(card.getName());
 			}
 		}
+		
+		System.out.println(roomCards.size());
 		
 		return numRooms;
 	}
