@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import clueGame.*;
 
-public class BoardGUI extends JPanel{
+public class BoardGUI extends JPanel {
 	Board board;
 	BoardCell[][] boardCells;
 	ArrayList<Player> players;
@@ -49,7 +49,7 @@ public class BoardGUI extends JPanel{
 	}
 	
 	// method to draw room names
-	private void drawName(char initial, Graphics cell, Map<Character, String> legend, Map<Character, ArrayList<String>> nameLocations) {
+	public void drawName(char initial, Graphics cell, Map<Character, String> legend, Map<Character, ArrayList<String>> nameLocations) {
 		
 		// retrieves row and column values for the location of the room name
 		int row = Integer.parseInt(nameLocations.get(initial).get(0));	
@@ -59,5 +59,7 @@ public class BoardGUI extends JPanel{
 		cell.setColor(Color.BLUE);
 		cell.drawString(legend.get(initial), column*25, row*25);
 	}
+	
+	
 
 }
