@@ -104,34 +104,39 @@ public class BoardCell {
 		} else {							// else, color in gray with no borders
 			cell.setColor(Color.GRAY);
 			cell.fillRect(column*25, row*25, 25, 25);
-			
 		}
 		
 		if (this.initial.length() == 2) {	// if the cell is a door
-			
-			// draws a blue rectangle to represent a door
-			cell.setColor(Color.BLUE);
-			char door = this.initial.charAt(1);
-			
-			// how the blue rectangle is orientated is determined by door direction
-			if (door == 'L') {
-				cell.fillRect(column*25, row*25, 5, 25);
-			} else if (door == 'U') {
-				cell.fillRect(column*25, row*25, 25, 5);
-			} else if (door == 'R') {
-				cell.fillRect((column*25) + 20, row*25, 5, 25);
-			} else {
-				cell.fillRect(column*25, (row*25) + 20, 25, 5);
-			}
-			
+			drawDoor(cell);
+		}
+	}
+	
+	public void drawDoor(Graphics cell) {
+		
+		cell.setColor(Color.BLUE);	// draws a blue rectangle to represent a door
+		char door = this.initial.charAt(1);
+		
+		// how the blue rectangle is orientated is determined by door direction
+		if (door == 'L') {
+			cell.fillRect(column*25, row*25, 5, 25);
+		} else if (door == 'U') {
+			cell.fillRect(column*25, row*25, 25, 5);
+		} else if (door == 'R') {
+			cell.fillRect((column*25) + 20, row*25, 5, 25);
+		} else {
+			cell.fillRect(column*25, (row*25) + 20, 25, 5);
 		}
 	}
 	
 	public void drawPlayerTargets(Graphics cell) {
-		
 		cell.setColor(Color.CYAN);
 		cell.fillRect(column*25, row*25, 25, 25);
+		cell.setColor(Color.BLACK);
+		cell.drawRect(column*25, row*25, 25, 25); 
 		
+		if (this.initial.length() == 2) {	// if the cell is a door
+			drawDoor(cell);
+		}
 	}
 	
 	private class CellListener implements ActionListener {
