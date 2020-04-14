@@ -15,12 +15,14 @@ public class BoardCell {
 	private int row;
 	private int column;
 	private String initial;
+	private Board board;
 	
 
 	public BoardCell(int row, int column, String initial) {
 		this.row = row;
 		this.column = column;
 		this.initial = initial;
+		board = Board.getInstance();
 	}
 
 	@Override
@@ -136,14 +138,6 @@ public class BoardCell {
 		
 		if (this.initial.length() == 2) {	// if the cell is a door
 			drawDoor(cell);
-		}
-	}
-	
-	private class CellListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
 		}
 	}
 
