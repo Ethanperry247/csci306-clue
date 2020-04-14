@@ -15,6 +15,7 @@ public class ClueGame {
 		board.loadConfigFiles();
 		board.createSolution();
 		board.dealDeck();
+		board.playTurn(); // Play the first round.
 		
 		// Create the GUI.
 		mainGUI = new MainGUI("CLUE");
