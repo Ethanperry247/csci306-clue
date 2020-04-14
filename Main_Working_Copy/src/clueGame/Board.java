@@ -634,11 +634,8 @@ public class Board {
 		for (Card card: deck) {
 			if (card.getType() == CardType.ROOM) {
 				numRooms++;
-				//System.out.println(card.getName());
 			}
 		}
-		
-		System.out.println(roomCards.size());
 		
 		return numRooms;
 	}
