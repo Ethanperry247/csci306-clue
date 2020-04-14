@@ -22,7 +22,7 @@ public class Board {
 	public static final int MAX_BOARD_SIZE = 50;
 	private BoardCell[][] board;
 	
-	private Map<Character, String> legend;					  // stores room initial with the room name
+	private Map<Character, ArrayList<String>> legend;					  // stores room initial with the room name
 	private Map<Character, ArrayList<String>> nameLocations;  // stores room initial with the cell location where room name will be drawn on BoardGUI 
 	private List<Player> players;							  // stores all players in the game
 	private Set<Card> deck;									  // stores all cards in the game
@@ -112,8 +112,8 @@ public class Board {
 	public void loadRoomConfig() throws BadConfigFormatException, FileNotFoundException {
 
 		// Reloading the legend to assure that there is a new legend every time a new config file is loaded.
-		legend = new HashMap<Character, String>();
-		nameLocations = new HashMap<Character, ArrayList<String>>();
+		legend = new HashMap<Character, ArrayList<String>>();
+		//nameLocations = new HashMap<Character, ArrayList<String>>();
 
 		// Scanner will take in the room config file and parse it into the legend map.
 		Scanner scanner = new Scanner(new File(roomConfigFile));
@@ -125,7 +125,7 @@ public class Board {
 			String[] values = row.split(", ");
 
 			// Put that into the legend.
-			legend.put(values[0].charAt(0), values[1]);
+			//legend.put(values[0].charAt(0), values[1]);
 
 			// Make sure that the item is either a card or other, otherwise throw an exception.
 			if (!values[2].equals("Card") && !values[2].equals("Other")) {
@@ -140,9 +140,10 @@ public class Board {
 			}
 			
 			ArrayList<String> location = new ArrayList<String>();	// array to hold location of cell where room name is drawn
-			location.add(values[3]);								// index 0 to store row value
-			location.add(values[4]);								// index 1 to store column value
-			nameLocations.put(values[0].charAt(0), location);		// puts the room initial with the cell location into map
+			location.add(values[1]);								// index 0 to store room name
+			location.add(values[3]);								// index 1 to store row value
+			location.add(values[4]);								// index 2 to store column value
+			legend.put(values[0].charAt(0), location);		// puts the room initial with the cell location into map
 			
 		}
 
@@ -308,7 +309,7 @@ public class Board {
 		return numColumns;
 	}
 
-	public Map<Character, String> getLegend() {
+	public Map<Character, ArrayList<String>> getLegend() {
 		return legend;
 	}
 
