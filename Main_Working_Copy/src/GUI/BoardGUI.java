@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -60,6 +61,10 @@ public class BoardGUI extends JPanel {
 		cell.drawString(legend.get(initial), column*25, row*25);
 	}
 	
-	
+	public void drawTargets(Set<BoardCell> targets, Graphics cell) {
+		for (BoardCell target : targets) {
+			target.drawPlayerTargets(cell);
+		}
+	}
 
 }
