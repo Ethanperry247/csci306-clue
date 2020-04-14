@@ -39,7 +39,7 @@ public class BoardGUI extends JPanel {
 		
 		// iterates through a set of room initials to draw room names on the board
 		for (char initial : board.getInitials()) {
-			drawName(initial, graphic, board.getLegend(), board.getNameLocations());
+			drawName(initial, graphic, board.getLegend());
 		}
 		
 		// Loop through and call the draw method for all players.
@@ -50,15 +50,16 @@ public class BoardGUI extends JPanel {
 	}
 	
 	// method to draw room names
-	public void drawName(char initial, Graphics cell, Map<Character, String> legend, Map<Character, ArrayList<String>> nameLocations) {
+	public void drawName(char initial, Graphics cell, Map<Character, ArrayList<String>> legend) {
 		
 		// retrieves row and column values for the location of the room name
-		int row = Integer.parseInt(nameLocations.get(initial).get(0));	
-		int column = Integer.parseInt(nameLocations.get(initial).get(1));
+		String name = legend.get(initial).get(0);	
+		int row = Integer.parseInt(legend.get(initial).get(1));	
+		int column = Integer.parseInt(legend.get(initial).get(2));
 		
 		// colors in the doors
 		cell.setColor(Color.BLUE);
-		cell.drawString(legend.get(initial), column*25, row*25);
+		cell.drawString(name, column*25, row*25);
 	}
 	
 	public void drawTargets(Set<BoardCell> targets, Graphics cell) {
