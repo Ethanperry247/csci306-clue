@@ -124,5 +124,12 @@ public class BoardCell {
 			
 		}
 	}
+	
+	public void drawPlayerTargets(Graphics cell) {
+		
+		cell.setColor(Color.CYAN);
+		cell.fillRect(column*25, row*25, 25, 25);
+		
+	}
 
 }
