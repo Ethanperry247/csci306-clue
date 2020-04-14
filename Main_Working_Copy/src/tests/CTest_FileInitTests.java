@@ -8,6 +8,7 @@ package tests;
 // Assert.assertEquals
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -41,16 +42,16 @@ public class CTest_FileInitTests {
 	@Test
 	public void testRooms() {
 		// Get the map of initial => room 
-		Map<Character, String> legend = board.getLegend();
+		Map<Character, ArrayList<String>> legend = board.getLegend();
 		// Ensure we read the correct number of rooms
 		assertEquals(LEGEND_SIZE, legend.size());
 		// To ensure data is correctly loaded, test retrieving a few rooms 
 		// from the hash, including the first and last in the file and a few others
-		assertEquals("Conservatory", legend.get('C'));
-		assertEquals("Ballroom", legend.get('B'));
-		assertEquals("Billiard room", legend.get('R'));
-		assertEquals("Dining room", legend.get('D'));
-		assertEquals("Walkway", legend.get('W'));
+		assertEquals("Conservatory", legend.get('C').get(0));
+		assertEquals("Ballroom", legend.get('B').get(0));
+		assertEquals("Billiard room", legend.get('R').get(0));
+		assertEquals("Dining room", legend.get('D').get(0));
+		assertEquals("Walkway", legend.get('W').get(0));
 	}
 	
 	@Test

@@ -4,6 +4,7 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -39,22 +40,22 @@ public class CTest_Perry_Pan_BoardCellTests {
 	@Test
 	public void testRooms() {
 		// Get the map of initial => room 
-		Map<Character, String> legend = board.getLegend();
+		Map<Character, ArrayList<String>> legend = board.getLegend();
 		// Ensure we read the correct number of rooms
 		assertEquals(LEGEND_SIZE, legend.size());
 		// To ensure data is correctly loaded, test retrieving a few rooms 
 		// from the hash, including the first and last in the file and a few others
-		assertEquals("Greenhouse", legend.get('G'));
-		assertEquals("Dungeon", legend.get('D'));
-		assertEquals("Studio", legend.get('S'));
-		assertEquals("Cellar", legend.get('C'));
-		assertEquals("Atrium", legend.get('A'));
-		assertEquals("Veranda", legend.get('V'));
-		assertEquals("Lounge", legend.get('L'));
-		assertEquals("Parlor", legend.get('P'));
-		assertEquals("Office", legend.get('O'));
-		assertEquals("Walkway", legend.get('W'));
-		assertEquals("Closet", legend.get('X'));
+		assertEquals("Greenhouse", legend.get('G').get(0));
+		assertEquals("Dungeon", legend.get('D').get(0));
+		assertEquals("Studio", legend.get('S').get(0));
+		assertEquals("Cellar", legend.get('C').get(0));
+		assertEquals("Atrium", legend.get('A').get(0));
+		assertEquals("Veranda", legend.get('V').get(0));
+		assertEquals("Lounge", legend.get('L').get(0));
+		assertEquals("Parlor", legend.get('P').get(0));
+		assertEquals("Office", legend.get('O').get(0));
+		assertEquals("Walkway", legend.get('W').get(0));
+		assertEquals("Closet", legend.get('X').get(0));
 	}
 	
 	@Test
