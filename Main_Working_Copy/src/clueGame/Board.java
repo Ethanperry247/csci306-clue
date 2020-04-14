@@ -21,10 +21,9 @@ public class Board {
 	public static final int MAX_BOARD_SIZE = 50;
 	private BoardCell[][] board;
 	
-	private Map<Character, ArrayList<String>> legend;					  // stores room initial with the room name
-	private Map<Character, ArrayList<String>> nameLocations;  // stores room initial with the cell location where room name will be drawn on BoardGUI 
-	private List<Player> players;							  // stores all players in the game
-	private Set<Card> deck;									  // stores all cards in the game
+	private Map<Character, ArrayList<String>> legend;	// stores room initial with the room name and location of where name will be drawn on board GUI
+	private List<Player> players;						// stores all players in the game
+	private Set<Card> deck;								// stores all cards in the game
 	
 	private String boardConfigFile;
 	private String roomConfigFile;
@@ -123,9 +122,6 @@ public class Board {
 			// Split that line into an array (will be length three for the five fields of the file.)
 			String[] values = row.split(", ");
 
-			// Put that into the legend.
-			//legend.put(values[0].charAt(0), values[1]);
-
 			// Make sure that the item is either a card or other, otherwise throw an exception.
 			if (!values[2].equals("Card") && !values[2].equals("Other")) {
 				scanner.close();
@@ -138,11 +134,11 @@ public class Board {
 				loadCard(values[1], CardType.ROOM);		// Load the room into the deck.
 			}
 			
-			ArrayList<String> location = new ArrayList<String>();	// array to hold location of cell where room name is drawn
-			location.add(values[1]);								// index 0 to store room name
-			location.add(values[3]);								// index 1 to store row value
-			location.add(values[4]);								// index 2 to store column value
-			legend.put(values[0].charAt(0), location);		// puts the room initial with the cell location into map
+			ArrayList<String> nameLocation = new ArrayList<String>();	// array to hold location of cell where room name is drawn
+			nameLocation.add(values[1]);								// index 0 to store room name
+			nameLocation.add(values[3]);								// index 1 to store row value
+			nameLocation.add(values[4]);								// index 2 to store column value
+			legend.put(values[0].charAt(0), nameLocation);		// puts the room initial with the cell location into map
 			
 		}
 
@@ -375,10 +371,6 @@ public class Board {
 	
 	public Set<Character> getInitials() {
 		return initials;
-	}
-	
-	public Map<Character, ArrayList<String>> getNameLocations() {
-		return nameLocations;
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
