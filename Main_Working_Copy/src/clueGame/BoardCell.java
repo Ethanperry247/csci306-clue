@@ -15,12 +15,14 @@ public class BoardCell {
 	private int row;
 	private int column;
 	private String initial;
+	private Board board;
 	
 
 	public BoardCell(int row, int column, String initial) {
 		this.row = row;
 		this.column = column;
 		this.initial = initial;
+		board = Board.getInstance();
 	}
 
 	@Override
@@ -131,15 +133,9 @@ public class BoardCell {
 		
 		cell.setColor(Color.CYAN);
 		cell.fillRect(column*25, row*25, 25, 25);
+		cell.setColor(Color.BLACK);
+		cell.drawRect(column*25, row*25, 25, 25); 
 		
-	}
-	
-	private class CellListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-		}
 	}
 
 }

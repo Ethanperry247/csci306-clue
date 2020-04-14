@@ -2,7 +2,10 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
@@ -22,6 +25,7 @@ public class BoardGUI extends JPanel {
 		board = Board.getInstance(); 		// Get the board.	
 		boardCells = board.getBoard();		// Get all of the board cells from the board.
 		players = board.getPlayerList();	// Get all of the players from the board.
+		addMouseListener(new CellListener());
 	}
 	
 	@Override
@@ -69,6 +73,39 @@ public class BoardGUI extends JPanel {
 	public void drawTargets(Set<BoardCell> targets, Graphics cell) {
 		for (BoardCell target : targets) {
 			target.drawPlayerTargets(cell);
+		}
+	}
+
+	private class CellListener implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			board.movePlayer(e.getPoint().x/25, e.getPoint().y/25);
+			repaint();
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 

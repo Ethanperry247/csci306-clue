@@ -79,6 +79,16 @@ public class Board {
 		player.makeMove(targets); // Pass in the targets for the players to choose from.
 	}
 	
+	public void movePlayer(int row, int col) {
+		if (currentPlayer() instanceof HumanPlayer) {
+			for (BoardCell cell: targets) {
+				if (cell.getRow() == row && cell.getColumn() == col) {
+					((HumanPlayer)currentPlayer()).move(row, col);
+				}
+			}
+		}
+	}
+	
 	// Make a random dice roll.
 	public void rollDice() {
 		diceRoll = (int)(Math.random()*7);
