@@ -47,6 +47,10 @@ public class BoardGUI extends JPanel {
 			player.draw(graphic);
 		}
 		
+		if (board.currentPlayer() instanceof HumanPlayer) {
+			drawTargets(board.getTargets(), graphic);
+		}
+		
 	}
 	
 	// method to draw room names

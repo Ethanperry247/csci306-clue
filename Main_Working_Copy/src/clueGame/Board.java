@@ -4,7 +4,6 @@ package clueGame;
 
 import java.awt.Graphics;
 import java.io.File;
-import java.util.Random;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;

@@ -4,6 +4,8 @@ package clueGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -130,6 +132,14 @@ public class BoardCell {
 		cell.setColor(Color.CYAN);
 		cell.fillRect(column*25, row*25, 25, 25);
 		
+	}
+	
+	private class CellListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+		}
 	}
 
 }

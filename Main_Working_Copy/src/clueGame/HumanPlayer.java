@@ -15,13 +15,14 @@ public class HumanPlayer extends Player {
 	@Override
 	public void makeMove(Set<BoardCell> targets) {
 		playerMoved = false;
+		
 	}
 	
 	public boolean hasPlayerMoved() {
 		return playerMoved;
 	}
 	
-	public void movePlayer(int row, int col) {
+	public void move(int row, int col) {
 		setRow(row);
 		setCol(col);
 		playerMoved = true;
