@@ -1,5 +1,5 @@
-G, Greenhouse, Card, 9, 1
 D, Dungeon, Card, 17, 17
+G, Greenhouse, Card, 9, 1
 S, Studio, Card, 2, 6
 C, Cellar, Card, 9, 17
 A, Atrium, Card, 2, 15
