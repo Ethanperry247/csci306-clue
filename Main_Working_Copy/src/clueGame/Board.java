@@ -47,12 +47,10 @@ public class Board {
 	private int turn = 0;
 	private int diceRoll;
 	
-	// variable used for singleton pattern
-	private static Board theInstance = new Board();
-	// constructor is private to ensure only one can be created
-	private Board() {}
-	// this method returns the only Board
-	public static Board getInstance() {
+	private static Board theInstance = new Board();	// variable used for singleton pattern
+	private Board() {}								// constructor is private to ensure only one can be created
+	
+	public static Board getInstance() {				// this method returns the only Board
 		return theInstance;
 	}
 	
@@ -111,16 +109,13 @@ public class Board {
 
 		// Reloading the legend to assure that there is a new legend every time a new config file is loaded.
 		legend = new HashMap<Character, ArrayList<String>>();
-		//nameLocations = new HashMap<Character, ArrayList<String>>();
 
 		// Scanner will take in the room config file and parse it into the legend map.
 		Scanner scanner = new Scanner(new File(roomConfigFile));
 		while (scanner.hasNextLine()) {
-			// Grab a line from the file.
-			String row = scanner.nextLine();
-
-			// Split that line into an array (will be length three for the five fields of the file.)
-			String[] values = row.split(", ");
+			
+			String row = scanner.nextLine();	// Grab a line from the file.
+			String[] values = row.split(", ");	// Split that line into an array (will be length three for the five fields of the file.)
 
 			// Make sure that the item is either a card or other, otherwise throw an exception.
 			if (!values[2].equals("Card") && !values[2].equals("Other")) {
@@ -138,8 +133,7 @@ public class Board {
 			nameLocation.add(values[1]);								// index 0 to store room name
 			nameLocation.add(values[3]);								// index 1 to store row value
 			nameLocation.add(values[4]);								// index 2 to store column value
-			legend.put(values[0].charAt(0), nameLocation);		// puts the room initial with the cell location into map
-			
+			legend.put(values[0].charAt(0), nameLocation);				// puts the room initial with the cell location into map
 		}
 
 		scanner.close();
@@ -152,22 +146,18 @@ public class Board {
 
 		Scanner scanner = new Scanner(new File(boardConfigFile));
 		int numColumns = 0; // The length of the first row will populate this variable. All other rows will be checked against it for validity.
-		int row = 0;	// Will be incremented as elements are added to grid.
+		int row = 0;		// Will be incremented as elements are added to grid.
 
 		// This first if statement will get the length of the first column to be compared against all others.
 		if (scanner.hasNextLine()) {
-			// Grab a line from the file.
-			String line = scanner.nextLine();
-
-			// Split that line into an array.
-			String[] values = line.split(",");
-
-			// Assume every row should be the same length as the first row. Otherwise, exceptions will be thrown.
-			numColumns = values.length;
+			
+			String line = scanner.nextLine();	// Grab a line from the file.
+			String[] values = line.split(",");	// Split that line into an array.
+			numColumns = values.length;			// Assume every row should be the same length as the first row. Otherwise, exceptions will be thrown.
 
 			for (int column = 0; column < values.length; column++) {
+				// If any member of the board config file has a different initial than in the legend, throw an exception.
 				if (legend.get(values[column].charAt(0)) == null) {
-					// If any member of the board config file has a different initial than in the legend, throw an exception.
 					scanner.close();
 					throw new BadConfigFormatException("Invalid board cell in board config file.");
 				}
@@ -175,14 +165,11 @@ public class Board {
 			}
 			row++;
 		}
-		// Loop through and populate the rest of board grid.
-		while (scanner.hasNextLine()) {
+		
+		while (scanner.hasNextLine()) {	// Loop through and populate the rest of board grid.
 
-			// Grab a line from the file.
-			String line = scanner.nextLine();
-
-			// Split that line into an array.
-			String[] values = line.split(",");
+			String line = scanner.nextLine();	// Grab a line from the file.
+			String[] values = line.split(",");	// Split that line into an array.
 
 			// If a row is found to have an inconsistent length from any other, throw an exception.
 			if (values.length != numColumns) {
@@ -373,8 +360,6 @@ public class Board {
 		return initials;
 	}
 	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
 	
 	public void loadConfigFiles() {
 		// Catch both Bad Configuration and file not found here where they can be handled best.
@@ -456,10 +441,6 @@ public class Board {
 		deck.add(new Card(name, type));
 	}
 	
-	public void selectAnswer() {
-		
-	}
-	
 	public Card handleSuggestion(Player accusingPlayer, Solution suggestion) {
 		
 		Card suggestionDisproval = null;
@@ -508,8 +489,6 @@ public class Board {
 			}
 		}
 	}
-	
-	
 	
 	
 	
@@ -571,7 +550,6 @@ public class Board {
 		}
 	}
 	
-
 	
 	public Set<Card> getPlayers() {
 		return playerCards;
@@ -748,7 +726,6 @@ public class Board {
 	public ArrayList<Player> getPlayerList() {
 		return (ArrayList<Player>) players;
 	}
-	
 	
 	
 }
