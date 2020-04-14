@@ -80,9 +80,10 @@ public class Board {
 		Player player = currentPlayer(); // Get the current player.
 		rollDice(); // Get a new dice roll.
 		calcTargets(player.getRow(), player.getCol(), getDiceRoll()); // Calculate the targets for this player.
-		player.makeMove();
+		player.makeMove(targets); // Pass in the targets for the players to choose from.
 	}
 	
+	// Make a random dice roll.
 	public void rollDice() {
 		diceRoll = (int)(Math.random()*7);
 	}

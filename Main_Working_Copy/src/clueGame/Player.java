@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public abstract class Player {
 	
@@ -64,6 +65,14 @@ public abstract class Player {
 		return column;
 	}
 	
+	public void setRow(int r) {
+		row = r;
+	}
+	
+	public void setCol(int c) {
+		column = c;
+	}
+	
 	public ArrayList<Card> getCards() {
 		return playerCards;
 	}
@@ -89,7 +98,8 @@ public abstract class Player {
 		return "[Player: " + playerName + "]";
 	}
 	
-	public abstract void makeMove();
+	// Abstract method which is handled differently in human and computer player.
+	public abstract void makeMove(Set<BoardCell> targets);
 
 	// from CluePlayer.pdf
 	// Be sure to trim the color, we don't want spaces around the name
