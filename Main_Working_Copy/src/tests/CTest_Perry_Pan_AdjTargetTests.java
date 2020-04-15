@@ -24,6 +24,7 @@ public class CTest_Perry_Pan_AdjTargetTests {
 		board = Board.getInstance();
 		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");		
 		board.initialize();
+		board.calcAdjacencies();
 	}
 
 	// Ensure that player does not move around within room

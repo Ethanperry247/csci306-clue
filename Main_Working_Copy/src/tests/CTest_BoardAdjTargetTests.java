@@ -27,6 +27,7 @@ public class CTest_BoardAdjTargetTests {
 		board.setConfigFiles("CTest_ClueLayout.csv", "CTest_ClueLegend.txt", "CluePlayers.txt", "ClueWeapons.txt");		
 		// Initialize will load BOTH config files 
 		board.initialize();
+		board.calcAdjacencies();
 	}
 
 	// Ensure that player does not move around within room

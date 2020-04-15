@@ -14,6 +14,7 @@ public class ClueGame {
 		board.initialize();
 		board.loadConfigFiles();
 		board.createSolution();
+		board.calcAdjacencies();
 		board.dealDeck();
 		board.playTurn(); // Play the first round.
 		

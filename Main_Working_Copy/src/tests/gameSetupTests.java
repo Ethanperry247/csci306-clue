@@ -39,6 +39,7 @@ public class gameSetupTests {
 		board.setConfigFiles("ClueBoardLayout.csv", "ClueRooms.txt", "CluePlayers.txt", "ClueWeapons.txt");
 		board.initialize();
 		board.loadConfigFiles();
+		board.calcAdjacencies();
 		board.createSolution("Mr. Green", "Dagger", "Greenhouse");
 		board.dealDeck();
 		

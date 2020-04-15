@@ -213,7 +213,6 @@ public class Board {
 	}
 
 	public void calcAdjacencies() {
-
 		for (int row = 0; row < numRows; row++) {
 			for (int column = 0; column < numColumns; column++) {
 				Set<BoardCell> adjCells = new HashSet<BoardCell>(getAdjList(row,column));	// finds all adjacent cells that can be entered
@@ -223,8 +222,6 @@ public class Board {
 	}
 
 	public void calcTargets(int row, int column, int moves) {
-
-		calcAdjacencies();
 		BoardCell cell = getCellAt(row,column); 
 
 		if (visited.contains(cell)) {	// if the cell is already visited, return
