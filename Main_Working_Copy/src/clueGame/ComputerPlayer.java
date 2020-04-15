@@ -22,6 +22,7 @@ public class ComputerPlayer extends Player{
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {	// parameters are set of calculated target cells and the doorway cell of most recently visited room
 		ArrayList<BoardCell> rooms = new ArrayList<BoardCell>();
+		ArrayList<BoardCell> available = new ArrayList<BoardCell>(targets);
 		boolean justThere = false;
 		
 		for (BoardCell cell : targets) {	// finds cells that are doorways (able to enter into those rooms)
@@ -35,11 +36,11 @@ public class ComputerPlayer extends Player{
 		}
 		
 		if (rooms.isEmpty() || justThere == true) {	// if there is no rooms to go into or room just visited is an option...
-			rooms = new ArrayList<BoardCell>(targets);
 			Random random = new Random();
-			int someCell = random.nextInt(rooms.size());					// ...select an available target randomly
-			return rooms.get(someCell);
+			int someCell = random.nextInt(available.size());					// ...select an available target randomly
+			return available.get(someCell);
 		} else {
+			justVisited = rooms.get(0);
 			return rooms.get(0);								// else, room that was not just visited must be selected
 		}
 		
