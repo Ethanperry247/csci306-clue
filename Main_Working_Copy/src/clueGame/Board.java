@@ -79,7 +79,9 @@ public class Board {
 	public void playTurn() {
 		Player player = currentPlayer(); // Get the current player.
 		rollDice(); // Get a new dice roll.
+		getTargets(); // Clear the targets if there are any.
 		calcTargets(player.getRow(), player.getCol(), getDiceRoll()); // Calculate the targets for this player.
+//		calcTargets(3, 4, 5); // Calculate the targets for this player.
 		player.updateTargets(getTargets()); // Get targets is used in this instance because it will erase the current target list!
 		player.makeMove(); // Pass in the targets for the players to choose from.
 	}
@@ -97,7 +99,7 @@ public class Board {
 	
 	// Make a random dice roll.
 	public void rollDice() {
-		diceRoll = (int)(Math.random()*7);
+		diceRoll = (int)(Math.random()*6) + 1;
 	}
 	
 	public int getDiceRoll() {

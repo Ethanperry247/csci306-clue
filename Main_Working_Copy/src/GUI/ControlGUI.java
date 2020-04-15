@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -111,7 +113,7 @@ public class ControlGUI extends JPanel {
 	private JPanel createButtonPanel(String name, ActionListener listener) {
 		// Create a new button, add to a new panel, and return.
 		JButton button = new JButton(name);
-		button.addActionListener(listener);
+		button.addActionListener(new ButtonListener());
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add(button);
 		return panel;
@@ -129,18 +131,30 @@ public class ControlGUI extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (board.currentPlayer() instanceof HumanPlayer && ((HumanPlayer)board.currentPlayer()).getPlayerMovementStatus()) {
-				board.nextTurn(); // Move on to the next player's turn.
-				resetPanels(); // Reset all panels in the control GUI.
-				boardGUI.repaint(); // Repaint the board GUI.
-			} else if (board.currentPlayer() instanceof ComputerPlayer) {
-				board.nextTurn(); // Move on to the next player's turn.
-				resetPanels(); // Reset all panels in the control GUI.
-				boardGUI.repaint(); // Repaint the board GUI.
+	        	if (board.currentPlayer() instanceof HumanPlayer && ((HumanPlayer)board.currentPlayer()).getPlayerMovementStatus()) {
+	        		SwingUtilities.invokeLater(new Runnable() {
+	                    @Override
+	                    public void run() {
+                        	board.nextTurn(); // Move on to the next player's turn.
+        					resetPanels(); // Reset all panels in the control GUI.
+        					boardGUI.repaint(); // Repaint the board GUI.
+        					boardGUI.revalidate(); // Repaint the board GUI.
+	                    }
+	                });
+				} else if (board.currentPlayer() instanceof ComputerPlayer) {
+					SwingUtilities.invokeLater(new Runnable() {
+	                    @Override
+	                    public void run() {
+                        	board.nextTurn(); // Move on to the next player's turn.
+        					resetPanels(); // Reset all panels in the control GUI.
+        					boardGUI.repaint(); // Repaint the board GUI.
+        					boardGUI.revalidate(); // Repaint the board GUI.
+	                    }
+	                });
+				}
 			}
+			
 		}
-		
-	}
 	
 
 	
