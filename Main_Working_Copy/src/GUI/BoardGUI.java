@@ -83,33 +83,19 @@ public class BoardGUI extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			int row = (e.getPoint().y/Board.CELL_LENGTH); // Identify the row based on the y location.
 			int col = (e.getPoint().x/Board.CELL_LENGTH); // Identify the column based on the x location.
-			board.movePlayer(row, col);
-			repaint();
+			board.movePlayer(row, col); // Move the player (error checking for if the player has moved correctly is located in this method).
+			repaint(); // Be sure to repaint the board.
 		}
 
+		// Unused interface methods.
 		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
+		public void mousePressed(MouseEvent e) {}
 		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
+		public void mouseReleased(MouseEvent e) {}
 		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
+		public void mouseEntered(MouseEvent e) {}
 		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void mouseExited(MouseEvent e) {}
 	}
 
 }

@@ -64,9 +64,10 @@ public class Board {
 	// Moves on to the turn of the next player.
 	public void nextTurn() {
 		turn++;
-		if (turn > players.size()) {
+		if (turn > players.size() - 1) {
 			turn = 0;
 		}
+		playTurn(); // Call play turn for the beginning of the next players turn.
 	}
 	
 	// Returns the current player.
@@ -83,12 +84,12 @@ public class Board {
 		player.makeMove(); // Pass in the targets for the players to choose from.
 	}
 	
-	// Move player is a method that is called on the click
+	// Called on click by the board GUI method. Will move the player only if the user has clicked a valid cell.
 	public void movePlayer(int row, int col) {
-		if (currentPlayer() instanceof HumanPlayer) {
-			for (BoardCell cell: currentPlayer().getTargets()) {
-				if (cell.getRow() == row && cell.getColumn() == col) {
-					((HumanPlayer)currentPlayer()).move(row, col);
+		if (currentPlayer() instanceof HumanPlayer) { // Check if the player is human too! (for casting purposes)
+			for (BoardCell cell: currentPlayer().getTargets()) {	
+				if (cell.getRow() == row && cell.getColumn() == col) { // Check for the correct row and column.
+					((HumanPlayer)currentPlayer()).move(row, col); // Move the player if all criteria are met.
 				}
 			}
 		}
