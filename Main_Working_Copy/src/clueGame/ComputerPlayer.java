@@ -46,7 +46,8 @@ public class ComputerPlayer extends Player{
 	}
 	
 	@Override
-	public void makeMove(Set<BoardCell> targets) {
+	public void makeMove() {
+		Set<BoardCell> targets = getTargets();
 		BoardCell target = pickLocation(targets); // Pick a location.
 		setRow(target.getRow()); // Update row and column.
 		setCol(target.getColumn());

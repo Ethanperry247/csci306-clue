@@ -47,6 +47,9 @@ public class Board {
 	private int turn = 0;
 	private int diceRoll;
 	
+	// For drawing purposes--the size of each cell in pixels.
+	public static final int CELL_LENGTH = 25;
+	
 	private static Board theInstance = new Board();	// variable used for singleton pattern
 	private Board() {}								// constructor is private to ensure only one can be created
 	
@@ -76,12 +79,14 @@ public class Board {
 		Player player = currentPlayer(); // Get the current player.
 		rollDice(); // Get a new dice roll.
 		calcTargets(player.getRow(), player.getCol(), getDiceRoll()); // Calculate the targets for this player.
-		player.makeMove(targets); // Pass in the targets for the players to choose from.
+		player.updateTargets(getTargets()); // Get targets is used in this instance because it will erase the current target list!
+		player.makeMove(); // Pass in the targets for the players to choose from.
 	}
 	
+	// Move player is a method that is called on the click
 	public void movePlayer(int row, int col) {
 		if (currentPlayer() instanceof HumanPlayer) {
-			for (BoardCell cell: targets) {
+			for (BoardCell cell: currentPlayer().getTargets()) {
 				if (cell.getRow() == row && cell.getColumn() == col) {
 					((HumanPlayer)currentPlayer()).move(row, col);
 				}

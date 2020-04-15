@@ -51,8 +51,9 @@ public class BoardGUI extends JPanel {
 			player.draw(graphic);
 		}
 		
-		if (board.currentPlayer() instanceof HumanPlayer) {
-			drawTargets(board.getTargets(), graphic);
+		// Will only draw the targets if the player is a human player and the player hasn't moved yet.
+		if (board.currentPlayer() instanceof HumanPlayer && !((HumanPlayer)board.currentPlayer()).getPlayerMovementStatus()) {
+			drawTargets(board.currentPlayer().getTargets(), graphic);
 		}
 		
 	}
@@ -80,7 +81,9 @@ public class BoardGUI extends JPanel {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			board.movePlayer(e.getPoint().x/25, e.getPoint().y/25);
+			int row = (e.getPoint().y/Board.CELL_LENGTH); // Identify the row based on the y location.
+			int col = (e.getPoint().x/Board.CELL_LENGTH); // Identify the column based on the x location.
+			board.movePlayer(row, col);
 			repaint();
 		}
 

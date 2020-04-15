@@ -13,12 +13,11 @@ public class HumanPlayer extends Player {
 	}
 	
 	@Override
-	public void makeMove(Set<BoardCell> targets) {
+	public void makeMove() {
 		playerMoved = false;
-		
 	}
 	
-	public boolean hasPlayerMoved() {
+	public boolean getPlayerMovementStatus() {
 		return playerMoved;
 	}
 	

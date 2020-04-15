@@ -16,6 +16,7 @@ public class BoardCell {
 	private int column;
 	private String initial;
 	private Board board;
+	public static final int DOOR_DEPTH = Board.CELL_LENGTH/5;
 	
 
 	public BoardCell(int row, int column, String initial) {
@@ -120,21 +121,21 @@ public class BoardCell {
 		
 		// how the blue rectangle is orientated is determined by door direction
 		if (door == 'L') {
-			cell.fillRect(column*25, row*25, 5, 25);
+			cell.fillRect(column*Board.CELL_LENGTH, row*Board.CELL_LENGTH, DOOR_DEPTH, Board.CELL_LENGTH);
 		} else if (door == 'U') {
-			cell.fillRect(column*25, row*25, 25, 5);
+			cell.fillRect(column*Board.CELL_LENGTH, row*Board.CELL_LENGTH, Board.CELL_LENGTH, DOOR_DEPTH);
 		} else if (door == 'R') {
-			cell.fillRect((column*25) + 20, row*25, 5, 25);
+			cell.fillRect((column*Board.CELL_LENGTH) + Board.CELL_LENGTH - DOOR_DEPTH, row*Board.CELL_LENGTH, DOOR_DEPTH, Board.CELL_LENGTH);
 		} else {
-			cell.fillRect(column*25, (row*25) + 20, 25, 5);
+			cell.fillRect(column*Board.CELL_LENGTH, (row*Board.CELL_LENGTH) + Board.CELL_LENGTH - DOOR_DEPTH, Board.CELL_LENGTH, DOOR_DEPTH);
 		}
 	}
 	
 	public void drawPlayerTargets(Graphics cell) {
 		cell.setColor(Color.CYAN);
-		cell.fillRect(column*25, row*25, 25, 25);
+		cell.fillRect(column*Board.CELL_LENGTH, row*Board.CELL_LENGTH, Board.CELL_LENGTH, Board.CELL_LENGTH);
 		cell.setColor(Color.BLACK);
-		cell.drawRect(column*25, row*25, 25, 25); 
+		cell.drawRect(column*Board.CELL_LENGTH, row*Board.CELL_LENGTH, Board.CELL_LENGTH, Board.CELL_LENGTH); 
 		
 		if (this.initial.length() == 2) {	// if the cell is a door
 			drawDoor(cell);

@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ public abstract class Player {
 	private int row;
 	private int column;
 	private Color color;
+	private Set<BoardCell> targets;		// Records the current player's targets.
 	protected ArrayList<Card> playerCards;	// note: each player has 3 cards
 	protected ArrayList<Card> weaponsSeen;	// The weapons observed from disproved suggestions.
 	protected ArrayList<Card> roomsSeen;	// The rooms observed from disproved suggestions.
@@ -43,6 +45,15 @@ public abstract class Player {
 		this.roomsSeen = new ArrayList<Card>();
 		this.playersSeen = playersSeen;
 		this.justVisited = null;
+	}
+	
+	public void updateTargets(Set<BoardCell> targets) {
+		this.targets = new HashSet<BoardCell>();
+		this.targets = targets;
+	}
+	
+	public Set<BoardCell> getTargets() {
+		return targets;
 	}
 	
 	public void updateJustVisited(BoardCell update) {
@@ -99,7 +110,7 @@ public abstract class Player {
 	}
 	
 	// Abstract method which is handled differently in human and computer player.
-	public abstract void makeMove(Set<BoardCell> targets);
+	public abstract void makeMove();
 
 	// from CluePlayer.pdf
 	// Be sure to trim the color, we don't want spaces around the name
@@ -139,9 +150,9 @@ public abstract class Player {
 	
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval(column*25, row*25, 25, 25);
+		g.fillOval(column*Board.CELL_LENGTH, row*Board.CELL_LENGTH, Board.CELL_LENGTH, Board.CELL_LENGTH);
 		g.setColor(Color.BLACK);
-		g.drawOval(column*25, row*25, 25, 25);
+		g.drawOval(column*Board.CELL_LENGTH, row*Board.CELL_LENGTH, Board.CELL_LENGTH, Board.CELL_LENGTH);
 	}
 	
 }
