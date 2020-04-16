@@ -60,6 +60,18 @@ public class ComputerPlayer extends Player{
 		Solution accusation = savedSuggestion;
 		return accusation;
 	}
+
+	public void updateSeen(Card seen) {
+		CardType type = seen.getType();
+		
+		if (type == CardType.ROOM) {
+			roomsSeen.add(seen);
+		} else if (type == CardType.WEAPON) {
+			weaponsSeen.add(seen);
+		} else {
+			playersSeen.add(seen);
+		}
+	}
 	
 
 	public Solution createSuggestion(Set<Card> peopleDeck, BoardCell location, Set<Card> weaponsDeck, Map<Character, ArrayList<String>> legend) {
