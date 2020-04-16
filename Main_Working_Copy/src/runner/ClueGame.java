@@ -1,3 +1,5 @@
+// Authors: Caleb Pan, Ethan Perry
+
 package runner;
 
 import GUI.*;

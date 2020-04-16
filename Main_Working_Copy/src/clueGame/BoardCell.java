@@ -4,18 +4,12 @@ package clueGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class BoardCell {
 	
 	private int row;
 	private int column;
 	private String initial;
-	private Board board;
 	public static final int DOOR_DEPTH = Board.CELL_LENGTH/5;
 	
 
@@ -23,7 +17,7 @@ public class BoardCell {
 		this.row = row;
 		this.column = column;
 		this.initial = initial;
-		board = Board.getInstance();
+		Board.getInstance();
 	}
 
 	@Override
@@ -100,13 +94,13 @@ public class BoardCell {
 		
 		if (this.initial.equals("W")) {		// if cell is a walkway, color in yellow and border with black line
 			cell.setColor(Color.YELLOW);
-			cell.fillRect(column*25, row*25, 25, 25);
+			cell.fillRect(column*Board.CELL_LENGTH, row*Board.CELL_LENGTH, Board.CELL_LENGTH, Board.CELL_LENGTH);
 			cell.setColor(Color.BLACK);
-			cell.drawRect(column*25, row*25, 25, 25); 
+			cell.drawRect(column*Board.CELL_LENGTH, row*Board.CELL_LENGTH, Board.CELL_LENGTH, Board.CELL_LENGTH); 
 			
 		} else {							// else, color in gray with no borders
 			cell.setColor(Color.GRAY);
-			cell.fillRect(column*25, row*25, 25, 25);
+			cell.fillRect(column*Board.CELL_LENGTH, row*Board.CELL_LENGTH, Board.CELL_LENGTH, Board.CELL_LENGTH);
 		}
 		
 		if (this.initial.length() == 2) {	// if the cell is a door

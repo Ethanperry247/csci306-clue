@@ -48,7 +48,6 @@ public class MyCardsGUI extends JPanel {
 			}
 		}
 		
-		
 		// Create three jpanels to contain the current player's cards.
 		JPanel personSlot = createCardSlot("People", people);
 		JPanel roomSlot = createCardSlot("Rooms", rooms);

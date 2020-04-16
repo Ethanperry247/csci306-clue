@@ -16,7 +16,7 @@ public abstract class Player {
 	private int row;
 	private int column;
 	private Color color;
-	private Set<BoardCell> targets;		// Records the current player's targets.
+	private Set<BoardCell> targets;			// Records the current player's targets.
 	protected ArrayList<Card> playerCards;	// note: each player has 3 cards
 	protected ArrayList<Card> weaponsSeen;	// The weapons observed from disproved suggestions.
 	protected ArrayList<Card> roomsSeen;	// The rooms observed from disproved suggestions.
@@ -139,15 +139,16 @@ public abstract class Player {
 			}
 		}
 		
-		if (matchingCards.size() == 0) { // If no cards are matching, return zero.
+		if (matchingCards.size() == 0) { 		// If no cards are matching, return zero.
 			return null;
 		} else if (matchingCards.size() == 1) { // If one card matches, return that card.
 			return matchingCards.get(0);
-		} else { // Otherwise, if multiple match it, return a random selection.
+		} else { 								// Otherwise, if multiple match it, return a random selection.
 			return matchingCards.get((int)(Math.random()*matchingCards.size()));
 		}
 	}
 	
+	// draws players onto board
 	public void draw(Graphics g) {
 		g.setColor(color);
 		g.fillOval(column*Board.CELL_LENGTH, row*Board.CELL_LENGTH, Board.CELL_LENGTH, Board.CELL_LENGTH);

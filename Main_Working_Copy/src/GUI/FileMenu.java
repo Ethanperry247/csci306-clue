@@ -20,8 +20,8 @@ public class FileMenu extends JMenuBar {
 	
 	private JMenu createFileMenu() {
 		JMenu menu = new JMenu("File");
-		menu.add(createDetectiveNotesItem()); // Open the detective notes.
-		menu.add(createExitItem()); // Give the ability to exit.
+		menu.add(createDetectiveNotesItem()); 	// Open the detective notes.
+		menu.add(createExitItem()); 			// Give the ability to exit.
 		return menu;
 	}
 	

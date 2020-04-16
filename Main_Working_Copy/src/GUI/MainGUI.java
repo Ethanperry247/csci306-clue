@@ -18,25 +18,28 @@ public class MainGUI extends JFrame {
 	private Player player;
 
 	public MainGUI(String name) {
+		
 		board = Board.getInstance();
 		player = board.currentPlayer();
 		// Create a JFrame with all the normal functionality
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(name);
 		setSize(1000, 800); // Set the desired size
+		
 		boardGUI = new BoardGUI();
 		add(boardGUI, BorderLayout.CENTER);
-		controlGUI = new ControlGUI(boardGUI); // Add a control GUI to the bottom of the GUI.
-		add(controlGUI, BorderLayout.SOUTH); // Put the JPanel in the center
+		
+		controlGUI = new ControlGUI(boardGUI); 	// Add a control GUI to the bottom of the GUI.
+		add(controlGUI, BorderLayout.SOUTH); 	// Put the JPanel in the center
+		
 		menuBar = new FileMenu(); // Create and set a menu bar for our game.
 		setJMenuBar(menuBar);
+		
 		myCardsGUI = new MyCardsGUI();
 		add(myCardsGUI, BorderLayout.EAST);
-		setVisible(true); // Reveal the JFrame
+		setVisible(true);	// Reveal the JFrame
 		
-		// Display the opening dialog.
-		openingDialog();
-		
+		openingDialog();	// Display the opening dialog.
 	}
 	
 	// Opening dialog will display the name of the human (first) player.

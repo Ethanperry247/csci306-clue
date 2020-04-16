@@ -1,3 +1,5 @@
+// Authors: Caleb Pan, Ethan Perry
+
 package GUI;
 
 import java.awt.Color;
@@ -73,7 +75,7 @@ public class BoardGUI extends JPanel {
 		cell.drawString(name, column*25, row*25);
 	}
 	
-	public void drawTargets(Set<BoardCell> targets, Graphics cell) {
+	public void drawTargets(Set<BoardCell> targets, Graphics cell) {	// highlights target cells for human player
 		for (BoardCell target : targets) {
 			target.drawPlayerTargets(cell);
 		}
