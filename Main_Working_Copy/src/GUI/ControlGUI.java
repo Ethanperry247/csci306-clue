@@ -184,12 +184,14 @@ public class ControlGUI extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (board.currentPlayer() instanceof HumanPlayer) {
+			if (board.currentPlayer() instanceof HumanPlayer && !((HumanPlayer)board.currentPlayer()).getAccusationMade()) {
 				accusationDialog = new MakeGuessDialog(self, "accusation");
 				accusationDialog.setVisible(true);
 				((HumanPlayer)board.currentPlayer()).setAccusationMade(true);
-			} else {
+			} else if (board.currentPlayer() instanceof ComputerPlayer) {
 				JOptionPane.showMessageDialog(self, "It's not your turn!", "Error.", JOptionPane.INFORMATION_MESSAGE);
+			} else if (((HumanPlayer)board.currentPlayer()).getAccusationMade()) {
+				JOptionPane.showMessageDialog(self, "You already made an accusation!", "Error.", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 		
@@ -203,6 +205,7 @@ public class ControlGUI extends JPanel {
 	        		SwingUtilities.invokeLater(new Runnable() { // If there is any delay in the logic, this will prevent the GUI from crashing as a result.
 	                    @Override
 	                    public void run() {
+	                    	((HumanPlayer)board.currentPlayer()).setAccusationMade(false); // Set the player's accusation state to false, as they haven't made an accusation at the beginning of their turn.
                         	board.nextTurn(); // Move on to the next player's turn.
         					resetPanels(); // Reset all panels in the control GUI.
         					boardGUI.repaint(); // Repaint the board GUI.
