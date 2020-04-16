@@ -37,6 +37,11 @@ public abstract class Player {
 		this.justVisited = null;
 		this.justDisproven = true;
 		this.savedSuggestion = null;
+		
+		for (Card card : playerCards) {
+			updateSeen(card);
+		}
+		
 	}
 	
 	public Player(String playerName, int row, int column, String color, ArrayList<Card> weaponsSeen, ArrayList<Card> playersSeen) {
@@ -51,7 +56,24 @@ public abstract class Player {
 		this.justVisited = null;
 		this.justDisproven = true;
 		this.savedSuggestion = null;
+		
+		for (Card card : playerCards) {
+			updateSeen(card);
+		}
 	}
+	
+	// the player has seen a new card, the card will be added into the correct seen deck based on card type
+		public void updateSeen(Card seen) {
+			CardType type = seen.getType();
+			
+			if (type == CardType.ROOM) {
+				roomsSeen.add(seen);
+			} else if (type == CardType.WEAPON) {
+				weaponsSeen.add(seen);
+			} else {
+				playersSeen.add(seen);
+			}
+		}
 	
 	public boolean getJustDisproven() {
 		return justDisproven;
