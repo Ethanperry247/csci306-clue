@@ -143,6 +143,7 @@ public class ControlGUI extends JPanel {
 	
 	// Check to see if the computer player is able to make a suggestion.
 	public void checkSuggestionAbility() {
+		checkAccusationAbility();
 		// If the game has moved on to a computer player's turn.
     	if (board.currentPlayer() instanceof ComputerPlayer) {
     		// If the computer player has entered a room, then update the suggestion and make a suggestion.

@@ -35,7 +35,7 @@ public abstract class Player {
 		this.roomsSeen = new ArrayList<Card>();
 		this.playersSeen = new ArrayList<Card>();
 		this.justVisited = null;
-		this.justDisproven = false;
+		this.justDisproven = true;
 		this.savedSuggestion = null;
 	}
 	
