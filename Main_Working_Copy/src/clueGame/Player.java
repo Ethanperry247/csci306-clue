@@ -22,6 +22,8 @@ public abstract class Player {
 	protected ArrayList<Card> roomsSeen;	// The rooms observed from disproved suggestions.
 	protected ArrayList<Card> playersSeen;	// The players observed from disproved suggestions.
 	protected BoardCell justVisited;		// board cell to represent the last room they just visited
+	protected boolean justDisproven; 		// boolean to keep track if player was disproven last round.
+	protected Solution savedSuggestion;		// a suggestion that is preserved to become an accusation the next round
 	
 	public Player(String playerName, int row, int column, String color) {
 		this.row = row;
@@ -33,6 +35,7 @@ public abstract class Player {
 		this.roomsSeen = new ArrayList<Card>();
 		this.playersSeen = new ArrayList<Card>();
 		this.justVisited = null;
+		this.justDisproven = false;
 	}
 	
 	public Player(String playerName, int row, int column, String color, ArrayList<Card> weaponsSeen, ArrayList<Card> playersSeen) {
@@ -45,6 +48,7 @@ public abstract class Player {
 		this.roomsSeen = new ArrayList<Card>();
 		this.playersSeen = playersSeen;
 		this.justVisited = null;
+		this.justDisproven = false;
 	}
 	
 	public void updateTargets(Set<BoardCell> targets) {
