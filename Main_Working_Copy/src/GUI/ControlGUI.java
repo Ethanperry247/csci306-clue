@@ -132,7 +132,6 @@ public class ControlGUI extends JPanel {
 		String guessResult = board.initiateSuggestion(suggestion).getName();
 		((EtchedPanel)guessPanel).resetTextField(suggestion.toString());
 		((EtchedPanel)guessResultPanel).resetTextField(guessResult);
-		
 	}
 	
 	private class ButtonListener implements ActionListener {
@@ -147,6 +146,13 @@ public class ControlGUI extends JPanel {
         					resetPanels(); // Reset all panels in the control GUI.
         					boardGUI.repaint(); // Repaint the board GUI.
         					boardGUI.revalidate(); // Repaint the board GUI.
+        					// If the game has moved on to a computer player's turn.
+        		        	if (board.currentPlayer() instanceof ComputerPlayer) {
+        		        		// If the computer player has entered a room, then update the suggestion and make a suggestion.
+        						if (board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()).isDoorway()) {
+        							updateGuessPanels(((ComputerPlayer)board.currentPlayer()).createSuggestion(board.getPlayers(), board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()), board.getWeapons(), board.getLegend()));
+        						}
+        		        	}
 	                    }
 	                });
 				} else if (board.currentPlayer() instanceof ComputerPlayer) {
@@ -157,14 +163,18 @@ public class ControlGUI extends JPanel {
         					resetPanels(); // Reset all panels in the control GUI.
         					boardGUI.repaint(); // Repaint the board GUI.
         					boardGUI.revalidate(); // Repaint the board GUI.
-        					// If the computer player has entered a room, then update the suggestion and make a suggestion.
-        					if (board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()).isDoorway()) {
-        						updateGuessPanels(((ComputerPlayer)board.currentPlayer()).createSuggestion(board.getPlayers(), board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()), board.getWeapons()));
-        						
-        					}
+        					// If the game has moved on to a computer player's turn.
+        		        	if (board.currentPlayer() instanceof ComputerPlayer) {
+        		        		// If the computer player has entered a room, then update the suggestion and make a suggestion.
+        						if (board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()).isDoorway()) {
+        							updateGuessPanels(((ComputerPlayer)board.currentPlayer()).createSuggestion(board.getPlayers(), board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()), board.getWeapons(), board.getLegend()));						
+        						}
+        		        	}
 	                    }
 	                });
 				}
+	        	
+	        	
 			}
 			
 		}
