@@ -55,8 +55,9 @@ public class ComputerPlayer extends Player{
 	}
 	
 	
-	public void makeAccusation() {
-		
+	public Solution makeAccusation() {
+		Solution accusation = savedSuggestion;
+		return accusation;
 	}
 	
 
@@ -88,9 +89,8 @@ public class ComputerPlayer extends Player{
 		char initial = location.getInitial();
 		String room = String.valueOf(initial);
 
-		
-		Solution accusation = new Solution(person, room, weapon);
-		return accusation;
+		Solution suggestion = new Solution(person, room, weapon);
+		return suggestion;
 	}
 
 }
