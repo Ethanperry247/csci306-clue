@@ -56,11 +56,13 @@ public class ComputerPlayer extends Player{
 	}
 	
 	
+	// an accusation is made when the player's suggestion was not disproven in their last turn
 	public Solution makeAccusation() {
-		Solution accusation = savedSuggestion;
+		Solution accusation = savedSuggestion;	// therefore, the accusation is made with their previously saved suggestion
 		return accusation;
 	}
 
+	// the player has seen a new card, the card will be added into the correct seen deck based on card type
 	public void updateSeen(Card seen) {
 		CardType type = seen.getType();
 		
@@ -76,33 +78,34 @@ public class ComputerPlayer extends Player{
 
 	public Solution createSuggestion(Set<Card> peopleDeck, BoardCell location, Set<Card> weaponsDeck, Map<Character, ArrayList<String>> legend) {
 		
-		ArrayList<Card> missing = new ArrayList<Card>();	
+		ArrayList<Card> missing = new ArrayList<Card>();	// an array list to keep track of cards not seen by player
 		Random random = new Random();
 		
+		// iterates through player cards that have been seen, if card not seen add to missing cards array list
 		for (Card person : peopleDeck) {
 			if (!playersSeen.contains(person)) {
 				missing.add(person);
 			}
 		}
 		
-		int someCard = random.nextInt(missing.size());
-		String person = missing.get(someCard).getName();
-		missing.clear();
+		int someCard = random.nextInt(missing.size());		// picks a random player card among the missing cards
+		String person = missing.get(someCard).getName();	// retrieves the random card's name value
+		missing.clear();									// clears array list to populate with missing weapon cards next
 				
-	
+		// iterates through weapon cards that have been seen, if card not seen add to missing cards array list
 		for (Card weapon : weaponsDeck) {
 			if (!weaponsSeen.contains(weapon)) {
 				missing.add(weapon);
 			}
 		}
 		
-		someCard = random.nextInt(missing.size());
-		String weapon = missing.get(someCard).getName();
+		someCard = random.nextInt(missing.size());			// picks a random weapon card among the missing cards
+		String weapon = missing.get(someCard).getName();	// retrieves the random card's name value
 		
-		char initial = location.getInitial();
-		String room = legend.get(initial).get(0);
+		char initial = location.getInitial();				// gets initial of room (doorway) they are currently in
+		String room = legend.get(initial).get(0);			// retrieves name of room from legend using initial
 
-		Solution suggestion = new Solution(person, room, weapon);
+		Solution suggestion = new Solution(person, room, weapon);	// suggestion is created!
 		return suggestion;
 	}
 
