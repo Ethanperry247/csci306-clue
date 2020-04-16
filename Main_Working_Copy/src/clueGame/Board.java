@@ -490,6 +490,13 @@ public class Board {
 			index++;
 		}
 		
+		if (suggestionDisproval == null) {
+			accusingPlayer.saveSuggestion(suggestion);
+			accusingPlayer.updateDisproven(false);
+		} else {
+			accusingPlayer.updateDisproven(true);
+		}
+		
 		return suggestionDisproval;
 	}
 	

@@ -53,6 +53,14 @@ public abstract class Player {
 		this.savedSuggestion = null;
 	}
 	
+	public void saveSuggestion(Solution suggestion) {
+		this.savedSuggestion = suggestion;
+	}
+	
+	public void updateDisproven(boolean disproved) {
+		this.justDisproven = disproved;
+	}
+	
 	public void updateTargets(Set<BoardCell> targets) {
 		this.targets = new HashSet<BoardCell>();
 		this.targets = targets;
