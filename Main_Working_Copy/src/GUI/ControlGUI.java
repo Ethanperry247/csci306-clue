@@ -155,6 +155,7 @@ public class ControlGUI extends JPanel {
 	
 	// Creates an accusation for the user if they have requested it.
 	public void initializeUserAccusation(Solution accusation) {
+		accusationDialog.setVisible(false); // Set the accusation dialog to not visible so that it doesn't pop back up.
 		if (board.checkAccusation(accusation)) { // Checks the user's accusation against the correct answer.
 			String message = board.currentPlayer().getName() + " has won the game!";
 			JOptionPane.showMessageDialog(this, message, "You Won!", JOptionPane.INFORMATION_MESSAGE);
@@ -183,8 +184,13 @@ public class ControlGUI extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			accusationDialog = new MakeGuessDialog(self, "accusation");
-			accusationDialog.setVisible(true);
+			if (board.currentPlayer() instanceof HumanPlayer) {
+				accusationDialog = new MakeGuessDialog(self, "accusation");
+				accusationDialog.setVisible(true);
+				((HumanPlayer)board.currentPlayer()).setAccusationMade(true);
+			} else {
+				JOptionPane.showMessageDialog(self, "It's not your turn!", "Error.", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 		
 	}

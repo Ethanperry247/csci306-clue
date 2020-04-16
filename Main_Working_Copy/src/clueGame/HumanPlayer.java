@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class HumanPlayer extends Player {
 	private boolean playerMoved = false;
+	private boolean accusationMade = false;
 
 	public HumanPlayer(String playerName, int row, int column, String color) {
 		super(playerName, row, column, color);
@@ -25,6 +26,14 @@ public class HumanPlayer extends Player {
 		setRow(row);
 		setCol(col);
 		playerMoved = true;
+	}
+	
+	public void setAccusationMade(boolean accusationMade) {
+		this.accusationMade = accusationMade;
+	}
+	
+	public boolean getAccusationMade() {
+		return accusationMade;
 	}
 
 }
