@@ -18,6 +18,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import clueGame.Board;
+import clueGame.Card;
 import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
 import clueGame.Player;
@@ -128,10 +129,24 @@ public class ControlGUI extends JPanel {
 		((NamePanel)namePanel).resetTextField(board.currentPlayer().getName());
 	}
 	
-	private void updateGuessPanels(Solution suggestion) {
-		String guessResult = board.initiateSuggestion(suggestion).getName();
+	public void updateGuessPanels(Solution suggestion) {
+		Card guessResult = board.initiateSuggestion(suggestion); // Get the card from the suggestion handling of the board.
+		if (board.currentPlayer() instanceof ComputerPlayer && guessResult.getType() != null) { // Check if a card was actually returned or not.
+			((ComputerPlayer)board.currentPlayer()).updateSeen(guessResult); // Update the computer player's cards seen.
+		}
 		((EtchedPanel)guessPanel).resetTextField(suggestion.toString());
-		((EtchedPanel)guessResultPanel).resetTextField(guessResult);
+		((EtchedPanel)guessResultPanel).resetTextField(guessResult.getName());
+	}
+	
+	// Check to see if the computer player is able to make a suggestion.
+	public void checkSuggestionAbility() {
+		// If the game has moved on to a computer player's turn.
+    	if (board.currentPlayer() instanceof ComputerPlayer) {
+    		// If the computer player has entered a room, then update the suggestion and make a suggestion.
+			if (board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()).isDoorway()) {
+				updateGuessPanels(((ComputerPlayer)board.currentPlayer()).createSuggestion(board.getPlayers(), board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()), board.getWeapons(), board.getLegend()));
+			}
+    	}
 	}
 	
 	private class ButtonListener implements ActionListener {
@@ -146,13 +161,7 @@ public class ControlGUI extends JPanel {
         					resetPanels(); // Reset all panels in the control GUI.
         					boardGUI.repaint(); // Repaint the board GUI.
         					boardGUI.revalidate(); // Repaint the board GUI.
-        					// If the game has moved on to a computer player's turn.
-        		        	if (board.currentPlayer() instanceof ComputerPlayer) {
-        		        		// If the computer player has entered a room, then update the suggestion and make a suggestion.
-        						if (board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()).isDoorway()) {
-        							updateGuessPanels(((ComputerPlayer)board.currentPlayer()).createSuggestion(board.getPlayers(), board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()), board.getWeapons(), board.getLegend()));
-        						}
-        		        	}
+        					checkSuggestionAbility(); // Make a suggestion if applicable.
 	                    }
 	                });
 				} else if (board.currentPlayer() instanceof ComputerPlayer) {
@@ -163,13 +172,7 @@ public class ControlGUI extends JPanel {
         					resetPanels(); // Reset all panels in the control GUI.
         					boardGUI.repaint(); // Repaint the board GUI.
         					boardGUI.revalidate(); // Repaint the board GUI.
-        					// If the game has moved on to a computer player's turn.
-        		        	if (board.currentPlayer() instanceof ComputerPlayer) {
-        		        		// If the computer player has entered a room, then update the suggestion and make a suggestion.
-        						if (board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()).isDoorway()) {
-        							updateGuessPanels(((ComputerPlayer)board.currentPlayer()).createSuggestion(board.getPlayers(), board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()), board.getWeapons(), board.getLegend()));						
-        						}
-        		        	}
+        					checkSuggestionAbility(); // Make a suggestion if applicable.
 	                    }
 	                });
 				}

@@ -25,6 +25,7 @@ public class BoardGUI extends JPanel {
 	ArrayList<Player> players;
 	BoardGUI self = this;
 	ControlGUI controlGUI;
+	MakeGuessDialog guessDialog;
 
 	public BoardGUI() {
 		board = Board.getInstance(); 		// Get the board.	
@@ -87,7 +88,8 @@ public class BoardGUI extends JPanel {
 	}
 	
 	public void drawDialog() {
-		JOptionPane.showMessageDialog(this, "To be implemented...", "Make a Guess", JOptionPane.INFORMATION_MESSAGE);
+		guessDialog = new MakeGuessDialog(controlGUI);
+		guessDialog.setVisible(true);
 	}
 
 	private class CellListener implements MouseListener {

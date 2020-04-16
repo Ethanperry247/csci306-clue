@@ -42,4 +42,6 @@ public class Solution {
 		return weapon;
 	}
 	
+	
+	
 }
