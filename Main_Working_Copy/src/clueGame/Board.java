@@ -490,11 +490,11 @@ public class Board {
 			index++;
 		}
 		
-		if (suggestionDisproval == null) {
-			accusingPlayer.saveSuggestion(suggestion);
-			accusingPlayer.updateDisproven(false);
+		if (suggestionDisproval == null) {				// if no one disproved suggestion, will be null
+			accusingPlayer.saveSuggestion(suggestion);	// current suggestion will be saved to become accusation next round
+			accusingPlayer.updateDisproven(false);		// will update status to keep track that suggestion was not disproven for next round
 		} else {
-			accusingPlayer.updateDisproven(true);
+			accusingPlayer.updateDisproven(true);		// else, player was disproven and status updated accordingly
 		}
 		
 		return suggestionDisproval;

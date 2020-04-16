@@ -22,7 +22,7 @@ public abstract class Player {
 	protected ArrayList<Card> roomsSeen;	// The rooms observed from disproved suggestions.
 	protected ArrayList<Card> playersSeen;	// The players observed from disproved suggestions.
 	protected BoardCell justVisited;		// board cell to represent the last room they just visited
-	protected boolean justDisproven; 		// boolean to keep track if player was disproven last round.
+	protected boolean justDisproven; 		// boolean to keep track if player suggestion was disproved last round.
 	protected Solution savedSuggestion;		// a suggestion that is preserved to become an accusation the next round
 	
 	public Player(String playerName, int row, int column, String color) {
