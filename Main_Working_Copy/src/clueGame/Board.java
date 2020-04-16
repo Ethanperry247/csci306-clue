@@ -524,6 +524,12 @@ public class Board {
 		}
 	}
 	
+	public void loadSeenCards() {
+		for (Player player: players) {
+			player.addCardHand();	
+		}
+	}
+	
 	
 	
 	// Getters for testing purposes: ////////////////////////////////////////////////////////////////

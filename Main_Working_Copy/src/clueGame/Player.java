@@ -62,6 +62,12 @@ public abstract class Player {
 		}
 	}
 	
+	public void addCardHand() {
+		for (Card card : playerCards) {
+			updateSeen(card);
+		}
+	}
+	
 	// the player has seen a new card, the card will be added into the correct seen deck based on card type
 	public void updateSeen(Card seen) {
 		CardType type = seen.getType();

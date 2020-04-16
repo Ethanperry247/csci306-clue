@@ -18,6 +18,7 @@ public class ClueGame {
 		board.createSolution();
 		board.calcAdjacencies();
 		board.dealDeck();
+		board.loadSeenCards();
 		board.playTurn(); // Play the first round.
 		
 		// Create the GUI.
