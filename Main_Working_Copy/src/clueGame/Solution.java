@@ -27,7 +27,7 @@ public class Solution {
 	
 	@Override
 	public String toString() {
-		return person + " " + room + " " + weapon;
+		return person + " in the " + room + " using a " + weapon;
 	}
 
 	public String getPerson() {
