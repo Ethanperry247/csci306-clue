@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import clueGame.*;
@@ -20,6 +21,7 @@ public class BoardGUI extends JPanel {
 	Board board;
 	BoardCell[][] boardCells;
 	ArrayList<Player> players;
+	BoardGUI self = this;
 
 	public BoardGUI() {
 		board = Board.getInstance(); 		// Get the board.	
@@ -83,8 +85,13 @@ public class BoardGUI extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			int row = (e.getPoint().y/Board.CELL_LENGTH); // Identify the row based on the y location.
 			int col = (e.getPoint().x/Board.CELL_LENGTH); // Identify the column based on the x location.
-			board.movePlayer(row, col); // Move the player (error checking for if the player has moved correctly is located in this method).
-			repaint(); // Be sure to repaint the board.
+			if (board.movePlayer(row, col)) {// Move the player (error checking for if the player has moved correctly is located in this method).
+				repaint(); // Be sure to repaint the board.
+			} else if (board.currentPlayer() instanceof ComputerPlayer) {
+				JOptionPane.showMessageDialog(self, "It's not your turn!", "Error", JOptionPane.INFORMATION_MESSAGE);
+			} else if (board.currentPlayer() instanceof HumanPlayer) {
+				JOptionPane.showMessageDialog(self, "Not a valid move!", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 
 		// Unused interface methods.

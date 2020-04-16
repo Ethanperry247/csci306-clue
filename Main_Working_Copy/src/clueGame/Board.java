@@ -81,20 +81,22 @@ public class Board {
 		rollDice(); // Get a new dice roll.
 		getTargets(); // Clear the targets if there are any.
 		calcTargets(player.getRow(), player.getCol(), getDiceRoll()); // Calculate the targets for this player.
-//		calcTargets(3, 4, 5); // Calculate the targets for this player.
 		player.updateTargets(getTargets()); // Get targets is used in this instance because it will erase the current target list!
 		player.makeMove(); // Pass in the targets for the players to choose from.
 	}
 	
 	// Called on click by the board GUI method. Will move the player only if the user has clicked a valid cell.
-	public void movePlayer(int row, int col) {
+	public boolean movePlayer(int row, int col) {
+		boolean correctCell = false;
 		if (currentPlayer() instanceof HumanPlayer) { // Check if the player is human too! (for casting purposes)
 			for (BoardCell cell: currentPlayer().getTargets()) {	
 				if (cell.getRow() == row && cell.getColumn() == col) { // Check for the correct row and column.
 					((HumanPlayer)currentPlayer()).move(row, col); // Move the player if all criteria are met.
+					correctCell = true;
 				}
 			}
 		}
+		return correctCell;
 	}
 	
 	// Make a random dice roll.
