@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -35,6 +36,8 @@ public class ControlGUI extends JPanel {
 	private JPanel dieRollPanel;
 	private JPanel guessPanel;
 	private JPanel guessResultPanel;
+	private MakeGuessDialog accusationDialog;
+	private ControlGUI self = this;
 	
 	public ControlGUI(BoardGUI boardGUI) {
 		this.boardGUI = boardGUI;
@@ -45,7 +48,7 @@ public class ControlGUI extends JPanel {
 		add(namePanel);
 		nextPlayerButton = createButtonPanel("Next Player", new ButtonListener()); // Button to move to the next player.
 		add(nextPlayerButton);
-		accusationButton = createButtonPanel("Make an Accusation", null); // Button to make an accusation.
+		accusationButton = createButtonPanel("Make an Accusation", new AccusationListener()); // Button to make an accusation.
 		add(accusationButton);
 		dieRollPanel = new EtchedPanel("Die", "Roll", Integer.toString(board.getDiceRoll()), false, HEIGHT/3, WIDTH/8); // Display the roll of the die.
 		add(dieRollPanel);
@@ -115,7 +118,7 @@ public class ControlGUI extends JPanel {
 	private JPanel createButtonPanel(String name, ActionListener listener) {
 		// Create a new button, add to a new panel, and return.
 		JButton button = new JButton(name);
-		button.addActionListener(new ButtonListener());
+		button.addActionListener(listener);
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add(button);
 		return panel;
@@ -147,6 +150,41 @@ public class ControlGUI extends JPanel {
 				updateGuessPanels(((ComputerPlayer)board.currentPlayer()).createSuggestion(board.getPlayers(), board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()), board.getWeapons(), board.getLegend()));
 			}
     	}
+	}
+	
+	public void initializeUserAccusation(Solution accusation) {
+		if (board.checkAccusation(accusation)) {
+			String message = board.currentPlayer().getName() + " has won the game!";
+			JOptionPane.showMessageDialog(this, message, "You Won!", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			String message = "You made an incorrect accusation.";
+			JOptionPane.showMessageDialog(this, message, "Incorrect Guess.", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	// Check if an accusation is possible!
+	public void checkAccusationAbility() {
+		if (board.currentPlayer() instanceof ComputerPlayer) {
+			if (((ComputerPlayer)board.currentPlayer()).getJustDisproven() == false) { // If the computer player has not been just disproven.
+				if (board.checkAccusation(((ComputerPlayer)board.currentPlayer()).makeAccusation())) {
+					String message = ((ComputerPlayer)board.currentPlayer()).getName() + " has won the game!";
+					JOptionPane.showMessageDialog(this, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					String message = ((ComputerPlayer)board.currentPlayer()).getName() + " has made an incorrect accusation.";
+					JOptionPane.showMessageDialog(this, message, "Incorrect Guess.", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		}
+	}
+	
+	private class AccusationListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			accusationDialog = new MakeGuessDialog(self, "accusation");
+			accusationDialog.setVisible(true);
+		}
+		
 	}
 	
 	private class ButtonListener implements ActionListener {

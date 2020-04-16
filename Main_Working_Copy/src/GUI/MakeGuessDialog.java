@@ -31,8 +31,10 @@ public class MakeGuessDialog extends JDialog {
 	private ControlGUI controlGUI;
 	private JComboBox<String> weaponComboBox;
 	private JComboBox<String> personComboBox;
+	private String solutionType;
 
-	public MakeGuessDialog(ControlGUI controlGUI) {
+	public MakeGuessDialog(ControlGUI controlGUI, String solutionType) {
+		this.solutionType = solutionType;
 		this.controlGUI = controlGUI;
 		board = Board.getInstance();
 		Player player = board.currentPlayer();
@@ -79,7 +81,11 @@ public class MakeGuessDialog extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == submitButton) {
-				controlGUI.updateGuessPanels(new Solution(person, room, weapon));
+				if (solutionType == "suggestion") {
+					controlGUI.updateGuessPanels(new Solution(person, room, weapon));
+				} else if (solutionType == "accusation") {
+					controlGUI.initializeUserAccusation(new Solution(person, room, weapon));
+				}
 				self.setVisible(false);
 			} else {
 				self.setVisible(false);

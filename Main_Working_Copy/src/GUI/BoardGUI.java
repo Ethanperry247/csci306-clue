@@ -88,7 +88,7 @@ public class BoardGUI extends JPanel {
 	}
 	
 	public void drawDialog() {
-		guessDialog = new MakeGuessDialog(controlGUI);
+		guessDialog = new MakeGuessDialog(controlGUI, "suggestion");
 		guessDialog.setVisible(true);
 	}
 
