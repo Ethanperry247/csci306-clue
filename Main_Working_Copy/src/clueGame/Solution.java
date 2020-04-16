@@ -24,6 +24,11 @@ public class Solution {
 			return false;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return person + " " + room + " " + weapon;
+	}
 
 	public String getPerson() {
 		return person;

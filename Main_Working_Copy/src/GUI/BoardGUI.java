@@ -24,12 +24,17 @@ public class BoardGUI extends JPanel {
 	BoardCell[][] boardCells;
 	ArrayList<Player> players;
 	BoardGUI self = this;
+	ControlGUI controlGUI;
 
 	public BoardGUI() {
 		board = Board.getInstance(); 		// Get the board.	
 		boardCells = board.getBoard();		// Get all of the board cells from the board.
 		players = board.getPlayerList();	// Get all of the players from the board.
 		addMouseListener(new CellListener());
+	}
+	
+	public void setControlGUI(ControlGUI controlGUI) {
+		this.controlGUI = controlGUI;
 	}
 	
 	@Override
@@ -80,6 +85,10 @@ public class BoardGUI extends JPanel {
 			target.drawPlayerTargets(cell);
 		}
 	}
+	
+	public void drawDialog() {
+		JOptionPane.showMessageDialog(this, "To be implemented...", "Make a Guess", JOptionPane.INFORMATION_MESSAGE);
+	}
 
 	private class CellListener implements MouseListener {
 
@@ -89,6 +98,9 @@ public class BoardGUI extends JPanel {
 			int col = (e.getPoint().x/Board.CELL_LENGTH); // Identify the column based on the x location.
 			if (board.movePlayer(row, col)) {// Move the player (error checking for if the player has moved correctly is located in this method).
 				repaint(); // Be sure to repaint the board.
+				if (board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()).isDoorway()) {
+					drawDialog();
+				}
 			} else if (board.currentPlayer() instanceof ComputerPlayer) {
 				JOptionPane.showMessageDialog(self, "It's not your turn!", "Error", JOptionPane.INFORMATION_MESSAGE);
 			} else if (board.currentPlayer() instanceof HumanPlayer) {

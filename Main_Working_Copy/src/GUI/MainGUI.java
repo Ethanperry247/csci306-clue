@@ -32,6 +32,8 @@ public class MainGUI extends JFrame {
 		controlGUI = new ControlGUI(boardGUI); 	// Add a control GUI to the bottom of the GUI.
 		add(controlGUI, BorderLayout.SOUTH); 	// Put the JPanel in the center
 		
+		boardGUI.setControlGUI(controlGUI); 	// The controlGUI can control the boardGUI and vice versa, all under the umbrella of the mainGUI.
+		
 		menuBar = new FileMenu(); // Create and set a menu bar for our game.
 		setJMenuBar(menuBar);
 		

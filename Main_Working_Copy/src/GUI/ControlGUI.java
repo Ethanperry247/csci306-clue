@@ -21,6 +21,7 @@ import clueGame.Board;
 import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
 import clueGame.Player;
+import clueGame.Solution;
 
 public class ControlGUI extends JPanel {
 	public static final int WIDTH = 900; // Controls the size of the control GUI.
@@ -127,12 +128,19 @@ public class ControlGUI extends JPanel {
 		((NamePanel)namePanel).resetTextField(board.currentPlayer().getName());
 	}
 	
+	private void updateGuessPanels(Solution suggestion) {
+		String guessResult = board.initiateSuggestion(suggestion).getName();
+		((EtchedPanel)guessPanel).resetTextField(suggestion.toString());
+		((EtchedPanel)guessResultPanel).resetTextField(guessResult);
+		
+	}
+	
 	private class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 	        	if (board.currentPlayer() instanceof HumanPlayer && ((HumanPlayer)board.currentPlayer()).getPlayerMovementStatus()) {
-	        		SwingUtilities.invokeLater(new Runnable() {
+	        		SwingUtilities.invokeLater(new Runnable() { // If there is any delay in the logic, this will prevent the GUI from crashing as a result.
 	                    @Override
 	                    public void run() {
                         	board.nextTurn(); // Move on to the next player's turn.
@@ -149,6 +157,11 @@ public class ControlGUI extends JPanel {
         					resetPanels(); // Reset all panels in the control GUI.
         					boardGUI.repaint(); // Repaint the board GUI.
         					boardGUI.revalidate(); // Repaint the board GUI.
+        					// If the computer player has entered a room, then update the suggestion and make a suggestion.
+        					if (board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()).isDoorway()) {
+        						updateGuessPanels(((ComputerPlayer)board.currentPlayer()).createSuggestion(board.getPlayers(), board.getCellAt(board.currentPlayer().getRow(), board.currentPlayer().getCol()), board.getWeapons()));
+        						
+        					}
 	                    }
 	                });
 				}

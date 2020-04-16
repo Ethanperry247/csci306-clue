@@ -99,6 +99,16 @@ public class Board {
 		return correctCell;
 	}
 	
+	// Called by the control GUI for display purposes.
+	public Card initiateSuggestion(Solution suggestion) {
+		Card result = null; // Create a null card.
+		result = handleSuggestion(currentPlayer(), suggestion);
+		if (result == null) {
+			result = new Card("No disproving cards.", null); // Dummy card to be used for display in the control GUI.
+		}
+		return result; // Return either a valid card or the dummy card.
+	}
+	
 	// Make a random dice roll.
 	public void rollDice() {
 		diceRoll = (int)(Math.random()*6) + 1;
