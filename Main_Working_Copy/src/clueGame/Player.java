@@ -63,18 +63,18 @@ public abstract class Player {
 	}
 	
 	// the player has seen a new card, the card will be added into the correct seen deck based on card type
-		public void updateSeen(Card seen) {
-			CardType type = seen.getType();
-			
-			if (type == CardType.ROOM) {
-				roomsSeen.add(seen);
-			} else if (type == CardType.WEAPON) {
-				weaponsSeen.add(seen);
-			} else {
-				playersSeen.add(seen);
-			}
+	public void updateSeen(Card seen) {
+		CardType type = seen.getType();
+		
+		if (type == CardType.ROOM) {
+			roomsSeen.add(seen);
+		} else if (type == CardType.WEAPON) {
+			weaponsSeen.add(seen);
+		} else {
+			playersSeen.add(seen);
 		}
-	
+	}
+
 	public boolean getJustDisproven() {
 		return justDisproven;
 	}
