@@ -153,8 +153,9 @@ public class ControlGUI extends JPanel {
     	}
 	}
 	
+	// Creates an accusation for the user if they have requested it.
 	public void initializeUserAccusation(Solution accusation) {
-		if (board.checkAccusation(accusation)) {
+		if (board.checkAccusation(accusation)) { // Checks the user's accusation against the correct answer.
 			String message = board.currentPlayer().getName() + " has won the game!";
 			JOptionPane.showMessageDialog(this, message, "You Won!", JOptionPane.INFORMATION_MESSAGE);
 		} else {
