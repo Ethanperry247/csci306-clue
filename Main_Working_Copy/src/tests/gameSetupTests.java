@@ -143,10 +143,10 @@ public class gameSetupTests {
 		// in this scenario, a computer player is in the Veranda (V) and they have not seen any cards
 		ComputerPlayer playerOne = new ComputerPlayer("GLaDOS", 0, 0, "RED"); 
 		BoardCell location = board.getCellAt(playerOne.getRow(),playerOne.getRow());
-		Solution testOne = playerOne.createSuggestion(board.getPlayers(), location, board.getWeapons());
+		Solution testOne = playerOne.createSuggestion(board.getPlayers(), location, board.getWeapons(), board.getLegend());
 		
 		// therefore, the Room in their suggestion would be where they currently are: V 
-		assertEquals(testOne.getRoom(), "V");
+		assertEquals(testOne.getRoom(), "Veranda");
 		// since they have not seen any cards, they will pick a random Person and Weapon for their suggestion
 		assertTrue(board.getAllPlayerNames().contains(testOne.getPerson()));
 		assertTrue(board.getWeaponNames().contains(testOne.getWeapon()));
@@ -162,11 +162,11 @@ public class gameSetupTests {
 		// in this scenario, a computer player is in the Dungeon (D) and they have seen all weapon and people cards except our control cases
 		ComputerPlayer playerTwo = new ComputerPlayer("HAL9000", 19, 19, "RED", seenWeapons, seenPeople); 
 		location = board.getCellAt(playerTwo.getRow(),playerTwo.getRow());
-		Solution testTwo = playerTwo.createSuggestion(board.getPlayers(), location, board.getWeapons());
+		Solution testTwo = playerTwo.createSuggestion(board.getPlayers(), location, board.getWeapons(), board.getLegend());
 		
 		assertTrue(testTwo.getPerson().equals("Mrs. White"));	// will suggest the missing person control case
 		assertTrue(testTwo.getWeapon().equals("Rope"));			// will suggest the missing weapon control case
-		assertEquals(testTwo.getRoom(), "D");					// will suggest current room: D
+		assertEquals(testTwo.getRoom(), "Dungeon");					// will suggest current room: D
 		
 	}
 	

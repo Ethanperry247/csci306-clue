@@ -5,6 +5,7 @@ package clueGame;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.Random;
 
@@ -61,7 +62,7 @@ public class ComputerPlayer extends Player{
 	}
 	
 
-	public Solution createSuggestion(Set<Card> peopleDeck, BoardCell location, Set<Card> weaponsDeck) {
+	public Solution createSuggestion(Set<Card> peopleDeck, BoardCell location, Set<Card> weaponsDeck, Map<Character, ArrayList<String>> legend) {
 		
 		ArrayList<Card> missing = new ArrayList<Card>();	
 		Random random = new Random();
@@ -87,7 +88,7 @@ public class ComputerPlayer extends Player{
 		String weapon = missing.get(someCard).getName();
 		
 		char initial = location.getInitial();
-		String room = String.valueOf(initial);
+		String room = legend.get(initial).get(0);
 
 		Solution suggestion = new Solution(person, room, weapon);
 		return suggestion;

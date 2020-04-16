@@ -36,6 +36,7 @@ public abstract class Player {
 		this.playersSeen = new ArrayList<Card>();
 		this.justVisited = null;
 		this.justDisproven = false;
+		this.savedSuggestion = null;
 	}
 	
 	public Player(String playerName, int row, int column, String color, ArrayList<Card> weaponsSeen, ArrayList<Card> playersSeen) {
@@ -49,6 +50,7 @@ public abstract class Player {
 		this.playersSeen = playersSeen;
 		this.justVisited = null;
 		this.justDisproven = false;
+		this.savedSuggestion = null;
 	}
 	
 	public void updateTargets(Set<BoardCell> targets) {
