@@ -104,7 +104,7 @@ public class Board {
 		Card result = null; // Create a null card.
 		result = handleSuggestion(currentPlayer(), suggestion);
 		if (result == null) {
-			result = new Card("No disproving cards.", null); // Dummy card to be used for display in the control GUI.
+			result = new Card("None.", null); // Dummy card to be used for display in the control GUI.
 		}
 		return result; // Return either a valid card or the dummy card.
 	}
@@ -305,7 +305,7 @@ public class Board {
 		Card solutionWeapon = weapons.get(((int)(Math.random())*weapons.size()));
 		Card solutionRoom = rooms.get(((int)(Math.random())*rooms.size()));
 		
-		createSolution(solutionName.getName(), solutionWeapon.getName(), solutionRoom.getName());
+		createSolution(solutionName.getName(), solutionRoom.getName(), solutionWeapon.getName());
 	}
 	
 	// getters for number of rows, columns, legend, and cell at a specific location are all below

@@ -159,6 +159,7 @@ public class ControlGUI extends JPanel {
 		if (board.checkAccusation(accusation)) { // Checks the user's accusation against the correct answer.
 			String message = board.currentPlayer().getName() + " has won the game!";
 			JOptionPane.showMessageDialog(this, message, "You Won!", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
 		} else {
 			String message = "You made an incorrect accusation.";
 			JOptionPane.showMessageDialog(this, message, "Incorrect Guess.", JOptionPane.INFORMATION_MESSAGE);
@@ -172,6 +173,7 @@ public class ControlGUI extends JPanel {
 				if (board.checkAccusation(((ComputerPlayer)board.currentPlayer()).makeAccusation())) {
 					String message = ((ComputerPlayer)board.currentPlayer()).getName() + " has won the game!";
 					JOptionPane.showMessageDialog(this, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+					System.exit(0);
 				} else {
 					String message = ((ComputerPlayer)board.currentPlayer()).getName() + " has made an incorrect accusation.";
 					JOptionPane.showMessageDialog(this, message, "Incorrect Guess.", JOptionPane.INFORMATION_MESSAGE);
