@@ -14,29 +14,34 @@ import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import clueGame.Board;
+import clueGame.Card;
+
 public class DetectiveNotesDialog extends JDialog {
+	private Board board;
 
 	public DetectiveNotesDialog() {
+		board = Board.getInstance();
 		setTitle("Detective Notes");
 		setSize(450, 600);
 		setLayout(new GridLayout(3,2)); // Three rows, two columns.
 		
-		String[] personArray = {"Mr. Green", "Mrs. White", "Mrs. Peacock", "Ms. Scarlett", "Col. Mustard", "Prof. Plum"};
-		ArrayList<String> personNames = new ArrayList<String>(Arrays.asList(personArray)); // Create an array list with the names of the players.
+		ArrayList<String> personNames = new ArrayList<String>(board.getAllPlayerNames()); // Create an array list with the names of the players.
 		JPanel people = createCheckBoxPanel(personNames, "People");
 		add(people);
 		JPanel personGuess = createComboBoxPanel(personNames, "Person Guess");
 		add(personGuess);
 		
-		String[] roomArray = {"Lounge", "Dungeon", "Greenhouse"};
-		ArrayList<String> roomNames = new ArrayList<String>(Arrays.asList(roomArray)); // Create an array list with the names of the rooms.
+		ArrayList<String> roomNames = new ArrayList<String>(); // Create an array list with the names of the rooms.
+		for (Card card: board.getRooms()) {
+			roomNames.add(card.getName());
+		}
 		JPanel rooms = createCheckBoxPanel(roomNames, "Rooms");
 		add(rooms);
 		JPanel roomGuess = createComboBoxPanel(roomNames, "Room Guess");
 		add(roomGuess);
 		
-		String[] weaponArray = {"Dagger", "Revolver", "Candlestick"};
-		ArrayList<String> weaponNames = new ArrayList<String>(Arrays.asList(weaponArray)); // Create an array list with the names of the rooms.
+		ArrayList<String> weaponNames = new ArrayList<String>(board.getWeaponNames()); // Create an array list with the names of the rooms.
 		JPanel weapons = createCheckBoxPanel(weaponNames, "Weapons");
 		add(weapons);
 		JPanel weaponGuess = createComboBoxPanel(weaponNames, "Weapon Guess");
