@@ -1,0 +1,718 @@
+commit 841f3b8c91769868ff068777e29566db2746c130
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sun Apr 12 16:14:07 2020 -0600
+
+    Fixed an error with the opening message dialog. Now it displays all the correct information.
+
+commit 88e9d55d2172c695e3a8ea48b7f3974e9aac8f6a
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sun Apr 12 16:10:02 2020 -0600
+
+    Fixed a bug in the file menu. A new detective notes was getting created every time it was opened.
+
+commit 20afd68f236a1019fe310adeb0137d3567d232fc
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sun Apr 12 16:00:12 2020 -0600
+
+    Made a few more changes in board to facilitate gameplay.
+
+commit 77a1e7a00278915b5419e74bac4508adb36b2367
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sun Apr 12 15:45:19 2020 -0600
+
+    Added functionality for rounds in the baord class. Implemented the display of the current players cards.
+
+commit 738bbab5eaa90e5c36bd29f1a9f81fbc2ab2092c
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 10 21:25:08 2020 -0600
+
+    added in documentation and refactored variable names
+
+commit 6be1271e334f3ebfe101aadc0eb5a95b158f5265
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 10 00:39:45 2020 -0600
+
+    updated config files to accomodate reading in cells to write in room names
+
+commit 6f122fadb821512404dd60c31732bd5aa0d3082e
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 10 00:37:34 2020 -0600
+
+    implemented drawName to BoardGUI, along with refactoring Board so the config file specifies which cell should draw the room name which also leads to update old config test files as well
+
+commit 112447cb91cd1c83b13d6b5aced5fd51e27e61e1
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Apr 9 13:35:36 2020 -0600
+
+    finished implementing draw for BoardCell, all cells (doors, walkways, rooms) will be properly displayed on the board
+
+commit 0b47da988df1e7eab468e782974041ff811a2900
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Apr 7 14:07:39 2020 -0600
+
+    refactored parameters of drawing in cells and players as the board when draw is sideways (so swapped column and row values)
+
+commit 9c309013ecf3dd1a3db8cc72baeb081ef9c0d72e
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Apr 7 14:03:41 2020 -0600
+
+    draw in BoardCell now implemented to draw cells, still need to draw in name
+
+commit ce903477f1136d38fe8c637bb12189e30981c985
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Apr 7 13:47:25 2020 -0600
+
+    Added functionality for drawing board cells.
+
+commit 6ef43169e411b621e17e475f60174cb745fa79f1
+Merge: 8dc8d2f 8f0c0ac
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Apr 7 13:37:27 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 8dc8d2fc2b5efacb798429d6fdd8b3ec26386844
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Apr 7 13:37:24 2020 -0600
+
+    Added drawing functionality for players.
+
+commit 8f0c0acfae74828a04948a33ad8345684492c672
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Apr 7 13:36:34 2020 -0600
+
+    further addition to draw in BoardCell
+
+commit 3dbb1abd1f456d2488114e0dc24af49ad6d7d3bf
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Apr 7 13:25:35 2020 -0600
+
+    Added a draw body of a method for player class.
+
+commit fcf8373f5c93f25e063e1e14b65fd9668bc1a582
+Merge: bf438b3 d47b1db
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Apr 7 13:23:56 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit bf438b3c0dd03e7d9067e689c2f2f7ecbd9adcb1
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Apr 7 13:23:51 2020 -0600
+
+    Added functionality to call painting methods from BoardGUI class.
+
+commit d47b1dbae09706be184080d24f099868020bed1b
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Apr 7 13:19:58 2020 -0600
+
+    added BoardCell refatctoring for drawing baord cells for BoardGUI
+
+commit d699288acf1334968bd02d68f3d88b5f5cbb1212
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Apr 7 12:59:28 2020 -0600
+
+    Added a top level runner for our game.
+
+commit b04cc32c66daa14d3b3ddf80a929be6aa6b8f236
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Apr 7 12:45:32 2020 -0600
+
+    Readded some dummy data.
+
+commit e1cb0713275d44712ba39363f27980f6273dbda5
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Apr 7 12:43:33 2020 -0600
+
+    Created a dummy board JPanel.
+
+commit d136b8e3769c1911140e1dd501d3f537209a9a47
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Apr 4 22:37:44 2020 -0600
+
+    Added sidebar cards GUI component to the main GUI. Now all that is left is drawing the board.
+
+commit d5be9c2fea863eab93e3a67494506f0495c55b74
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Apr 4 22:19:52 2020 -0600
+
+    Added a custom dialog for detective notes. Added all functionality for custom dialog.
+
+commit 09884af81683cf13cce06404f12c9ceb2ded9db0
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Apr 4 21:38:37 2020 -0600
+
+    Created a mainGUI JFrame to add all subcomponents to. Create a working file menu.
+
+commit 98642ed97c26d57fd4f5678bcce3d0ff13319057
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Apr 4 00:45:45 2020 -0600
+
+    Finished the control GUI. Features optional sizing of elements and a grid style layout.
+
+commit 4b5ed0c21e7a7ffaef6bc9e2ad848215746882fb
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 22:06:25 2020 -0600
+
+    added updated gitlog
+
+commit 09c26a7a6ed3b8d2a17b899babd8019620534079
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 22:02:50 2020 -0600
+
+    added documentation for gamesetuptests
+
+commit 88c7bf6c68c834c266cee98697ab0d02b7d7c464
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 21:00:54 2020 -0600
+
+    added in JUnit test ordering so suggestionHandling would not interfere with other tests
+
+commit 4dc9dbc018c66c85a60054edbf9338f89ffa7cb0
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 20:33:08 2020 -0600
+
+    tests now all pass for testComputerTargetSelection
+
+commit d1210ac715e7580ac06973ebe94fd857095895e6
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 20:10:36 2020 -0600
+
+    addded in failing tests for testComputerTargetSelection
+
+commit 4cb25b14437bf6f49f33991672cf3de18c267e29
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 18:29:04 2020 -0600
+
+    testComputerSuggestion tests now all pass
+
+commit e361eb0ea7f5ff79a62a2517b38773d94820605b
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Apr 3 17:46:53 2020 -0600
+
+    added in failing tests for testComputerSuggestion along with constructor refactroing for Player
+
+commit d06ce2b29cd5649ae79e7a85d570ae4f77c260e2
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Apr 2 22:19:25 2020 -0600
+
+    added in methods to help set up testing ComputerPlayer
+
+commit e7a75342c6a9919346ac1dc5fbc16d785ab52ad8
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Apr 2 21:04:21 2020 -0600
+
+    finished implementing createSuggestion for ComputerPlayer
+
+commit 4604910ac0a40568ee39eb5a034bb544b75aef5f
+Merge: fe41ef3 597c40a
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Apr 2 19:26:32 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 597c40abc70859c639d9c2d0555c9134531f4c74
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 19:16:21 2020 -0600
+
+    Added a new testing method to clear players. Did some significant bug fixing in the test class. Implemented handle suggestion in board, and all tests pass!
+
+commit a9f841f46eda3e6863b07987f052a05191272e38
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 18:39:49 2020 -0600
+
+    Added a huge number of failing tests for handling a suggestion. To be implemented.
+
+commit 8b8a79b1c044a810cbce796135f8bc0cc8d9f3c6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 18:01:38 2020 -0600
+
+    Fixed an unseen major bug related to random number generation in board and player.
+
+commit 8727cc52cd0705706d45216995c7bcaf151f99a3
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 17:42:17 2020 -0600
+
+    Refector and cleanup of methods in board and player.
+
+commit fe41ef397b9bf07b348f454d312a0d2216f3fdc4
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Apr 2 14:15:53 2020 -0600
+
+    refactored pickLocation and began createSuggestions (to be finished)
+
+commit 45192e5a379201c644a1a20a769d39649ad67087
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 14:02:58 2020 -0600
+
+    Implemented tests for suggestion disproval, all tests pass.
+
+commit 04d25f5522f41c7f70e33bac210b9c8da76694a6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 13:54:36 2020 -0600
+
+    Added individualized card sets in board and added seen lists in player.
+
+commit a0178eaa717062d84ed18325585f9f9402659991
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 13:24:06 2020 -0600
+
+    Created failing tests for disprove suggestion in player.
+
+commit 72c2e34689a2a626588bcf4b8b0c457ee2e46eb6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Apr 2 13:04:09 2020 -0600
+
+    Made some small changes in board and player.
+
+commit 8bc5890e74b64586a5e5f04a6b58e97923a19ff3
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Mar 31 14:11:44 2020 -0600
+
+    Added override .equals() in solution and implemented testing accusations.
+
+commit b60ad1c45c427a88bb23be2b0a10e56811fa2698
+Merge: b3a35bc bb35788
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Mar 31 14:11:14 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit b3a35bc34063c68dca3832f1a82dbdd7816d9e51
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Mar 31 14:10:30 2020 -0600
+
+    Added failing tests for testing accusations.
+
+commit bb35788764fbe055a8bdd283592947e0e91e690b
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Mar 31 14:08:38 2020 -0600
+
+    added in pickLocation for ComputerPlayer, still needs to be intergrated into the gameplay for testing
+
+commit 59041b35657390470fc2fd3d79efdafb51fc07cc
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Mar 31 13:43:57 2020 -0600
+
+    Forgot to save.
+
+commit c5e86cabde685b848ea1a3c476e733e3c04a9315
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Mar 31 13:43:29 2020 -0600
+
+    Changed Strings to Cards in the solution class. Also implemented a solution creator in the board class, both one with params and one generating randomly.
+
+commit 9aad7b296779ce5b7663447d6aaba46b969536cb
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 28 22:26:08 2020 -0600
+
+    correcting first attempt to add gitlog to repo
+
+commit b5ea37ae767697204612a4c06f53bfbb7607ba53
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 28 22:23:48 2020 -0600
+
+    added author documentation to all new created files
+
+commit 9dca85d1fa4edb85141f22311e0232b26576466d
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 28 22:20:30 2020 -0600
+
+    added new gitlog
+
+commit 676cd05a8f9c468aa65bf6c0d5596e1e007ea28b
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 28 22:16:40 2020 -0600
+
+    modified tests so that @BeforeClass is properly implemented along with final thorough documentation for Player Part I
+
+commit 0f4453f52c40421f24cb54b7cfc525258a8596d8
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Mar 28 20:59:14 2020 -0600
+
+    Fixed another color error--there is no color purple so Prof. Plum will have to settle for magenta. Additionally added more getters to the board and the player classes, and added tests for position and color of players.
+
+commit b2ae54a51c56c935629efb4b3195d52994c5b7e5
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Mar 28 20:39:06 2020 -0600
+
+    Did a few run throughs of the code, moved a few methods around, and added extra comments.
+
+commit e4a542bf9c86c8c51b986b203097cdfe3a94312b
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Mar 28 20:28:36 2020 -0600
+
+    Fixed error with assigning java Colors to players.
+
+commit f0b2c33ec131c8e410db890dd8fa4b16a3bc8a57
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 28 00:33:14 2020 -0600
+
+    tests now pass for number of cards dealt to each player along with being equally distributed as possible
+
+commit 8ec6734e561cc8f3ed8d0cd759df514489ab0c63
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Mar 27 23:59:23 2020 -0600
+
+    added in failing tests for number of cards dealt to each player
+
+commit d519b4962a855d784c97c1cb13bc20fcc97a9ff6
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Mar 27 23:04:51 2020 -0600
+
+    added in dealCards method to deal cards to players from deck, also adjusted createDeck to create cards and add them to queues for divided decks for better sorting
+
+commit 7444c72b4b4a6422ffb4e03a3427403c65e77ce0
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 21:25:00 2020 -0600
+
+    Small refactor on board class.
+
+commit c83d4dcb45a2bfc377c05e781f8c3d66f61f3e87
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 21:22:36 2020 -0600
+
+    Did some refactoring, fixed a bug with adding extra cards to a deck, added comments to board class, implemented deck tests and all tests pass!
+
+commit 42690db8914be863daf8825dfb706215177c0d33
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 21:06:22 2020 -0600
+
+    Added failing deck tests.
+
+commit d1ea00fa70668826200e0f1076e768867cbaf9ba
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 20:42:49 2020 -0600
+
+    Player loading tests now pass.
+
+commit 066761e2a496a55beefb8c525092a23fe822fa10
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 18:39:27 2020 -0600
+
+    Made updates for the failing tests for loading players.
+
+commit 2046f41e3242ed9fcf2442cc423a4671e4f0eb17
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 17:53:05 2020 -0600
+
+    Fixed some errors in Player class and added failing test for loading the players.
+
+commit 36733d73ef42abaecea5cf3d59a38ad9d1a6e373
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 17:17:57 2020 -0600
+
+    Outlined all tests as empty methods.
+
+commit 98f69b561c748632b3fe73c0baa7efeb83b9362a
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 15:17:36 2020 -0600
+
+    Created player and weapon configuation files.
+
+commit 448ceaf9637303cab426a6725206c5aca2c1fb9f
+Merge: 1f78e67 0cac57f
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 14:53:20 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 1f78e67e638360d6ca0f8704be03f4fdda30d0f1
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 27 14:53:08 2020 -0600
+
+    Older commits from last submission.
+
+commit 0cac57f17d5c28442570122c317cbd25c107a222
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Wed Mar 25 22:27:56 2020 -0600
+
+    added createDeck in Card.java that creates all required cards in the game
+
+commit d63df91ec36066fc35e6076f11a4ef4f41f47ed9
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Mar 21 22:52:35 2020 -0600
+
+    added a list variable to Player.java to hold cards and enum CardType variable to Card.java
+
+commit 52cbcde972d98c09dc73135cc057652e0e68e61a
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Fri Mar 20 17:48:21 2020 -0600
+
+    modified Board.java slightly, added set up for gameSetupTests.java for Part I, along with the set ups for everything in the UML diagram in Part I
+
+commit c3932bf386bd4966b3ae151f9e519d59148d1bc4
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 13 22:52:36 2020 -0600
+
+    Did a final review of all code. Added a few last comments and refactored any other confusing or inefficent code that I could find. Deleted some unnecessary files. Ready to submit.
+
+commit 07062e136c1b7470c40cb72dca73ed0736238127
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 13 22:43:36 2020 -0600
+
+    Renamed some confusing variables in the board and room configurations. Added more comments for clarity. Did a review of the helper method and fixed a few possible sources of error.
+
+commit 5f2a32ff8e5c1e50b08f36e8bf984060764207a3
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 16:21:49 2020 -0600
+
+    added a helper method to further streamline calcAdj when checking if an ajacent cell is a walkway
+
+commit b8b07419f3261026f188dcf8bccde2d7731f32f2
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 14:37:53 2020 -0600
+
+    refactored calcAdj for simplified checks if the index of a cell is not out of bounds
+
+commit 206455b5d0f0e7236274aa83847c3c386d0fbfe8
+Merge: 564532c ebe885c
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 13:46:05 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 564532c8fefc32da4c1160ba12cdadd0e92c63c9
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 13:45:56 2020 -0600
+
+    added numerous new comments clarifying functionalities of our calcAdj method
+
+commit ebe885cbc4deea426616aed6395237b5382099f9
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:43:21 2020 -0600
+
+    Added additional comments in BoardCell, BadConfigFormatException, and CTest_Perry_Pan_AdjTargetTests. Also renamed one of the test files because the name was originally confusing.
+
+commit 0e23d392f351e49f2e840e09ce5191d20d7fe128
+Merge: 199f24f e04851a
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:34:48 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 199f24fc73d64e5345b29ff39398ccfa89c9f218
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:34:41 2020 -0600
+
+    Changed back to JUnit 5 because there was serious errors with switching to JUnit 4.
+
+commit e04851ad59cf96779cee011d433007172b903d52
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 13:30:45 2020 -0600
+
+    renamed variable names in loadboard config for better clarity, cleaned some comments, and refactored calcTargets to avoid re-initalization of an int variable for each recurisive call
+
+commit 5aebd561e903e596f178c2f5d40b77848d6639ea
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:03:04 2020 -0600
+
+    Changed JUnit 5 to JUnit 4 in the build path.
+
+commit b577a4ccbcf606d2d02fa91d778069ca1f817291
+Merge: 5ba3260 9956685
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 12:58:26 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 5ba3260607785d9fee87d1c2e83ca01fbaeba9bc
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 12:58:21 2020 -0600
+
+    Added copy of the code without refactoring.
+
+commit 995668549c954bda920e924364907c83bac6d3b0
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Mar 10 13:35:02 2020 -0600
+
+    updated parameter names, still havent update r and c variable names for loadBoardConfig
+
+commit 3cddf79b5ba5688cfb44752eb60cebf4234442f6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Mar 2 22:18:10 2020 -0700
+
+    Added last zip file. Submitting III and IV.
+
+commit 98241fcd09880f28e848c492c1e6033301b139aa
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Mar 2 22:15:04 2020 -0700
+
+    Did a final review of the code. Added comments and assured that all tests ran properly. Ready to submit part IV.
+
+commit cea56e458fcb8f3b4c2f22d39c8af9a1d17511ef
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Mar 2 21:50:24 2020 -0700
+
+    Reorganized file structure.
+
+commit d8ec0c9bec024b72d3388960c278973eaecc0ddb
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Mon Mar 2 01:54:01 2020 -0700
+
+    finished Part III with Prof. Baldwin's and our tests all failing along with excel file for our board layout along with documentation.
+
+commit 2447c2c95a360af27afa4e08579f76795ce13072
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sun Mar 1 22:57:28 2020 -0700
+
+    Fixed the final test--was an error with the door.
+
+commit 1cc42a7b9264254cd6d7d9a3d56262539740ccb1
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sun Mar 1 22:39:39 2020 -0700
+
+    fixed calcTarget to stop after entering door cell
+
+commit 179aa8fc8d15d8c9023b2f988ef8a68b8eeb288e
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sun Mar 1 15:33:26 2020 -0700
+
+    calcAdjacencies now properly implemeted, modified calcTargets and getTargets so they no longer run into errors.
+
+commit e0f5418aa6f618174c60f6aacef44ab794871303
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Feb 29 21:13:46 2020 -0700
+
+    added in Prof. Baldwin's test file, implemeted getAdjList, created calcAdjacencies, calcTargets, and getTargets (currently not properly working), along with new getters for a cell's column and row
+
+commit 36eb99fab65b71718b6dabfdf72775bd1c9535af
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Feb 29 14:03:07 2020 -0700
+
+    inital commit for start of Part III: added in test file, skeleton methods, and updated documentation
+
+commit fdd947faaf30f12c3dab4aab65fe96e8041da8a0
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Feb 28 23:54:48 2020 -0700
+
+    Changed the name of the working copy folder
+
+commit 053d61403636a7a554028186d186b4b8a98a6491
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Feb 28 23:52:56 2020 -0700
+
+    Added a new folder for C14 Part I submission after implementation.
+
+commit 881d496f39db9371a5872ad1c06938b5ddb27c3e
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Feb 28 23:27:45 2020 -0700
+
+    Finished implementation of loading the config files. Seperated into two projects: the one with the failing tests and the one passing the tests. Verified all tests are working. Added any additional files for submission as required by the rubric.
+
+commit bbff2e891cebd3005364b0a04fab5a2463fdb980
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Feb 27 13:25:03 2020 -0700
+
+    finished BoardCell
+
+commit 34544ca20c4608501d7bb0ccf53440343e100b9b
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Feb 27 12:59:06 2020 -0700
+
+    updated boardcell and board to handle strings and documented exception
+
+commit 345246ef6df421eb9ff117a7fd6106eee091da69
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 27 12:54:31 2020 -0700
+
+    Added exception test class.
+
+commit 8c7ab484aaa51027db0797da0077968165c93363
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 27 12:33:43 2020 -0700
+
+    Continued to update test class.
+
+commit 1d70cc625855d158aa28c4b9245cab5cbab51b2a
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Wed Feb 26 21:42:38 2020 -0700
+
+    added cvs file for board layout
+
+commit de6f1d66e7a27639da6d12d697ce7080cc7aa44a
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Feb 25 13:48:09 2020 -0700
+
+    badconfig exception extended
+
+commit d9d8e20d44cf0f439a117d2d43f0508565e5f55b
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Feb 25 13:45:55 2020 -0700
+
+    Forgot to save files. Pushing again.
+
+commit 61e8ca52aeb3f780417e36f327b34724b948da81
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Feb 25 13:45:20 2020 -0700
+
+    Added new test file, finished new classes in clueGame package.
+
+commit 0ee441f8cab6b0564314ea200f588d9ec3132bc4
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Feb 25 13:27:49 2020 -0700
+
+    badconfig exception skeleton and enum type added
+
+commit c4d4858e91b29d7693061c06e9e117e7b99e61a6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Tue Feb 25 13:11:46 2020 -0700
+
+    Added new clueGame package and class to that package.
+
+commit 1bf9432c6046ad12636a537966c7b0aa567258a1
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Feb 24 14:57:12 2020 -0700
+
+    Added zip file
+
+commit d76ab22d7f7a343ebfa578eb14ef66c3135eb531
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Mon Feb 24 14:55:45 2020 -0700
+
+    Added the failing tests part I and cleaned up the part II implemented code. Also updated the constructor in the part II code. Ready for submission.
+
+commit f00233ffe88700c3e9180a7b00187b38198e30b5
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Feb 22 22:20:39 2020 -0700
+
+    Encapsulated C12_A2 in its own file.
+
+commit 9a90e938535359c7b5a5bb39964b6f59d05293b3
+Merge: f422b2c 9d064df
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Feb 22 22:18:37 2020 -0700
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit f422b2cc6b37229a6620fea6e5da0f6145d8595a
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Sat Feb 22 22:18:24 2020 -0700
+
+    Implemented methods to fulfill the tests. No tests failed!
+
+commit 9d064df37a19ea1f906ac93d9c0b8756125ef003
+Author: CPanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Sat Feb 22 17:50:38 2020 -0700
+
+    Add files via upload
+    
+    Added map layout excel file and legend/key for the rooms
+
+commit ac2ff317db50c81cd6e100e73d1c61e8724e29ae
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 20 13:41:49 2020 -0700
+
+    Added failing tests and all classes
+
+commit a6b6bf3644dd182a8c8c0a7765b8eef986e21a5f
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 20 12:58:11 2020 -0700
+
+    Added project files
+
+commit 4edd74471ec89f5b4b0a0917b2a3abeeb23f9ff6
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Feb 20 12:49:40 2020 -0700
+
+    Added README

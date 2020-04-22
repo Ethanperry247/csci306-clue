@@ -174,7 +174,10 @@ public class ControlGUI extends JPanel {
 					String message = ((ComputerPlayer)board.currentPlayer()).getName() + " has won the game!";
 					JOptionPane.showMessageDialog(this, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
 					System.exit(0);
-				} 
+				} else {
+					String message = ((ComputerPlayer)board.currentPlayer()).getName() + " has made an incorrect accusation.";
+					JOptionPane.showMessageDialog(this, message, "Incorrect Guess.", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 	}
