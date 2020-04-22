@@ -57,7 +57,7 @@ public class ComputerPlayer extends Player{
 	
 	
 	// an accusation is made when the player's suggestion was not disproven in their last turn
-	public Solution makeAccusation(Set<Card> weapons, Set<Card> rooms, Set<Card> players) {
+	public Solution makeAccusation() {
 		Solution accusation = savedSuggestion;	// therefore, the accusation is made with their previously saved suggestion
 		return accusation;
 	}

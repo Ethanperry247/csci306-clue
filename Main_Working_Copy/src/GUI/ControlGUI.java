@@ -170,7 +170,7 @@ public class ControlGUI extends JPanel {
 	public void checkAccusationAbility() {
 		if (board.currentPlayer() instanceof ComputerPlayer) {
 			if (((ComputerPlayer)board.currentPlayer()).getJustDisproven() == false) { // If the computer player has not been just disproven.
-				if (board.checkAccusation(((ComputerPlayer)board.currentPlayer()).makeAccusation(  board.getWeapons(), board.getRooms(), board.getPlayers() ))) {
+				if (board.checkAccusation(((ComputerPlayer)board.currentPlayer()).makeAccusation())) {
 					String message = ((ComputerPlayer)board.currentPlayer()).getName() + " has won the game!";
 					JOptionPane.showMessageDialog(this, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
 					System.exit(0);
