@@ -169,12 +169,15 @@ public class ControlGUI extends JPanel {
 	// Check if an accusation is possible!
 	public void checkAccusationAbility() {
 		if (board.currentPlayer() instanceof ComputerPlayer) {
-			if (((ComputerPlayer)board.currentPlayer()).readyAccusation(board.getWeapons(), board.getRooms(), board.getPlayers()) == true) { // If the computer player has not been just disproven.
-				if (board.checkAccusation(((ComputerPlayer)board.currentPlayer()).makeAccusation(  board.getWeapons(), board.getRooms(), board.getPlayers() ))) {
+			if (((ComputerPlayer)board.currentPlayer()).getJustDisproven() == false) { // If the computer player has not been just disproven.
+				if (board.checkAccusation(((ComputerPlayer)board.currentPlayer()).makeAccusation())) {
 					String message = ((ComputerPlayer)board.currentPlayer()).getName() + " has won the game!";
 					JOptionPane.showMessageDialog(this, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
 					System.exit(0);
-				} 
+				} else {
+					String message = ((ComputerPlayer)board.currentPlayer()).getName() + " has made an incorrect accusation.";
+					JOptionPane.showMessageDialog(this, message, "Incorrect Guess.", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 	}

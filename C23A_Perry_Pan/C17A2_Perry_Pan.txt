@@ -1,0 +1,227 @@
+Authors: Ethan Perry and Caleb Pan
+Most significant refactoring choice--located in the board class. Git log can be seen below.
+
+---------------------------------------------------------------------------------------------------
+
+Before:
+
+public Set<BoardCell> getAdjList(int i, int j) {
+		BoardCell current = getCellAt(i,j);
+		Set<BoardCell> adjacent = new HashSet<BoardCell>(); 
+	
+		if (current.isRoom()) {	// if in room, cannot move
+			return adjacent;
+			
+		} else if (current.isDoorway()) {	// if on a door cell, finds adjacent cell to enter
+			
+			switch(current.getDoorDirection()) {
+				case LEFT: 
+					adjacent.add(getCellAt(i,j-1));
+					break;
+				case RIGHT:
+					adjacent.add(getCellAt(i,j+1));
+					break;
+				case UP:
+					adjacent.add(getCellAt(i-1,j));
+					break;
+				case DOWN:
+					adjacent.add(getCellAt(i+1,j));
+					break;
+				default:
+					break;
+			} 
+			
+		} else if (current.isWalkway()) {	// if on a walkway, check all adjacent cells if can move onto (other walkways or doors) 
+			
+			if (j > 0 && getCellAt(i,j-1).getInitial() == 'W' 
+					|| j > 0 && getCellAt(i,j-1).getDoorDirection() == DoorDirection.RIGHT) {
+				adjacent.add(getCellAt(i,j-1));
+			}
+			
+			if (j < numColumns-1 && getCellAt(i,j+1).getInitial() == 'W'
+					|| j < numColumns-1 && getCellAt(i,j+1).getDoorDirection() == DoorDirection.LEFT) {
+				adjacent.add(getCellAt(i,j+1));
+			}
+			
+			if (i > 0 && getCellAt(i-1,j).getInitial() == 'W'
+					|| i > 0 && getCellAt(i-1,j).getDoorDirection() == DoorDirection.DOWN) {
+				adjacent.add(getCellAt(i-1,j));
+			}
+			
+			if (i < numRows-1 && getCellAt(i+1,j).getInitial() == 'W'
+					|| i < numRows-1 && getCellAt(i+1,j).getDoorDirection() == DoorDirection.UP) {
+				adjacent.add(getCellAt(i+1,j));
+			}
+			
+		}
+		
+		return adjacent;
+	}	
+
+
+-------------------------------------------------------------------------------------------------------
+
+After:
+
+public Set<BoardCell> getAdjList(int row, int column) {
+		BoardCell current = getCellAt(row,column);
+		Set<BoardCell> adjacent = new HashSet<BoardCell>(); 
+
+		if (current.isRoom()) {	// if in room, cannot move
+			return adjacent;
+
+		} else if (current.isDoorway()) {	// if on a door cell, finds adjacent cell to enter
+
+			switch(current.getDoorDirection()) {
+			case LEFT:	// check if can enter to the left cell
+				adjacent.add(getCellAt(row, column-1));
+				break;
+			case RIGHT:	// check if can enter to the right cell
+				adjacent.add(getCellAt(row, column+1));
+				break;
+			case UP:	// check if can enter to the cell above
+				adjacent.add(getCellAt(row-1, column));
+				break;
+			case DOWN:	// check if can enter to the cell below
+				adjacent.add(getCellAt(row+1, column));
+				break;
+			default:
+				break;
+			} 
+
+		} else if (current.isWalkway()) {	// if on a walkway, check all adjacent cells if can move onto (other walkways or doors) 
+
+			// check if can move to the cell to the right
+			if (column > 0 && (isAdjWalkway(row, column-1)
+					|| getCellAt(row, column-1).getDoorDirection() == DoorDirection.RIGHT)) {
+				adjacent.add(getCellAt(row, column-1));
+			}
+			
+			// check if can move to the cell to the left
+			if (column < numColumns-1 && (isAdjWalkway(row, column+1)
+					|| getCellAt(row, column+1).getDoorDirection() == DoorDirection.LEFT)) {
+				adjacent.add(getCellAt(row, column+1));
+			}
+			
+			// check if can move to the cell below
+			if (row > 0 && (isAdjWalkway(row-1, column)
+					|| getCellAt(row-1, column).getDoorDirection() == DoorDirection.DOWN)) {
+				adjacent.add(getCellAt(row-1, column));
+			}
+			
+			// check if can move to the cell above
+			if (row < numRows-1 && (isAdjWalkway(row+1, column)
+					|| getCellAt(row+1, column).getDoorDirection() == DoorDirection.UP)) {
+				adjacent.add(getCellAt(row+1, column));
+			}
+
+		}
+
+		return adjacent; // return all adjacent cells that can be moved onto from current board cell
+	}	
+	
+	// helper method to determine if an adjacent cell is a walkway
+	public boolean isAdjWalkway(int row, int column) {
+		if (getCellAt(row, column).getInitial() == 'W') {	// if evaluated cell is a Walkway, return true
+			return true;
+		} else {	// if not, return false
+			return false;
+		}
+	}
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
+Authors: Ethan Perry and Caleb Pan
+This is a git log displaying our refactoring choices.
+
+commit c3932bf386bd4966b3ae151f9e519d59148d1bc4
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 13 22:52:36 2020 -0600
+
+    Did a final review of all code. Added a few last comments and refactored any other confusing or inefficent code that I could find. Deleted some unnecessary files. Ready to submit.
+
+commit 07062e136c1b7470c40cb72dca73ed0736238127
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Fri Mar 13 22:43:36 2020 -0600
+
+    Renamed some confusing variables in the board and room configurations. Added more comments for clarity. Did a review of the helper method and fixed a few possible sources of error.
+
+commit 5f2a32ff8e5c1e50b08f36e8bf984060764207a3
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 16:21:49 2020 -0600
+
+    added a helper method to further streamline calcAdj when checking if an ajacent cell is a walkway
+
+commit b8b07419f3261026f188dcf8bccde2d7731f32f2
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 14:37:53 2020 -0600
+
+    refactored calcAdj for simplified checks if the index of a cell is not out of bounds
+
+commit 206455b5d0f0e7236274aa83847c3c386d0fbfe8
+Merge: 564532c ebe885c
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 13:46:05 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 564532c8fefc32da4c1160ba12cdadd0e92c63c9
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 13:45:56 2020 -0600
+
+    added numerous new comments clarifying functionalities of our calcAdj method
+
+commit ebe885cbc4deea426616aed6395237b5382099f9
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:43:21 2020 -0600
+
+    Added additional comments in BoardCell, BadConfigFormatException, and CTest_Perry_Pan_AdjTargetTests. Also renamed one of the test files because the name was originally confusing.
+
+commit 0e23d392f351e49f2e840e09ce5191d20d7fe128
+Merge: 199f24f e04851a
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:34:48 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 199f24fc73d64e5345b29ff39398ccfa89c9f218
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:34:41 2020 -0600
+
+    Changed back to JUnit 5 because there was serious errors with switching to JUnit 4.
+
+commit e04851ad59cf96779cee011d433007172b903d52
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Thu Mar 12 13:30:45 2020 -0600
+
+    renamed variable names in loadboard config for better clarity, cleaned some comments, and refactored calcTargets to avoid re-initalization of an int variable for each recurisive call
+
+commit 5aebd561e903e596f178c2f5d40b77848d6639ea
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 13:03:04 2020 -0600
+
+    Changed JUnit 5 to JUnit 4 in the build path.
+
+commit b577a4ccbcf606d2d02fa91d778069ca1f817291
+Merge: 5ba3260 9956685
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 12:58:26 2020 -0600
+
+    Merge branch 'master' of https://github.com/Ethanperry247/csci306-clue
+
+commit 5ba3260607785d9fee87d1c2e83ca01fbaeba9bc
+Author: Ethanperry247 <eperry1@gmail.com>
+Date:   Thu Mar 12 12:58:21 2020 -0600
+
+    Added copy of the code without refactoring.
+
+commit 995668549c954bda920e924364907c83bac6d3b0
+Author: Cpanocc <55562352+CPanocc@users.noreply.github.com>
+Date:   Tue Mar 10 13:35:02 2020 -0600
+
+    updated parameter names, still havent update r and c variable names for loadBoardConfig
+
+-----------------------------------------------------------------------------------------------------
+=====================================================================================================
+-----------------------------------------------------------------------------------------------------

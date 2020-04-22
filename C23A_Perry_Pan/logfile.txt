@@ -1,0 +1,1 @@
+Error logged: Incorrect player type in player config file.
