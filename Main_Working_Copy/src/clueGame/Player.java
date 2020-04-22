@@ -38,7 +38,7 @@ public abstract class Player {
 		this.justDisproven = true;
 		this.savedSuggestion = null;
 		
-		for (Card card : playerCards) {
+		for (Card card : playerCards) {	// adds cards in hand to seen decks
 			updateSeen(card);
 		}
 		
@@ -57,7 +57,7 @@ public abstract class Player {
 		this.justDisproven = true;
 		this.savedSuggestion = null;
 		
-		for (Card card : playerCards) {
+		for (Card card : playerCards) {	// adds cards in hand to seen decks
 			updateSeen(card);
 		}
 	}
