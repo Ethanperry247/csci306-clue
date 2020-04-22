@@ -58,40 +58,8 @@ public class ComputerPlayer extends Player{
 	
 	// an accusation is made when the player's suggestion was not disproven in their last turn
 	public Solution makeAccusation(Set<Card> weapons, Set<Card> rooms, Set<Card> players) {
-		
-		String weapon = ""; 
-		String room = "";
-		String player = "";
-		
-		for (Card card : weapons) {
-			if (weaponsSeen.contains(card) == false) {
-				weapon = card.getName();
-			}
-		}
-		
-		for (Card card : rooms) {
-			if (roomsSeen.contains(card) == false) {
-				room = card.getName();
-			}
-		}
-		
-		for (Card card : players) {
-			if (playersSeen.contains(card) == false) {
-				player = card.getName();
-			}
-		}
-		
-		Solution accusation = new Solution(player, room, weapon);
+		Solution accusation = savedSuggestion;	// therefore, the accusation is made with their previously saved suggestion
 		return accusation;
-	}
-	
-	public boolean readyAccusation(Set<Card> weapons, Set<Card> rooms, Set<Card> players) {
-		
-		if (weaponsSeen.size() != weapons.size()-1 || roomsSeen.size() != rooms.size()-1  || playersSeen.size() != players.size()-1) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 	
 
