@@ -524,7 +524,8 @@ public class Board {
 		}
 	}
 	
-	public void loadSeenCards() {
+	// loads cards that player has in their hand into their seen card decks
+	public void loadSeenCards() {	
 		for (Player player: players) {
 			player.addCardHand();	
 		}
