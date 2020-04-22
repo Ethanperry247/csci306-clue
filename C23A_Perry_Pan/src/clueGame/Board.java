@@ -305,11 +305,7 @@ public class Board {
 		Card solutionWeapon = weapons.get(((int)(Math.random())*weapons.size()));
 		Card solutionRoom = rooms.get(((int)(Math.random())*rooms.size()));
 		
-		deck.remove(solutionName);
-		deck.remove(solutionWeapon);
-		deck.remove(solutionRoom);
-		
-		solution = new Solution(solutionName.getName(), solutionRoom.getName(), solutionWeapon.getName());
+		createSolution(solutionName.getName(), solutionRoom.getName(), solutionWeapon.getName());
 	}
 	
 	// getters for number of rows, columns, legend, and cell at a specific location are all below
